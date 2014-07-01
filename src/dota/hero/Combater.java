@@ -1,5 +1,7 @@
 package dota.hero;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import dota.buff.Buff;
@@ -7,41 +9,22 @@ import dota.buff.BuffFactory;
 import dota.buff.BuffManager;
 import dota.config.BuffConfig;
 import dota.config.SkillConfig;
+import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
 
 public abstract class Combater extends Character{
 	
-	public int position = 0;
+	public int position = 0;						// 位置
 	
-	protected SkillManager skillManager = null;
+	protected SkillManager skillManager = null;		// 技能
 	
-	protected BuffManager buffManager = null;
+	protected BuffManager buffManager = null;		// BUFF
 	
-	private 
+	private CombatStateManager combatStateManager = null; // state
 	
 	private int controlType = 0;	// 控制类型，0AI,1手动
-	
-	public abstract void init();
-	
-	public abstract int getRealAttack();
-
-	public int getCurrentHp() {
-		return hp;
-	}
-	
-	public int getCurrentAttack() {
-		return addAttack + attack;
-	}
-	
-	public int getCurrentArmor() {
-		return addArmor + armor;
-	}
-	
-	public int getCurrentMagicRes() {
-		return addMagicRes + magicRes;
-	}
 	
 	public void setControlType(int type) {
 		this.controlType = type;
@@ -49,18 +32,15 @@ public abstract class Combater extends Character{
 	
 	// 被击晕
 	public void beStun(int count) {
-		stun = Math.max(count, stun);
+		combatStateManager.beStun(count);
 	}
 	
 	public void decreaseStun() {
-		if(stun == 0) {
-			return;
-		}
-		stun--;
+		combatStateManager.decreaseStun();
 	}
 	
 	public void clearStun() {
-		stun = 0;
+		combatStateManager.clearStun();
 	}
 	
 	// 每回合更新
@@ -72,7 +52,7 @@ public abstract class Combater extends Character{
 	
 	// 是否可以行动
 	public boolean canAct() {
-		if(stun > 0) {
+		if(combatStateManager.getLeftStunCounts() > 0) {
 			System.out.println("处于眩晕状态");
 			return false;
 		}
@@ -82,25 +62,25 @@ public abstract class Combater extends Character{
 	// 受到指定伤害
 	public int beAttack(int damage, int type) {
 		int realDamage = damageToHp(damage, type);
-		hp -= realDamage;
+		hp.current -= realDamage;
 		return realDamage;
 	}
 	
 	// 伤害实际扣掉的血
 	private int damageToHp(int damage, int type) {
-		int armor = getCurrentArmor();
+		int armor = getRealArmor();
 		int realDamage = (int)((1 - 0.06 * armor)/(1 + 0.06 * armor) * damage);
 		return realDamage;
 	}
 	
 	public boolean isLive() {
-		return hp > 0;
+		return hp.current > 0;
 	}
 	
 	protected int isCrit() {
-		if(Math.random() < critKey/100.0) {
+		if(Math.random() < crite.key/100.0) {
 			//TODO
-			return critValue;
+			return crite.value;
 		}
 		return 0;
 	}
@@ -159,13 +139,6 @@ public abstract class Combater extends Character{
 		buffManager.add(buff);
 	}
 	
-	public void addAttack(int attack) {
-		this.attack += attack;
-	}
-	
-	public void dereaseAttack(int attack) {
-		this.attack -= attack;
-	}
 	
 	public void printBuff() {
 		buffManager.printAll();
@@ -185,4 +158,11 @@ public abstract class Combater extends Character{
 class CombatState {
 	public int type;
 	public int value;
+	
+	public CombatState(int type, int value) {
+		this.type = type;
+		this.value = value;
+	}
 }
+
+
