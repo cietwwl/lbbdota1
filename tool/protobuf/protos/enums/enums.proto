@@ -1,0 +1,11 @@
+option java_package = "dota.enums";
+
+// 攻击类型
+enum AttackType {
+    PHYSICAL   = 1; // 物理伤害
+    MAGICAL    = 2; // 魔法伤害
+}
+
+enum CombatState {
+	STUN = 1; // 眩晕
+}
