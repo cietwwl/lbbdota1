@@ -1,8 +1,11 @@
 package dota.hero;
 
 import dota.buff.BuffManager;
-import dota.config.HeroConfig;
 import dota.config.ParamConfig;
+import dota.config.generated.GameConfig;
+import dota.config.generated.HeroCfg;
+import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
@@ -11,72 +14,58 @@ import dota.util.DotaMath;
 
 public class Hero extends Combater {
 	
-	private int strength;
-	private int agility;
-	private int intelligence;
+	private PropertyLikeAttack strength = new PropertyLikeAttack();
+	private PropertyLikeAttack agility = new PropertyLikeAttack();
+	private PropertyLikeAttack intelligence = new PropertyLikeAttack();
 	private int heroType;
 	
-	protected void init(HeroConfig config) {
-		heroType = config.heroType;
-		critKey = config.crit;
-		name = config.name;
+	public void init(HeroCfg config) {
+		initBase(config);
 		initHp(config);
 		initAttack(config);
 		initSkill(config);
 		initBuff(config);
 	}
 	
-	@Override
-	protected void initHp(HeroConfig config) {
-		hp = config.initHp;
-		hp += config.heroStruct.strength * ParamConfig.StrengthToHp;
+	private void initBase(HeroCfg config) {
+		heroType = config.getHeroType();
+		crite.key = 0;
+		crite.value = 0;
+		name = config.getName();
+		strength.base = config.getInitStrength();
+		agility.base = config.getInitAgility();
+		intelligence.base = config.getInitIntelligence();
 	}
 	
-	@Override
-	protected void initAttack(HeroConfig config) {
-		attack = config.initAttack;
+	private void initHp(HeroCfg config) {
+		hp.max = config.getInitHp();
+		hp.max += strength.getReal() * ParamConfig.StrengthToHp;
+		hp.current = hp.max;
+	}
+	
+	private void initAttack(HeroCfg config) {
+		attack.base = config.getInitAttack();
+		attack.extra = 0;
 		switch(heroType) {
-		case 1:
-			attack += config.heroStruct.strength * ParamConfig.StrengthToAttack;
+		case Enums.HeroType.STRENGTH_VALUE:
+			attack.base += strength.base * ParamConfig.StrengthToAttack;
 			break;
-		case 2:
-			attack += config.heroStruct.agility * ParamConfig.AgilityToAttack;
+		case Enums.HeroType.AGILITY_VALUE:
+			attack.base += agility.base * ParamConfig.AgilityToAttack;
 			break;
-		case 3:
-			attack += config.heroStruct.intelligence * ParamConfig.IntelligenceToAttack;
+		case Enums.HeroType.INTELLIGENCE_VALUE:
+			attack.base += intelligence.base * ParamConfig.IntelligenceToAttack;
 			break;
 		}
 	}
 	
-	@Override
-	protected void initSkill(HeroConfig config) {
-		Skill skill = SkillFactory.Instance().creatSkill(config.commonAttackSkill, this);
+	private void initSkill(HeroCfg config) {
+		SkillCfg skillCfg = GameConfig.getInstance().getSkillCfg(1);
+		Skill skill = SkillFactory.creatSkill(skillCfg);
 		skillManager = new SkillManager(skill);
 	};
 	
-	@Override
-	protected void initBuff(HeroConfig config) {
+	private void initBuff(HeroCfg config) {
 		buffManager = new BuffManager();
 	};
-	
-	@Override
-	public int getRealAttack() {
-		int damage = getRandomAttack(getAttack());
-		int crited = isCrit();
-		if(crited > 0) {
-			System.out.print("触发暴击,");
-		}
-		return damage * (1+crited);
-	}
-	
-	private int getRandomAttack(int attack) {
-		if(DotaMath.RandomInRange(1, 10) >= 5) {
-			attack += DotaMath.RandomInRange(0, (int)(attack*(ParamConfig.AttackRange/100.0)));
-		}
-		else {
-			attack -= DotaMath.RandomInRange(0, (int)(attack*(ParamConfig.AttackRange/100.0)));
-		}
-		return attack;
-	}
-	
 }

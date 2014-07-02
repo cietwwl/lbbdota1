@@ -112,6 +112,10 @@ public final class Enums {
 
   /**
    * Protobuf enum {@code CombatState}
+   *
+   * <pre>
+   * 战斗状态
+   * </pre>
    */
   public enum CombatState
       implements com.google.protobuf.ProtocolMessageEnum {
@@ -191,6 +195,264 @@ public final class Enums {
     // @@protoc_insertion_point(enum_scope:CombatState)
   }
 
+  /**
+   * Protobuf enum {@code HeroType}
+   *
+   * <pre>
+   * 英雄类型
+   * </pre>
+   */
+  public enum HeroType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>STRENGTH = 1;</code>
+     */
+    STRENGTH(0, 1),
+    /**
+     * <code>AGILITY = 2;</code>
+     */
+    AGILITY(1, 2),
+    /**
+     * <code>INTELLIGENCE = 3;</code>
+     */
+    INTELLIGENCE(2, 3),
+    ;
+
+    /**
+     * <code>STRENGTH = 1;</code>
+     */
+    public static final int STRENGTH_VALUE = 1;
+    /**
+     * <code>AGILITY = 2;</code>
+     */
+    public static final int AGILITY_VALUE = 2;
+    /**
+     * <code>INTELLIGENCE = 3;</code>
+     */
+    public static final int INTELLIGENCE_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static HeroType valueOf(int value) {
+      switch (value) {
+        case 1: return STRENGTH;
+        case 2: return AGILITY;
+        case 3: return INTELLIGENCE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<HeroType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<HeroType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<HeroType>() {
+            public HeroType findValueByNumber(int number) {
+              return HeroType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(2);
+    }
+
+    private static final HeroType[] VALUES = values();
+
+    public static HeroType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private HeroType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:HeroType)
+  }
+
+  /**
+   * Protobuf enum {@code SkillType}
+   *
+   * <pre>
+   * 技能类型
+   * </pre>
+   */
+  public enum SkillType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>COMMON = 1;</code>
+     */
+    COMMON(0, 1),
+    ;
+
+    /**
+     * <code>COMMON = 1;</code>
+     */
+    public static final int COMMON_VALUE = 1;
+
+
+    public final int getNumber() { return value; }
+
+    public static SkillType valueOf(int value) {
+      switch (value) {
+        case 1: return COMMON;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SkillType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<SkillType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SkillType>() {
+            public SkillType findValueByNumber(int number) {
+              return SkillType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(3);
+    }
+
+    private static final SkillType[] VALUES = values();
+
+    public static SkillType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private SkillType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:SkillType)
+  }
+
+  /**
+   * Protobuf enum {@code SkillEmitType}
+   *
+   * <pre>
+   * 技能释放类型
+   * </pre>
+   */
+  public enum SkillEmitType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>PASSIVE = 0;</code>
+     */
+    PASSIVE(0, 0),
+    /**
+     * <code>ACTIEVE = 1;</code>
+     */
+    ACTIEVE(1, 1),
+    ;
+
+    /**
+     * <code>PASSIVE = 0;</code>
+     */
+    public static final int PASSIVE_VALUE = 0;
+    /**
+     * <code>ACTIEVE = 1;</code>
+     */
+    public static final int ACTIEVE_VALUE = 1;
+
+
+    public final int getNumber() { return value; }
+
+    public static SkillEmitType valueOf(int value) {
+      switch (value) {
+        case 0: return PASSIVE;
+        case 1: return ACTIEVE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SkillEmitType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<SkillEmitType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SkillEmitType>() {
+            public SkillEmitType findValueByNumber(int number) {
+              return SkillEmitType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(4);
+    }
+
+    private static final SkillEmitType[] VALUES = values();
+
+    public static SkillEmitType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private SkillEmitType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:SkillEmitType)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -202,7 +464,10 @@ public final class Enums {
     java.lang.String[] descriptorData = {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
-      "TUN\020\001B\014\n\ndota.enums"
+      "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\027\n\tSkillType\022\n\n\006C" +
+      "OMMON\020\001*)\n\rSkillEmitType\022\013\n\007PASSIVE\020\000\022\013\n" +
+      "\007ACTIEVE\020\001B\014\n\ndota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

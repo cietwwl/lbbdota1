@@ -2,24 +2,25 @@ package dota.skill;
 import java.util.ArrayList;
 import java.util.List;
 
+import dota.enums.Enums;
 import dota.hero.Combater;
-import dota.skill.Skill;;
+import dota.skill.Skill;
+import dota.team.CombatTeam;
 
 public class SkillManager {
-	private List<Skill> activeSkillList = new ArrayList<Skill>();
-	private List<Skill> passiveSkillList = new ArrayList<Skill>();
+	private List<Skill> activeSkillList = new ArrayList<Skill>(); // 主动技能
+	private List<Skill> passiveSkillList = new ArrayList<Skill>(); // 被动技能
 	
 	public SkillManager(Skill skill) {
-		add(skill);
+		add(skill); // 强制要求一个初始攻击技能
 	}
 	
 	public void add(Skill skill) {
-		if(skill.getEmitType() == 0) {
+		if (skill.getConfig().getEmitType() == Enums.SkillEmitType.ACTIEVE_VALUE) {
 			activeSkillList.add(skill);
 		} else {
 			passiveSkillList.add(skill);
 		}
-		
 	}
 	
 	public Skill getDefaultSkill() {
@@ -27,7 +28,7 @@ public class SkillManager {
 	}
 	
 	public Skill getSkill(int index, int emitType) {
-		if(emitType == 0) {
+		if (emitType == Enums.SkillEmitType.ACTIEVE_VALUE) {
 			return activeSkillList.get(index);
 		} else {
 			return passiveSkillList.get(index);
@@ -35,7 +36,7 @@ public class SkillManager {
 	}
 	
 	public void update() {
-		for(Skill e: activeSkillList) {
+		for (Skill e: activeSkillList) {
 			e.update();
 		}
 	}
@@ -48,7 +49,7 @@ public class SkillManager {
 		System.out.println("技能代号"+ "	" + "名字" + "	" + "CD");
 		for(int i = 0; i < activeSkillList.size(); i++) {
 			Skill skill = activeSkillList.get(i);
-			System.out.println(i + "	" + skill.getName() + "		" + skill.getCD());
+			System.out.println(i + "	" + skill.getConfig().getName() + "		" + skill.getCD());
 		}
 	}
 	
@@ -68,9 +69,9 @@ public class SkillManager {
 		return true;
 	}
 	
-	public void emitPassiveSkill(Combater defenser) {
+	public void emitPassiveSkill(Combater attacker, CombatTeam targets) {
 		for(Skill skill:passiveSkillList) {
-			skill.emitPassive(defenser);
+			skill.emit(attacker, targets);
 		}
 	}
 }

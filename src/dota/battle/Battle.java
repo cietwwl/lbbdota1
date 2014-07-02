@@ -3,16 +3,17 @@ package dota.battle;
 import dota.config.ParamConfig;
 import dota.hero.Combater;
 import dota.skill.Skill;
+import dota.team.CombatTeam;
 
 public class Battle {
 	
-	private Combater attacker;
-	private Combater defenser;
+	private CombatTeam attackers;
+	private CombatTeam defensers;
 	private int counts = 0;	// 回合数
 	
-	public Battle(Combater attacker, Combater defenser) {
-		this.attacker = attacker;
-		this.defenser = defenser;
+	public Battle(CombatTeam attackers, CombatTeam defensers) {
+		this.attackers = attackers;
+		this.defensers = defensers;
 	}
 	
 	public void start() {		
@@ -21,10 +22,8 @@ public class Battle {
 	}
 	
 	private void init() {
-		attacker.battleInit(defenser);
-		defenser.battleInit(attacker);
-		
-		System.out.println("双方剩余生命值，" + attacker.getName() + ": " + attacker.getCurrentHp() + " *** " + defenser.getName() + ": " + defenser.getCurrentHp());
+		attackers.battleInit(defensers);
+		defensers.battleInit(attackers);
 	}
 	
 	private void run() {
@@ -50,28 +49,34 @@ public class Battle {
 	private boolean processOneRound() {
 		counts++;
 		System.out.println("==============第"+counts+"回合==============");
-		if(doAttack(attacker, defenser)) {
-			System.out.println("VICTORY");
+		
+		for (int i = 0; i< 5; i++) {
+			if (doAttack(attackers.get(i), defensers)) {
+				System.out.println("VICTORY");
+				return true;
+			}
+			if (doAttack(defensers.get(i), attackers)){
+				System.out.println("LOSE");
+				return true;
+			}
 		}
-		if(doAttack(defenser, attacker)){
-			System.out.println("LOSE");
-		}
+		
 		update();
-		System.out.println("双方剩余生命值，你: " + attacker.getCurrentHp() + " *** 敌人: " + defenser.getCurrentHp());
-		attacker.printBuff();
+		// System.out.println("双方剩余生命值，你: " + attacker.getCurrentHp() + " *** 敌人: " + defenser.getCurrentHp());
+		// attacker.printBuff();
 		return false;
 	}
 	
-	private boolean doAttack(Combater attacker, Combater defenser) {
+	private boolean doAttack(Combater attacker, CombatTeam defensers) {
 		if(attacker.canAct()) {
-			attacker.attack(defenser);
+			attacker.attack(defensers);
 		}
 		else {
 			System.out.println(attacker.getName() + "处于眩晕状态");
 		}
 		
-		if(!defenser.isLive()) {
-			System.out.println(defenser.getName() + "挂了");
+		if(!defensers.isLive()) {
+			// System.out.println("挂了");
 			return true;
 		}
 		
@@ -79,8 +84,8 @@ public class Battle {
 	}
 	
 	private void update() {
-		attacker.update();
-		defenser.update();
+		attackers.update();
+		defensers.update();
 	}
 	
 }

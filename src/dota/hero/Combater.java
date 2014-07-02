@@ -1,18 +1,17 @@
 package dota.hero;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import dota.buff.Buff;
 import dota.buff.BuffFactory;
 import dota.buff.BuffManager;
 import dota.config.BuffConfig;
-import dota.config.SkillConfig;
+import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
+import dota.team.CombatTeam;
 
 public abstract class Combater extends Character{
 	
@@ -22,7 +21,7 @@ public abstract class Combater extends Character{
 	
 	protected BuffManager buffManager = null;		// BUFF
 	
-	private CombatStateManager combatStateManager = null; // state
+	private CombatStateManager combatStateManager = new CombatStateManager(); // state
 	
 	private int controlType = 0;	// 控制类型，0AI,1手动
 	
@@ -77,22 +76,15 @@ public abstract class Combater extends Character{
 		return hp.current > 0;
 	}
 	
-	protected int isCrit() {
-		if(Math.random() < crite.key/100.0) {
-			//TODO
-			return crite.value;
-		}
-		return 0;
-	}
 	
-	public void attack(Combater defenser) {
+	public void attack(CombatTeam defensers) {
 		Skill skill = selectSkill();
-		skill.emit(defenser);
+		skill.emit(this, defensers);
 
-		if(skill.getType() == 0) {
+		if (skill.getConfig().getSkillType() == Enums.SkillType.COMMON_VALUE) {
 			onCommonAttack();
 		} else {
-			onEmitAnySkill(defenser);
+			onEmitAnySkill(defensers);
 		}
 	}
 	
@@ -100,8 +92,8 @@ public abstract class Combater extends Character{
 		buffManager.onCommonAttack();
 	}
 	
-	public void onEmitAnySkill(Combater defenser) {
-		buffManager.onEmitAnySkill(defenser);
+	public void onEmitAnySkill(CombatTeam defensers) {
+		// buffManager.onEmitAnySkill(defensers);
 	}
 	
 	/*
@@ -127,8 +119,8 @@ public abstract class Combater extends Character{
 		}
 	}
 	
-	public void addSkill(SkillConfig config) {
-		Skill skill = SkillFactory.creatSkill(config, this);
+	public void addSkill(SkillCfg config) {
+		Skill skill = SkillFactory.creatSkill(config);
 		skillManager.add(skill);
 	}
 	
@@ -144,13 +136,8 @@ public abstract class Combater extends Character{
 		buffManager.printAll();
 	}
 	
-	public void battleInit(Combater defenser) {
-		skillManager.emitPassiveSkill(defenser);
-	}
-
-	public String getCrit() {
-		// TODO Auto-generated method stub
-		return null;
+	public void battleInit(CombatTeam targets) {
+		skillManager.emitPassiveSkill(this, targets);
 	}
 	
 }

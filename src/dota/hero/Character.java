@@ -1,11 +1,11 @@
 package dota.hero;
 
 public class Character {
-	protected PropertyLikeHp hp;			// 血
-	protected PropertyLikeHp energy;		// 魔	
-	protected PropertyLikeAttack attack;	// 攻击
-	protected PropertyLikeAttack armor;		// 基础护甲
-	protected PropertyLikeCrit crite;		// 暴击
+	protected PropertyLikeHp hp = new PropertyLikeHp();			// 血
+	protected PropertyLikeHp energy = new PropertyLikeHp();		// 魔	
+	protected PropertyLikeAttack attack = new PropertyLikeAttack();	// 攻击
+	protected PropertyLikeAttack armor = new PropertyLikeAttack();		// 基础护甲
+	protected PropertyLikeCrit crite = new PropertyLikeCrit();		// 暴击
 	protected int magicRes;					// 魔抗
 	protected String name;  				// 名字
 	
@@ -40,10 +40,18 @@ public class Character {
 		}
 	}
 	
+	public float getCriteProbility() {
+		return crite.key/100f;
+	}
+	
+	public int getCriteValue() {
+		return crite.value;
+	}
+	
 }
 
 class PropertyLikeCrit {
-	public int key;		// 暴击概率
+	public int key;		// 暴击概率， 整数数值
 	public int value;   // 暴击倍数
 }
 

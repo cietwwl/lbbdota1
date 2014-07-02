@@ -6,6 +6,26 @@ enum AttackType {
     MAGICAL    = 2; // 魔法伤害
 }
 
+// 战斗状态
 enum CombatState {
 	STUN = 1; // 眩晕
 }
+
+// 英雄类型
+enum HeroType {
+	STRENGTH = 1;
+	AGILITY = 2;
+	INTELLIGENCE = 3;
+}
+
+// 技能类型
+enum SkillType {
+	COMMON = 1;
+}
+
+// 技能释放类型
+enum SkillEmitType {
+	PASSIVE = 0;
+	ACTIEVE = 1;
+}
+

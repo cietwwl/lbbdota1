@@ -1,0 +1,8 @@
+hero,,,,,,,
+id,name,hero_type,init_hp,init_attack,init_strength,init_agility,init_intelligence
+int,string,int,int,int,int,int,int
+1,1,1,1,1,1,1,1
+2,2,2,2,2,2,2,2
+0,0,0,0,0,0,0,0
+索引,名字,英雄类型，1力量2敏捷3智力,初始血量,初始攻击力,初始力量,初始敏捷,初始智力
+1,撼地神牛,1,500,50,20,10,20

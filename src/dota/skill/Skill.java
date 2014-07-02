@@ -1,78 +1,67 @@
 package dota.skill;
 
-import dota.config.SkillConfig;
+import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.team.CombatTeam;
 
 public abstract class Skill {
-	protected SkillConfig config;
-	protected Combater owner;
+	protected SkillCfg config;
 	private int CD = 0;
-	
-	public void setCD(int CD) {
-		this.CD = CD;
-	}
 	
 	public int getCD() {
 		return CD;
 	}
 	
-	public void decreaseCD() {
-		if(CD == 0) {
-			return;
-		}
-		CD--;
-	}
-	
-	public Skill(SkillConfig config) {
+	public Skill(SkillCfg config) {
 		this.config = config;
 	}
 	
-	public void initOwner(Combater owner) {
-		this.owner = owner;
-	}
-	
-	protected abstract void emit0(Combater defenser);
-	
-	public void emit(Combater defenser) {
-		if(canEmit()) {
-			emit0(defenser);
-			setCD(config.CD);
-		}
-	}
-	
-	public void emitPassive(Combater defenser) {
-		emit0(defenser);
-	}
-	
-	public String getName() {
-		return config.name;
-	}
-	
-	public Combater getOwner() {
-		return owner;
+	public SkillCfg getConfig() {
+		return config;
 	}
 	
 	public void update() {
 		decreaseCD();
 	}
 	
-	public boolean canEmit() {
-		if(config.emitType!=0) {
-			System.out.println("被动技能");
-			return false;
+	private void decreaseCD() {
+		if (CD == 0) {
+			return;
 		}
-		if(CD > 0) {
+		CD--;
+	}
+	
+	public void emit(Combater attacker, CombatTeam targets) {
+		if (!canEmit()) {
+			return;
+		}
+		
+		if (config.getEmitType() == Enums.SkillEmitType.PASSIVE_VALUE) {
+			CD = 999999;
+		} else {
+			CD = config.getCd();
+		}
+		
+		for (Combater e: targets) {
+			emit1(attacker, e);
+		}
+	}
+	
+	private void emit1(Combater attacker,Combater defenser) {
+		if (attacker == null || defenser == null) {
+			return;
+		}
+		emit0(attacker, defenser);
+	}
+	
+	protected abstract void emit0(Combater attacker,Combater defenser);
+
+	public boolean canEmit() {
+		if (CD > 0) {
 			System.out.println("技能正处于CD中");
 			return false;
 		}
 		return true;
-	}
-	
-	public int getType() {
-		return config.skillType;
-	}
-	
-	public int getEmitType() {
-		return config.emitType;
 	}
 }
