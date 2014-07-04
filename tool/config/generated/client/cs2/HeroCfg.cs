@@ -23,5 +23,13 @@ namespace HXFS.Config
     public int InitAgility { get; set; } // 初始敏捷
     [ProtoMember(8)]
     public int InitIntelligence { get; set; } // 初始智力
+    [ProtoMember(9)]
+    public int AttackDitance { get; set; } // 攻击距离
+    [ProtoMember(10)]
+    public int InitEnergy { get; set; } // 初始魔法值
+    [ProtoMember(11)]
+    public string InitSkills { get; set; } // 初始技能，逗号分隔
+    [ProtoMember(12)]
+    public int InitAttackSpeed { get; set; } // 基础攻击间隔 MS
   }
 }

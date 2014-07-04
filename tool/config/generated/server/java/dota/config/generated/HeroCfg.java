@@ -10,6 +10,10 @@ public class HeroCfg extends BaseConfig {
     private int initStrength; // 初始力量
     private int initAgility; // 初始敏捷
     private int initIntelligence; // 初始智力
+    private int attackDitance; // 攻击距离
+    private int initEnergy; // 初始魔法值
+    private String initSkills; // 初始技能，逗号分隔
+    private int initAttackSpeed; // 基础攻击间隔 MS
 
     public final String getName() {return name;}
     public final int getHeroType() {return heroType;}
@@ -18,5 +22,9 @@ public class HeroCfg extends BaseConfig {
     public final int getInitStrength() {return initStrength;}
     public final int getInitAgility() {return initAgility;}
     public final int getInitIntelligence() {return initIntelligence;}
+    public final int getAttackDitance() {return attackDitance;}
+    public final int getInitEnergy() {return initEnergy;}
+    public final String getInitSkills() {return initSkills;}
+    public final int getInitAttackSpeed() {return initAttackSpeed;}
 
 }

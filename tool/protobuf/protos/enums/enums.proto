@@ -21,6 +21,7 @@ enum HeroType {
 // 技能类型
 enum SkillType {
 	COMMON = 1;
+	FISSURE = 11;
 }
 
 // 技能释放类型

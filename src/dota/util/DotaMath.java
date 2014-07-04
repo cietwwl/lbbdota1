@@ -3,8 +3,20 @@ package dota.util;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DotaMath {
-	public static int RandomInRange(int start, int end) {	
-		return ThreadLocalRandom.current().nextInt(end) + start;
+	public static int RandomInRange(int start, int end) {
+		if (start > end) {
+			return 0;
+		}
+		
+		if (start == end) {
+			return start;
+		}
+		
+		if (end <=0 ) {
+			return 0;
+		}
+		
+		return ThreadLocalRandom.current().nextInt(end - start + 1) + start;
 	}
 	
 	public static boolean doesRandomSuccess(float random) {

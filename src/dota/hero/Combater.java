@@ -1,5 +1,6 @@
 package dota.hero;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dota.buff.Buff;
@@ -12,18 +13,25 @@ import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
 import dota.team.CombatTeam;
+import dota.util.DotaMath;
 
 public abstract class Combater extends Character{
 	
-	public int position = 0;						// 位置
+	public int positionX = 0;						// 位置
+	public int positionY = 0;
+	
+	protected int attackDistance = 0; 
 	
 	protected SkillManager skillManager = null;		// 技能
 	
 	protected BuffManager buffManager = null;		// BUFF
 	
-	private CombatStateManager combatStateManager = new CombatStateManager(); // state
+	protected CombatStateManager combatStateManager = new CombatStateManager(); // state
 	
 	private int controlType = 0;	// 控制类型，0AI,1手动
+	
+	protected float ias = 1f; // 攻击速度提升
+	protected int base_attack_speed = 10;
 	
 	public void setControlType(int type) {
 		this.controlType = type;
@@ -52,7 +60,7 @@ public abstract class Combater extends Character{
 	// 是否可以行动
 	public boolean canAct() {
 		if(combatStateManager.getLeftStunCounts() > 0) {
-			System.out.println("处于眩晕状态");
+			// System.out.println(getName() + " 处于眩晕状态");
 			return false;
 		}
 		return true;
@@ -79,6 +87,11 @@ public abstract class Combater extends Character{
 	
 	public void attack(CombatTeam defensers) {
 		Skill skill = selectSkill();
+		
+		if (skill == null) {
+			return ;
+		}
+		
 		skill.emit(this, defensers);
 
 		if (skill.getConfig().getSkillType() == Enums.SkillType.COMMON_VALUE) {
@@ -115,12 +128,21 @@ public abstract class Combater extends Character{
 			return skillManager.getSkill(n, 0);
 		}
 		else {
-			return skillManager.getDefaultSkill();
+			return randomSkill();
 		}
 	}
 	
+	//
+	private Skill randomSkill() {
+		List<Skill> candidate = skillManager.getCanEmitSkills();
+		if (candidate.size() == 0) {
+			return null;
+		}
+		return candidate.get(DotaMath.RandomInRange(0, candidate.size() - 1));
+	}
+	
 	public void addSkill(SkillCfg config) {
-		Skill skill = SkillFactory.creatSkill(config);
+		Skill skill = SkillFactory.createSkill(config);
 		skillManager.add(skill);
 	}
 	
@@ -138,6 +160,19 @@ public abstract class Combater extends Character{
 	
 	public void battleInit(CombatTeam targets) {
 		skillManager.emitPassiveSkill(this, targets);
+	}
+	
+	public int getAttackDistance() {
+		return attackDistance;
+	}
+	
+	public void setPosition(int x, int y) {
+		positionX = x;
+		positionY = y;
+	}
+	
+	public int getAttackSpeed() {
+		return (int) (base_attack_speed/ias); // MS/攻击次数
 	}
 	
 }

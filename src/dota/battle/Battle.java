@@ -2,18 +2,23 @@ package dota.battle;
 
 import dota.config.ParamConfig;
 import dota.hero.Combater;
+import dota.map.CombatMap;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 
 public class Battle {
 	
-	private CombatTeam attackers;
-	private CombatTeam defensers;
-	private int counts = 0;	// 回合数
+	private CombatTeam attackTeam;
+	private CombatTeam defenseTeam;
+	// private CombatMap combatMap;
 	
-	public Battle(CombatTeam attackers, CombatTeam defensers) {
-		this.attackers = attackers;
-		this.defensers = defensers;
+	public Battle() {
+	}
+	
+	public void init(CombatTeam attackTeam, CombatTeam defenseTeam, CombatMap combatMap) {
+		this.attackTeam = attackTeam;
+		this.defenseTeam = defenseTeam;
+		//this.combatMap = combatMap;
 	}
 	
 	public void start() {		
@@ -22,8 +27,8 @@ public class Battle {
 	}
 	
 	private void init() {
-		attackers.battleInit(defensers);
-		defensers.battleInit(attackers);
+		attackTeam.battleInit(defenseTeam);
+		defenseTeam.battleInit(attackTeam);
 	}
 	
 	private void run() {
@@ -47,36 +52,31 @@ public class Battle {
 	}
 	
 	private boolean processOneRound() {
-		counts++;
-		System.out.println("==============第"+counts+"回合==============");
 		
-		for (int i = 0; i< 5; i++) {
-			if (doAttack(attackers.get(i), defensers)) {
+		for (Combater e: attackTeam) {
+			if (doAttack(e, defenseTeam)) {
 				System.out.println("VICTORY");
 				return true;
 			}
-			if (doAttack(defensers.get(i), attackers)){
+		}
+		
+		for (Combater e: defenseTeam) {
+			if (doAttack(e, attackTeam)) {
 				System.out.println("LOSE");
 				return true;
 			}
 		}
 		
 		update();
-		// System.out.println("双方剩余生命值，你: " + attacker.getCurrentHp() + " *** 敌人: " + defenser.getCurrentHp());
-		// attacker.printBuff();
 		return false;
 	}
 	
 	private boolean doAttack(Combater attacker, CombatTeam defensers) {
-		if(attacker.canAct()) {
+		if (attacker.canAct()) {
 			attacker.attack(defensers);
 		}
-		else {
-			System.out.println(attacker.getName() + "处于眩晕状态");
-		}
 		
-		if(!defensers.isLive()) {
-			// System.out.println("挂了");
+		if (!defensers.isLive()) {
 			return true;
 		}
 		
@@ -84,8 +84,8 @@ public class Battle {
 	}
 	
 	private void update() {
-		attackers.update();
-		defensers.update();
+		attackTeam.update();
+		defenseTeam.update();
 	}
 	
 }

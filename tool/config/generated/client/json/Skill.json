@@ -1,3 +1,4 @@
 [
-  { "Id": 1, "Name": "普通物理攻击", "SkillType": 1, "Cd": 1, "EmitType": 1}
+  { "Id": 1, "Name": "普通物理攻击", "SkillType": 1, "Cd": 0, "EmitType": 1, "EmitDistance": 0, "EffectScope": 0, "EffectTime": 0, "Damage": 0, "EnergyCost": 0},
+  { "Id": 2, "Name": "沟壑", "SkillType": 11, "Cd": 3000, "EmitType": 1, "EmitDistance": 2, "EffectScope": 5, "EffectTime": 2000, "Damage": 100, "EnergyCost": 90}
 ]

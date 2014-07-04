@@ -22,9 +22,11 @@ public class Hero extends Combater {
 	public void init(HeroCfg config) {
 		initBase(config);
 		initHp(config);
+		initEnergy(config);
 		initAttack(config);
 		initSkill(config);
 		initBuff(config);
+		initIas(config);
 	}
 	
 	private void initBase(HeroCfg config) {
@@ -35,12 +37,18 @@ public class Hero extends Combater {
 		strength.base = config.getInitStrength();
 		agility.base = config.getInitAgility();
 		intelligence.base = config.getInitIntelligence();
+		attackDistance = config.getAttackDitance();
 	}
 	
 	private void initHp(HeroCfg config) {
 		hp.max = config.getInitHp();
 		hp.max += strength.getReal() * ParamConfig.StrengthToHp;
 		hp.current = hp.max;
+	}
+	
+	private void initEnergy(HeroCfg config) {
+		energy.max = config.getInitEnergy();
+		energy.max += intelligence.getReal() * ParamConfig.IntelligenceToEnergy;
 	}
 	
 	private void initAttack(HeroCfg config) {
@@ -60,12 +68,21 @@ public class Hero extends Combater {
 	}
 	
 	private void initSkill(HeroCfg config) {
-		SkillCfg skillCfg = GameConfig.getInstance().getSkillCfg(1);
-		Skill skill = SkillFactory.creatSkill(skillCfg);
-		skillManager = new SkillManager(skill);
-	};
+		String[] skills = config.getInitSkills().split(",");
+		skillManager = new SkillManager();
+		for (int i = 0; i < skills.length; i++) {
+			Skill skill = SkillFactory.createSkill(Integer.parseInt(skills[i]));
+			skillManager.add(skill);
+		}
+		
+	}
 	
 	private void initBuff(HeroCfg config) {
 		buffManager = new BuffManager();
-	};
+	}
+	
+	private void initIas(HeroCfg config) {
+		ias += agility.getReal()/100f; // 每一点敏捷增加1%的攻速
+		base_attack_speed = config.getInitAttackSpeed();
+	}
 }

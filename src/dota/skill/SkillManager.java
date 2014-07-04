@@ -11,8 +11,7 @@ public class SkillManager {
 	private List<Skill> activeSkillList = new ArrayList<Skill>(); // 主动技能
 	private List<Skill> passiveSkillList = new ArrayList<Skill>(); // 被动技能
 	
-	public SkillManager(Skill skill) {
-		add(skill); // 强制要求一个初始攻击技能
+	public SkillManager() {
 	}
 	
 	public void add(Skill skill) {
@@ -73,5 +72,15 @@ public class SkillManager {
 		for(Skill skill:passiveSkillList) {
 			skill.emit(attacker, targets);
 		}
+	}
+	
+	public List<Skill> getCanEmitSkills() {
+		List<Skill> result = new ArrayList<>();
+		for (Skill e: activeSkillList) {
+			if (e.canEmit()) {
+				result.add(e);
+			}
+		}
+		return result;
 	}
 }

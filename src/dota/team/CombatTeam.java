@@ -1,47 +1,29 @@
 package dota.team;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import dota.hero.Combater;
 
 public class CombatTeam implements Iterable<Combater>{
-	private Combater[] team = new Combater[5]; // 下标作为位置，是否改成ArrayList TODO
+	private List<Combater> team = new ArrayList<>();
 	
-	public void battleInit(CombatTeam defensers) {
-		for(int i = 0; i < 5; i++) {
-			if (team[i] != null) {
-				team[i].battleInit(defensers);
-			}
+	// TODO 改成坐标体系后，这个也要改
+	public void battleInit(CombatTeam defenserTeam) {
+		for (Combater e: team) {
+			e.battleInit(defenserTeam);
 		}
-	}
-	
-	public Combater get(int index) {
-		return team[index];
 	}
 
 	@Override
 	public Iterator<Combater> iterator() {
-		Iterator<Combater> it = new Iterator<Combater>() {
-			int i = 0;
-			@Override
-			public Combater next() {
-				return team[i++];
-			}
-			
-			@Override
-			public boolean hasNext() {
-				if (i < 5) {
-					return true;
-				}
-				return false;
-			}
-		};
-		return it;
+		return team.iterator();
 	}
 	
 	public boolean isLive() {
-		for(int i = 0; i < 5; i++) {
-			if (team[i] != null && team[i].isLive()) {
+		for (Combater e: team) {
+			if (e.isLive()) {
 				return true;
 			}
 		}
@@ -49,18 +31,15 @@ public class CombatTeam implements Iterable<Combater>{
 	}
 	
 	public void update() {
-		for(int i = 0; i < 5; i++) {
-			if (team[i] != null) {
-				team[i].update();
-			}
+		for (Combater e: team) {
+			e.update();
 		}
 	}
 	
-	public void add(int index, Combater combater) {
-		if (team[index] != null) {
-			// TODO
-			return;
+	public void add(Combater combater) {
+		if (!team.contains(combater)) {
+			team.add(combater);
 		}
-		team[index] = combater;
+		// TODO
 	}
 }

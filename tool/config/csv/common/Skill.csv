@@ -1,8 +1,9 @@
-skill,,,,
-id,name,skill_type,cd,emit_type
-int,string,int,int,int
-1,1,1,1,1
-2,2,2,2,2
-0,0,0,0,0
-索引,名字,技能类型,技能冷却,释放类型，0被动，1主动
-1,普通物理攻击,1,1,1
+skill,,,,,,,,,
+id,name,skill_type,cd,emit_type,emit_distance,effect_scope,effect_time,damage,energy_cost
+int,string,int,int,int,int,int,int,int,int
+1,1,1,1,1,1,1,1,1,1
+2,2,2,2,2,2,2,2,2,2
+0,0,0,0,0,0,0,0,0,0
+索引,名字,技能类型 英雄代号+技能代号,技能冷却 MS,释放类型，0被动，1主动,施法距离,作用范围,作用时间 S,伤害,魔法消耗
+1,普通物理攻击,1,0,1,0,0,0,0,0
+2,沟壑,11,3000,1,2,5,2000,100,90

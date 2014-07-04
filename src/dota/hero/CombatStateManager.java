@@ -3,6 +3,7 @@ package dota.hero;
 import java.util.ArrayList;
 import java.util.List;
 
+import dota.config.ParamConfig;
 import dota.enums.Enums;
 
 public class CombatStateManager {
@@ -27,7 +28,7 @@ public class CombatStateManager {
 	public void decreaseStun() {
 		CombatState combatState = getState(Enums.CombatState.STUN_VALUE);
 		if (combatState != null && combatState.value > 0) {
-			combatState.value --;
+			combatState.value -= ParamConfig.BattleInterval;
 		}
 	}
 	

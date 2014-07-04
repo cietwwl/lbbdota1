@@ -303,12 +303,20 @@ public final class Enums {
      * <code>COMMON = 1;</code>
      */
     COMMON(0, 1),
+    /**
+     * <code>FISSURE = 11;</code>
+     */
+    FISSURE(1, 11),
     ;
 
     /**
      * <code>COMMON = 1;</code>
      */
     public static final int COMMON_VALUE = 1;
+    /**
+     * <code>FISSURE = 11;</code>
+     */
+    public static final int FISSURE_VALUE = 11;
 
 
     public final int getNumber() { return value; }
@@ -316,6 +324,7 @@ public final class Enums {
     public static SkillType valueOf(int value) {
       switch (value) {
         case 1: return COMMON;
+        case 11: return FISSURE;
         default: return null;
       }
     }
@@ -465,9 +474,9 @@ public final class Enums {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
       "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\027\n\tSkillType\022\n\n\006C" +
-      "OMMON\020\001*)\n\rSkillEmitType\022\013\n\007PASSIVE\020\000\022\013\n" +
-      "\007ACTIEVE\020\001B\014\n\ndota.enums"
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*$\n\tSkillType\022\n\n\006C" +
+      "OMMON\020\001\022\013\n\007FISSURE\020\013*)\n\rSkillEmitType\022\013\n" +
+      "\007PASSIVE\020\000\022\013\n\007ACTIEVE\020\001B\014\n\ndota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
