@@ -11,6 +11,7 @@ public class SkillCfg extends BaseConfig {
     private int effectScope; // 作用范围
     private int effectTime; // 作用时间 S
     private int damage; // 伤害
+    private int damagePara1; // 伤害参数1
     private int energyCost; // 魔法消耗
     private String buffs; // 产生的BUFF
 
@@ -22,6 +23,7 @@ public class SkillCfg extends BaseConfig {
     public final int getEffectScope() {return effectScope;}
     public final int getEffectTime() {return effectTime;}
     public final int getDamage() {return damage;}
+    public final int getDamagePara1() {return damagePara1;}
     public final int getEnergyCost() {return energyCost;}
     public final String getBuffs() {return buffs;}
 

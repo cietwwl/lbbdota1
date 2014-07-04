@@ -24,6 +24,7 @@ enum SkillType {
 	FISSURE 		= 11;
 	ENCHANTTOTEM 	= 12;
 	AFTERSHOCK		= 13;
+	ECHOSLAM		= 14;
 }
 
 // 技能释放类型
