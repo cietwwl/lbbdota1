@@ -1,6 +1,8 @@
 package dota.hero;
 
-public class Character {
+import dota.map.GameObject;
+
+public class Character extends GameObject {
 	protected PropertyLikeHp hp = new PropertyLikeHp();			// 血
 	protected PropertyLikeHp energy = new PropertyLikeHp();		// 魔	
 	protected PropertyLikeAttack attack = new PropertyLikeAttack();	// 攻击
@@ -25,8 +27,28 @@ public class Character {
 		return hp.max;
 	}
 	
+	public int getBaseAttack() {
+		return attack.base;
+	}
+	
 	public int getRealAttack() {
 		return attack.getReal();
+	}
+	
+	/**
+	 * 通过该函数只能加附加值
+	 * @param addAttack
+	 */
+	public void addAttack(int addAttack) {
+		attack.extra += addAttack;
+	}
+	
+	/**
+	 * 通过该函数只能加附加值
+	 * @param rmAttack
+	 */
+	public void removeAttack(int rmAttack) {
+		attack.extra -= rmAttack;
 	}
 	
 	public int getRealArmor() {

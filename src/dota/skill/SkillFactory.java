@@ -4,6 +4,8 @@ import dota.config.generated.GameConfig;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.skill.detail.CommonAttackSkill;
+import dota.skill.detail.earthshaker.Aftershock;
+import dota.skill.detail.earthshaker.EnchantTotem;
 import dota.skill.detail.earthshaker.Fissure;
 
 public class SkillFactory {
@@ -14,6 +16,10 @@ public class SkillFactory {
 			return new CommonAttackSkill(config);
 		case Enums.SkillType.FISSURE_VALUE:
 			return new Fissure(config);
+		case Enums.SkillType.ENCHANTTOTEM_VALUE:
+			return new EnchantTotem(config);
+		case Enums.SkillType.AFTERSHOCK_VALUE:
+			return new Aftershock(config);
 		}
 		//TODO
 		return null;

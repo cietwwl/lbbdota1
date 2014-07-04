@@ -307,6 +307,14 @@ public final class Enums {
      * <code>FISSURE = 11;</code>
      */
     FISSURE(1, 11),
+    /**
+     * <code>ENCHANTTOTEM = 12;</code>
+     */
+    ENCHANTTOTEM(2, 12),
+    /**
+     * <code>AFTERSHOCK = 13;</code>
+     */
+    AFTERSHOCK(3, 13),
     ;
 
     /**
@@ -317,6 +325,14 @@ public final class Enums {
      * <code>FISSURE = 11;</code>
      */
     public static final int FISSURE_VALUE = 11;
+    /**
+     * <code>ENCHANTTOTEM = 12;</code>
+     */
+    public static final int ENCHANTTOTEM_VALUE = 12;
+    /**
+     * <code>AFTERSHOCK = 13;</code>
+     */
+    public static final int AFTERSHOCK_VALUE = 13;
 
 
     public final int getNumber() { return value; }
@@ -325,6 +341,8 @@ public final class Enums {
       switch (value) {
         case 1: return COMMON;
         case 11: return FISSURE;
+        case 12: return ENCHANTTOTEM;
+        case 13: return AFTERSHOCK;
         default: return null;
       }
     }
@@ -462,6 +480,92 @@ public final class Enums {
     // @@protoc_insertion_point(enum_scope:SkillEmitType)
   }
 
+  /**
+   * Protobuf enum {@code BuffType}
+   *
+   * <pre>
+   * BUF
+   * </pre>
+   */
+  public enum BuffType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>ENCHANTTOTEMBUFF = 1;</code>
+     */
+    ENCHANTTOTEMBUFF(0, 1),
+    /**
+     * <code>AFTERSHOCKBUFF = 2;</code>
+     */
+    AFTERSHOCKBUFF(1, 2),
+    ;
+
+    /**
+     * <code>ENCHANTTOTEMBUFF = 1;</code>
+     */
+    public static final int ENCHANTTOTEMBUFF_VALUE = 1;
+    /**
+     * <code>AFTERSHOCKBUFF = 2;</code>
+     */
+    public static final int AFTERSHOCKBUFF_VALUE = 2;
+
+
+    public final int getNumber() { return value; }
+
+    public static BuffType valueOf(int value) {
+      switch (value) {
+        case 1: return ENCHANTTOTEMBUFF;
+        case 2: return AFTERSHOCKBUFF;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<BuffType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<BuffType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<BuffType>() {
+            public BuffType findValueByNumber(int number) {
+              return BuffType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(5);
+    }
+
+    private static final BuffType[] VALUES = values();
+
+    public static BuffType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private BuffType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:BuffType)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -474,9 +578,12 @@ public final class Enums {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
       "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*$\n\tSkillType\022\n\n\006C" +
-      "OMMON\020\001\022\013\n\007FISSURE\020\013*)\n\rSkillEmitType\022\013\n" +
-      "\007PASSIVE\020\000\022\013\n\007ACTIEVE\020\001B\014\n\ndota.enums"
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*F\n\tSkillType\022\n\n\006C" +
+      "OMMON\020\001\022\013\n\007FISSURE\020\013\022\020\n\014ENCHANTTOTEM\020\014\022\016" +
+      "\n\nAFTERSHOCK\020\r*)\n\rSkillEmitType\022\013\n\007PASSI" +
+      "VE\020\000\022\013\n\007ACTIEVE\020\001*4\n\010BuffType\022\024\n\020ENCHANT" +
+      "TOTEMBUFF\020\001\022\022\n\016AFTERSHOCKBUFF\020\002B\014\n\ndota." +
+      "enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

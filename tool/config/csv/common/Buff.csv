@@ -1,0 +1,9 @@
+buff,,,,,,
+id,name,buff_type,emit_value,emit_value0,emit_time,effect_scope
+int,string,int,int,int,int,int
+1,1,1,1,1,1,1
+2,2,2,2,2,2,2
+0,0,0,0,0,0,0
+索引,名字,BUFF类型,BUFF作用时对应的值,BUFF作用时对应的值0,持续时间 MS,作用范围
+1,强化图腾,1,150,,1500,0
+2,余震,2,50,1000,99999999,1

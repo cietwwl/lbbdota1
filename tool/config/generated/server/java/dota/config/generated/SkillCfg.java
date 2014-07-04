@@ -12,6 +12,7 @@ public class SkillCfg extends BaseConfig {
     private int effectTime; // 作用时间 S
     private int damage; // 伤害
     private int energyCost; // 魔法消耗
+    private String buffs; // 产生的BUFF
 
     public final String getName() {return name;}
     public final int getSkillType() {return skillType;}
@@ -22,5 +23,6 @@ public class SkillCfg extends BaseConfig {
     public final int getEffectTime() {return effectTime;}
     public final int getDamage() {return damage;}
     public final int getEnergyCost() {return energyCost;}
+    public final String getBuffs() {return buffs;}
 
 }

@@ -1,30 +1,20 @@
 package dota.buff;
 
 import dota.buff.detail.AftershockBuff;
-import dota.config.BuffConfig;
+import dota.buff.detail.EnchantTotemBuff;
+import dota.config.generated.BuffCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 
 public class BuffFactory {
-	private static BuffFactory instance = null;
 	
-	public static BuffFactory Instance() {
-		if(instance == null) {
-			instance = new BuffFactory();
+	public static Buff creatBuff(BuffCfg config, Combater owner) {
+		switch (config.getBuffType()) {
+		case Enums.BuffType.ENCHANTTOTEMBUFF_VALUE: 
+			return new EnchantTotemBuff(config);
+		case Enums.BuffType.AFTERSHOCKBUFF_VALUE:
+			return new AftershockBuff(config);
 		}
-		return instance;
-	}
-	
-	public static Buff creatBuff(BuffConfig config, Combater owner) {
-		Buff Buff = null;
-		switch(config.buffType) {
-//		case 0: 
-//			Buff = new EnchantTotemBuff(config);
-//			break;
-		case 1:
-			Buff = new AftershockBuff(config);
-			break;
-		}
-		Buff.initOwner(owner);
-		return Buff;
+		return null;
 	}
 }

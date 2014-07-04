@@ -1,0 +1,4 @@
+[
+  { "Id": 1, "Name": "强化图腾", "BuffType": 1, "EmitValue": 150, "EmitValue0": 0, "EmitTime": 1500, "EffectScope": 0},
+  { "Id": 2, "Name": "余震", "BuffType": 2, "EmitValue": 50, "EmitValue0": 1000, "EmitTime": 99999999, "EffectScope": 1}
+]

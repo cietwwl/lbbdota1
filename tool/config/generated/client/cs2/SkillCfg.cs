@@ -27,5 +27,7 @@ namespace HXFS.Config
     public int Damage { get; set; } // 伤害
     [ProtoMember(10)]
     public int EnergyCost { get; set; } // 魔法消耗
+    [ProtoMember(11)]
+    public string Buffs { get; set; } // 产生的BUFF
   }
 }

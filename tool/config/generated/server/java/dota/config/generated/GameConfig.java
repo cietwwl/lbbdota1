@@ -9,10 +9,16 @@ public class GameConfig {
     }
 
     private GameConfig() {
+        BuffCfgs = ConfigLoader.loadConfig(BuffCfg.class);
         HeroCfgs = ConfigLoader.loadConfig(HeroCfg.class);
         SkillCfgs = ConfigLoader.loadConfig(SkillCfg.class);
 
     }
+    private final Map<Integer, BuffCfg> BuffCfgs;
+    public BuffCfg getBuffCfg(int id) {
+        return BuffCfgs.get(id);
+    }
+                
     private final Map<Integer, HeroCfg> HeroCfgs;
     public HeroCfg getHeroCfg(int id) {
         return HeroCfgs.get(id);

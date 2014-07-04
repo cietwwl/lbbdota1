@@ -20,13 +20,21 @@ enum HeroType {
 
 // 技能类型
 enum SkillType {
-	COMMON = 1;
-	FISSURE = 11;
+	COMMON 			= 1;
+	FISSURE 		= 11;
+	ENCHANTTOTEM 	= 12;
+	AFTERSHOCK		= 13;
 }
 
 // 技能释放类型
 enum SkillEmitType {
 	PASSIVE = 0;
 	ACTIEVE = 1;
+}
+
+// BUF
+enum BuffType {
+	ENCHANTTOTEMBUFF = 1;
+	AFTERSHOCKBUFF = 2;
 }
 

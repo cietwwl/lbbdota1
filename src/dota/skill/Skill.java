@@ -1,5 +1,6 @@
 package dota.skill;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dota.config.ParamConfig;
@@ -56,14 +57,14 @@ public abstract class Skill {
 
 	}
 	
-	private void emit1(Combater attacker,Combater defenser) {
-		if (attacker == null || defenser == null) {
+	private void emit1(Combater attacker,Combater target) {
+		if (attacker == null || target == null) {
 			return;
 		}
-		emit0(attacker, defenser);
+		emit0(attacker, target);
 	}
 	
-	protected abstract void emit0(Combater attacker,Combater defenser);
+	protected abstract void emit0(Combater attacker, Combater target);
 
 	public boolean canEmit() {
 		if (CD > 0) {
@@ -73,7 +74,13 @@ public abstract class Skill {
 		return true;
 	}
 	
-	protected abstract List<Combater> selectTargets(Combater attacker, CombatTeam defenserTeam);
+	private List<Combater> selectTargets(Combater attacker, CombatTeam defenserTeam) {
+		List<Combater> targets = new ArrayList<>();
+		selectTargets0(targets, attacker, defenserTeam);
+		return targets;
+	}
+	
+	protected abstract void selectTargets0(List<Combater> targets, Combater attacker, CombatTeam defenserTeam);
 	
 	public static boolean canAttack(Combater attacker, Combater defenser, int distance) {
 		int disX = attacker.positionX - defenser.positionX;

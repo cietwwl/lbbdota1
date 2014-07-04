@@ -6,7 +6,8 @@ import java.util.Scanner;
 import dota.buff.Buff;
 import dota.buff.BuffFactory;
 import dota.buff.BuffManager;
-import dota.config.BuffConfig;
+import dota.config.generated.BuffCfg;
+import dota.config.generated.GameConfig;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.skill.Skill;
@@ -97,7 +98,7 @@ public abstract class Combater extends Character{
 		if (skill.getConfig().getSkillType() == Enums.SkillType.COMMON_VALUE) {
 			onCommonAttack();
 		} else {
-			onEmitAnySkill(defensers);
+			onEmitAnyActiveSkill(defensers);
 		}
 	}
 	
@@ -105,8 +106,8 @@ public abstract class Combater extends Character{
 		buffManager.onCommonAttack();
 	}
 	
-	public void onEmitAnySkill(CombatTeam defensers) {
-		// buffManager.onEmitAnySkill(defensers);
+	public void onEmitAnyActiveSkill(CombatTeam defenseTeam) {
+		buffManager.onEmitAnyActiveSkill(this, defenseTeam);
 	}
 	
 	/*
@@ -116,6 +117,7 @@ public abstract class Combater extends Character{
 	 */
 	private Skill selectSkill() {
 		if(controlType == 1) {
+			@SuppressWarnings("resource")
 			Scanner sin = new Scanner(System.in);
 			skillManager.printAll();
 			System.out.print("选择技能:");
@@ -146,13 +148,17 @@ public abstract class Combater extends Character{
 		skillManager.add(skill);
 	}
 	
-	public void addBuff(BuffConfig config) {
-		Buff buff = BuffFactory.creatBuff(config, this);
-		buff.init();
-		buff.start();
-		buffManager.add(buff);
+	public void addBuff(int cfgId) {
+		BuffCfg config = GameConfig.getInstance().getBuffCfg(cfgId);
+		addBuff(config);
 	}
 	
+	private void addBuff(BuffCfg config) {
+		Buff buff = BuffFactory.creatBuff(config, this);
+		buff.init();
+		buff.start(this);
+		buffManager.add(buff);
+	}
 	
 	public void printBuff() {
 		buffManager.printAll();
@@ -174,6 +180,7 @@ public abstract class Combater extends Character{
 	public int getAttackSpeed() {
 		return (int) (base_attack_speed/ias); // MS/攻击次数
 	}
+	
 	
 }
 

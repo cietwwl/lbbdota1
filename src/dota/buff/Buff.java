@@ -1,23 +1,17 @@
 package dota.buff;
 
-import dota.config.BuffConfig;
+import dota.config.ParamConfig;
+import dota.config.generated.BuffCfg;
 import dota.hero.Combater;
+import dota.team.CombatTeam;
 
 public abstract class Buff {
 	protected int time;
-	protected BuffConfig config;
+	protected BuffCfg config;
 	protected Combater owner;
 	
-	public Buff(BuffConfig config) {
+	public Buff(BuffCfg config) {
 		this.config = config;
-	}
-	
-	public void initOwner(Combater owner) {
-		this.owner = owner;
-	}
-	
-	public String getName() {
-		return config.name;
 	}
 	
 	public int getTime() {
@@ -25,10 +19,15 @@ public abstract class Buff {
 	}
 	
 	public void init() {
-		time = config.time;
+		time = config.getEmitTime();
 	}
 	
-	public abstract void start();
+	public void start(Combater owner) {
+		this.owner = owner;
+		start();
+	}
+	
+	protected abstract void start();
 	
 	public abstract void stop();
 	
@@ -36,7 +35,7 @@ public abstract class Buff {
 		if(time == 0) {
 			return;
 		}
-		time--;
+		time -= ParamConfig.BattleInterval;
 	}
 	
 	public void update() {
@@ -55,8 +54,8 @@ public abstract class Buff {
 		
 	}
 	
-	// 释放任意技能
-	public void onEmitAnySkill(Combater defenser) {
+	// 释放任意主动技能
+	public void onEmitAnyActiveSkill(Combater emiter, CombatTeam defenser) {
 		
 	}
 	

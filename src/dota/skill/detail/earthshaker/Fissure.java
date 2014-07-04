@@ -3,7 +3,6 @@ package dota.skill.detail.earthshaker;
 import java.util.ArrayList;
 import java.util.List;
 
-import dota.config.SkillConfig;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
@@ -28,9 +27,8 @@ public class Fissure extends Skill{
 	}
 
 	@Override
-	protected List<Combater> selectTargets(Combater attacker,
+	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam) {
-		List<Combater> result = new ArrayList<>();
 		List<Combater> candidate = new ArrayList<>();
 		for (Combater e : defenserTeam) {
 			if (e.isLive() && canAttack(attacker, e, config.getEmitDistance())) {
@@ -39,7 +37,7 @@ public class Fissure extends Skill{
 		}
 		
 		if (candidate.size() == 0) {
-			return result;
+			return;
 		}
 		
 		// 随机一个施法目标
@@ -51,11 +49,9 @@ public class Fissure extends Skill{
 			if (e.isLive() && isLine(attacker.positionX, attacker.positionY,
 					target.positionX, target.positionY, 
 					e.positionX, e.positionY)) {
-				result.add(e);
+				targets.add(e);
 			}
 		}
-		
-		return result;
 	}
 	
 }

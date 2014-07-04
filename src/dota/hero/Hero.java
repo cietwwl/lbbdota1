@@ -2,15 +2,11 @@ package dota.hero;
 
 import dota.buff.BuffManager;
 import dota.config.ParamConfig;
-import dota.config.generated.GameConfig;
 import dota.config.generated.HeroCfg;
-import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
-import dota.skill.detail.CommonAttackSkill;
-import dota.util.DotaMath;
 
 public class Hero extends Combater {
 	

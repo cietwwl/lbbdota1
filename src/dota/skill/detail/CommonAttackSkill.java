@@ -47,9 +47,8 @@ public class CommonAttackSkill extends Skill{
 	}
 
 	@Override
-	protected List<Combater> selectTargets(Combater attacker,
+	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam) {
-		List<Combater> result = new ArrayList<>();
 		List<Combater> candidate = new ArrayList<>(); // 候选目标
 
 		for (Combater e: defenserTeam) {
@@ -59,12 +58,10 @@ public class CommonAttackSkill extends Skill{
 		}
 		
 		if (candidate.size() == 0) {
-			return result;
+			return;
 		}
 		
 		int random = DotaMath.RandomInRange(0, candidate.size() - 1);
-		result.add(candidate.get(random));
-		
-		return result;
+		targets.add(candidate.get(random));
 	}
 }

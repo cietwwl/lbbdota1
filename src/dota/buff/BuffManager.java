@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import dota.hero.Combater;
+import dota.team.CombatTeam;
 
 public class BuffManager {
 	private ArrayList<Buff> buffCollection = new ArrayList<>();
@@ -33,20 +34,20 @@ public class BuffManager {
 		}
 	}
 	
-	public void onEmitAnySkill(Combater defenser) {
+	public void onEmitAnyActiveSkill(Combater attacker, CombatTeam defenseTeam) {
 		Iterator<Buff> it = buffCollection.iterator();
 		while(it.hasNext()) {
 			Buff buff = it.next();
-			buff.onEmitAnySkill(defenser);
+			buff.onEmitAnyActiveSkill(attacker, defenseTeam);;
 		}
 	}
 	
 	public void printAll() {
-		System.out.println("Buff名称        BUFF剩余时间");
-		Iterator<Buff> it = buffCollection.iterator();
-		while(it.hasNext()) {
-			Buff buff = it.next();
-			System.out.println(buff.getName() + "    " + buff.time);
-		}
+//		System.out.println("Buff名称        BUFF剩余时间");
+//		Iterator<Buff> it = buffCollection.iterator();
+//		while(it.hasNext()) {
+//			Buff buff = it.next();
+//			System.out.println(buff.getName() + "    " + buff.time);
+//		}
 	}
 }

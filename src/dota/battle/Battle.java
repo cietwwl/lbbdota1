@@ -3,7 +3,6 @@ package dota.battle;
 import dota.config.ParamConfig;
 import dota.hero.Combater;
 import dota.map.CombatMap;
-import dota.skill.Skill;
 import dota.team.CombatTeam;
 
 public class Battle {

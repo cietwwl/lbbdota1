@@ -1,4 +1,6 @@
 [
-  { "Id": 1, "Name": "普通物理攻击", "SkillType": 1, "Cd": 0, "EmitType": 1, "EmitDistance": 0, "EffectScope": 0, "EffectTime": 0, "Damage": 0, "EnergyCost": 0},
-  { "Id": 2, "Name": "沟壑", "SkillType": 11, "Cd": 3000, "EmitType": 1, "EmitDistance": 2, "EffectScope": 5, "EffectTime": 2000, "Damage": 100, "EnergyCost": 90}
+  { "Id": 1, "Name": "普通物理攻击", "SkillType": 1, "Cd": 0, "EmitType": 1, "EmitDistance": 0, "EffectScope": 0, "EffectTime": 0, "Damage": 0, "EnergyCost": 0, "Buffs": "0"},
+  { "Id": 2, "Name": "沟壑", "SkillType": 11, "Cd": 3000, "EmitType": 1, "EmitDistance": 2, "EffectScope": 5, "EffectTime": 2000, "Damage": 100, "EnergyCost": 90, "Buffs": "0"},
+  { "Id": 3, "Name": "强化图腾", "SkillType": 12, "Cd": 2000, "EmitType": 1, "EmitDistance": 0, "EffectScope": 0, "EffectTime": 0, "Damage": 0, "EnergyCost": 50, "Buffs": "1"},
+  { "Id": 4, "Name": "余震", "SkillType": 13, "Cd": 0, "EmitType": 0, "EmitDistance": 0, "EffectScope": 0, "EffectTime": 0, "Damage": 0, "EnergyCost": 0, "Buffs": "2"}
 ]
