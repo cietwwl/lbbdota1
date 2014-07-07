@@ -16,17 +16,14 @@ public class EnchantTotem extends Skill {
 	}
 
 	@Override
-	protected void emit0(Combater attacker, Combater target) {
-		String[] buffs = config.getBuffs().split(",");
-		for (int i = 0; i< buffs.length; i++) {
-			target.addBuff(Integer.parseInt(buffs[i]));
-			System.out.println(attacker.getName() + " 释放 " + getConfig().getName() + ", 攻击力: " + attacker.getRealAttack());
-		}
+	protected int emit0(Combater attacker, Combater target) {
+		emitBuff(target);
+		return 0;
 	}
 
 	@Override
 	protected void selectTargets0( List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam) {
+			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		targets.add(attacker);
 	}
 

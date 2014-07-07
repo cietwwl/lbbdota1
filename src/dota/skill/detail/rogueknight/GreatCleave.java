@@ -1,4 +1,4 @@
-package dota.skill.detail.earthshaker;
+package dota.skill.detail.rogueknight;
 
 import java.util.List;
 
@@ -7,20 +7,23 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 
-public class Aftershock extends Skill{
+public class GreatCleave extends Skill{
 
-	public Aftershock(SkillCfg config) {
+	public GreatCleave(SkillCfg config) {
 		super(config);
 	}
 
 	@Override
 	protected int emit0(Combater attacker, Combater target) {
-		emitBuff(target);
+		String[] buffs = config.getBuffs().split(",");
+		for (int i = 0; i< buffs.length; i++) {
+			target.addBuff(Integer.parseInt(buffs[i]));
+		}
 		return 0;
 	}
 
 	@Override
-	protected void selectTargets0( List<Combater> targets, Combater attacker,
+	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		targets.add(attacker);
 	}

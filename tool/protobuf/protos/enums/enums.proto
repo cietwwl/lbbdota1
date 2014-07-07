@@ -20,11 +20,15 @@ enum HeroType {
 
 // 技能类型
 enum SkillType {
-	COMMON 			= 1;
-	FISSURE 		= 11;
-	ENCHANTTOTEM 	= 12;
-	AFTERSHOCK		= 13;
-	ECHOSLAM		= 14;
+	COMMON 			= 1;	// 普通攻击
+	FISSURE 		= 11;	// 沟壑
+	ENCHANTTOTEM 	= 12;	// 强化图腾
+	AFTERSHOCK		= 13;	// 余震
+	ECHOSLAM		= 14;	// 回音击
+	STORMBOLT		= 21;	// 风暴之锤
+	GREATCLEAVE		= 22;	// 巨力挥舞
+	WARCRY			= 23;   // 战吼
+	GODSSTRENGTH	= 24;   // 神之力量
 }
 
 // 技能释放类型
@@ -37,5 +41,8 @@ enum SkillEmitType {
 enum BuffType {
 	ENCHANTTOTEMBUFF = 1;
 	AFTERSHOCKBUFF = 2;
+	GREATCLEAVEBUFF = 3;
+	WARCRYBUFF = 4;
+	GODSSTRENGTHBUFF = 5;
 }
 

@@ -16,20 +16,22 @@ namespace HXFS.Config
     [ProtoMember(4)]
     public int InitHp { get; set; } // 初始血量
     [ProtoMember(5)]
-    public int InitAttack { get; set; } // 初始攻击力
+    public int InitMinAttack { get; set; } // 初始最小攻击力
     [ProtoMember(6)]
-    public int InitStrength { get; set; } // 初始力量
+    public int InitMaxAttack { get; set; } // 初始最大攻击力
     [ProtoMember(7)]
-    public int InitAgility { get; set; } // 初始敏捷
+    public int InitStrength { get; set; } // 初始力量
     [ProtoMember(8)]
-    public int InitIntelligence { get; set; } // 初始智力
+    public int InitAgility { get; set; } // 初始敏捷
     [ProtoMember(9)]
-    public int AttackDitance { get; set; } // 攻击距离
+    public int InitIntelligence { get; set; } // 初始智力
     [ProtoMember(10)]
-    public int InitEnergy { get; set; } // 初始魔法值
+    public int AttackDitance { get; set; } // 攻击距离
     [ProtoMember(11)]
-    public string InitSkills { get; set; } // 初始技能，逗号分隔
+    public int InitEnergy { get; set; } // 初始魔法值
     [ProtoMember(12)]
+    public string InitSkills { get; set; } // 初始技能，逗号分隔
+    [ProtoMember(13)]
     public int InitAttackSpeed { get; set; } // 基础攻击间隔 MS
   }
 }

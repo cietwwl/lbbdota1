@@ -1,4 +1,7 @@
 [
   { "Id": 1, "Name": "强化图腾", "BuffType": 1, "EmitValue": 150, "EmitValue0": 0, "EmitTime": 1500, "EffectScope": 0},
-  { "Id": 2, "Name": "余震", "BuffType": 2, "EmitValue": 50, "EmitValue0": 1000, "EmitTime": 99999999, "EffectScope": 1}
+  { "Id": 2, "Name": "余震", "BuffType": 2, "EmitValue": 50, "EmitValue0": 1000, "EmitTime": 99999999, "EffectScope": 300},
+  { "Id": 3, "Name": "溅射", "BuffType": 3, "EmitValue": 20, "EmitValue0": 0, "EmitTime": 99999999, "EffectScope": 300},
+  { "Id": 4, "Name": "战吼", "BuffType": 4, "EmitValue": 4, "EmitValue0": 12, "EmitTime": 7000, "EffectScope": 0},
+  { "Id": 5, "Name": "神之力量", "BuffType": 5, "EmitValue": 100, "EmitValue0": 0, "EmitTime": 25000, "EffectScope": 0}
 ]

@@ -19,14 +19,15 @@ public class EchoSlam extends Skill {
 	}
 
 	@Override
-	protected void emit0(Combater attacker, Combater target) {
+	protected int emit0(Combater attacker, Combater target) {
 		target.beAttack(damage, Enums.AttackType.MAGICAL_VALUE);
 		System.out.println(attacker.getName() + " 的回音击对 " + target.getName() + " 造成 " + damage + " 的伤害");
+		return damage;
 	}
 
 	@Override
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam) {
+			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		for (Combater e: defenserTeam) {
 			if (e.isLive() && HeroHelper.getDistanceBetweenCombaters(attacker, e) <= config.getEffectScope()) {
 				targets.add(e);

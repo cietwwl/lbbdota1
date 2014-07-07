@@ -12,7 +12,7 @@ public class CombatTeam implements Iterable<Combater>{
 	// TODO 改成坐标体系后，这个也要改
 	public void battleInit(CombatTeam defenserTeam) {
 		for (Combater e: team) {
-			e.battleInit(defenserTeam);
+			e.battleInit(defenserTeam, this);
 		}
 	}
 

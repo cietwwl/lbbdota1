@@ -68,9 +68,9 @@ public class SkillManager {
 		return true;
 	}
 	
-	public void emitPassiveSkill(Combater attacker, CombatTeam targets) {
+	public void emitPassiveSkill(Combater attacker, CombatTeam targets, CombatTeam attackerTeam) {
 		for(Skill skill:passiveSkillList) {
-			skill.emit(attacker, targets);
+			skill.emit(attacker, targets, attackerTeam);
 		}
 	}
 	

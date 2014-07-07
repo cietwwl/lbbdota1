@@ -50,7 +50,7 @@ public abstract class Buff {
 	}
 	
 	// 普通攻击
-	public void onCommonAttack() {
+	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
 		
 	}
 	

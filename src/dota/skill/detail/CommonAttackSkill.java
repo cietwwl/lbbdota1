@@ -18,9 +18,9 @@ public class CommonAttackSkill extends Skill{
 	}
 
 	@Override
-	public void emit0(Combater attacker, Combater defenser) {
+	public int emit0(Combater attacker, Combater defenser) {
 		if (!defenser.isLive()) {
-			return;
+			return 0 ;
 		}
 		int damage = getAttackDamage(attacker);
 		int realDamage = defenser.beAttack(damage, Enums.AttackType.PHYSICAL_VALUE);
@@ -30,6 +30,7 @@ public class CommonAttackSkill extends Skill{
 		} else {
 			System.out.println(defenser.getName() + " Die");
 		}
+		return damage;
 	}
 	
 	private int getAttackDamage(Combater attacker) {
@@ -48,7 +49,7 @@ public class CommonAttackSkill extends Skill{
 
 	@Override
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam) {
+			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		List<Combater> candidate = new ArrayList<>(); // 候选目标
 
 		for (Combater e: defenserTeam) {

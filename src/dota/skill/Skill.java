@@ -36,7 +36,7 @@ public abstract class Skill {
 		CD -= ParamConfig.BattleInterval;
 	}
 	
-	public void emit(Combater attacker, CombatTeam defenserTeam) {
+	public void emit(Combater attacker, CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		if (!canEmit()) {
 			return;
 		}
@@ -49,22 +49,37 @@ public abstract class Skill {
 			CD = config.getCd();
 		}
 		
-		List<Combater> targets = selectTargets(attacker, defenserTeam);
 		
-		for (Combater e: targets) {
-			emit1(attacker, e);
-		}
-
-	}
-	
-	private void emit1(Combater attacker,Combater target) {
-		if (attacker == null || target == null) {
+		List<Combater> targets = selectTargets(attacker, defenserTeam, attackerTeam);
+		
+		if (targets.size() == 0) {
 			return;
 		}
-		emit0(attacker, target);
+		
+		if (config.getSkillType() != Enums.SkillType.COMMON_VALUE) {
+			System.out.println(attacker.getName() + " 释放 技能 " + config.getName());
+		}
+		
+		int damage = 0;
+		for (Combater e: targets) {
+			damage = emit1(attacker, e);
+		}
+		
+		if (config.getSkillType() == Enums.SkillType.COMMON_VALUE) {
+			attacker.onCommonAttack(attacker, defenserTeam, damage);
+		} else if (config.getEmitType() == Enums.SkillEmitType.ACTIEVE_VALUE) {
+			attacker.onEmitAnyActiveSkill(defenserTeam);
+		}
 	}
 	
-	protected abstract void emit0(Combater attacker, Combater target);
+	private int emit1(Combater attacker,Combater target) {
+		if (attacker == null || target == null) {
+			return 0;
+		}
+		return emit0(attacker, target);
+	}
+	
+	protected abstract int emit0(Combater attacker, Combater target);
 
 	public boolean canEmit() {
 		if (CD > 0) {
@@ -74,13 +89,14 @@ public abstract class Skill {
 		return true;
 	}
 	
-	private List<Combater> selectTargets(Combater attacker, CombatTeam defenserTeam) {
+	private List<Combater> selectTargets(Combater attacker, CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		List<Combater> targets = new ArrayList<>();
-		selectTargets0(targets, attacker, defenserTeam);
+		selectTargets0(targets, attacker, defenserTeam, attackerTeam);
 		return targets;
 	}
 	
-	protected abstract void selectTargets0(List<Combater> targets, Combater attacker, CombatTeam defenserTeam);
+	protected abstract void selectTargets0(List<Combater> targets, Combater attacker,
+			CombatTeam defenserTeam, CombatTeam attackerTeam);
 	
 	public static boolean canAttack(Combater attacker, Combater defenser, int distance) {
 		int disX = attacker.positionX - defenser.positionX;
@@ -94,5 +110,13 @@ public abstract class Skill {
 	
 	public static boolean isLine(int x1, int y1, int x2, int y2, int x3, int y3) {
 		return (y2 - y1) * (x3 - x1) == (x2 - x1) * (y3 - y1);
+	}
+	
+	protected void emitBuff(Combater target) {
+		String[] buffs = config.getBuffs().split(",");
+		for (int i = 0; i< buffs.length; i++) {
+			target.addBuff(Integer.parseInt(buffs[i]));
+			
+		}
 	}
 }

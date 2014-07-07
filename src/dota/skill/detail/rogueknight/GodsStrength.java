@@ -1,4 +1,4 @@
-package dota.skill.detail.earthshaker;
+package dota.skill.detail.rogueknight;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 
-public class Aftershock extends Skill{
+public class GodsStrength extends Skill{
 
-	public Aftershock(SkillCfg config) {
+	public GodsStrength(SkillCfg config) {
 		super(config);
 	}
 
@@ -20,7 +20,7 @@ public class Aftershock extends Skill{
 	}
 
 	@Override
-	protected void selectTargets0( List<Combater> targets, Combater attacker,
+	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		targets.add(attacker);
 	}

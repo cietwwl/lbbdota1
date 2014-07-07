@@ -301,46 +301,150 @@ public final class Enums {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>COMMON = 1;</code>
+     *
+     * <pre>
+     * 普通攻击
+     * </pre>
      */
     COMMON(0, 1),
     /**
      * <code>FISSURE = 11;</code>
+     *
+     * <pre>
+     * 沟壑
+     * </pre>
      */
     FISSURE(1, 11),
     /**
      * <code>ENCHANTTOTEM = 12;</code>
+     *
+     * <pre>
+     * 强化图腾
+     * </pre>
      */
     ENCHANTTOTEM(2, 12),
     /**
      * <code>AFTERSHOCK = 13;</code>
+     *
+     * <pre>
+     * 余震
+     * </pre>
      */
     AFTERSHOCK(3, 13),
     /**
      * <code>ECHOSLAM = 14;</code>
+     *
+     * <pre>
+     * 回音击
+     * </pre>
      */
     ECHOSLAM(4, 14),
+    /**
+     * <code>STORMBOLT = 21;</code>
+     *
+     * <pre>
+     * 风暴之锤
+     * </pre>
+     */
+    STORMBOLT(5, 21),
+    /**
+     * <code>GREATCLEAVE = 22;</code>
+     *
+     * <pre>
+     * 巨力挥舞
+     * </pre>
+     */
+    GREATCLEAVE(6, 22),
+    /**
+     * <code>WARCRY = 23;</code>
+     *
+     * <pre>
+     * 战吼
+     * </pre>
+     */
+    WARCRY(7, 23),
+    /**
+     * <code>GODSSTRENGTH = 24;</code>
+     *
+     * <pre>
+     * 神之力量
+     * </pre>
+     */
+    GODSSTRENGTH(8, 24),
     ;
 
     /**
      * <code>COMMON = 1;</code>
+     *
+     * <pre>
+     * 普通攻击
+     * </pre>
      */
     public static final int COMMON_VALUE = 1;
     /**
      * <code>FISSURE = 11;</code>
+     *
+     * <pre>
+     * 沟壑
+     * </pre>
      */
     public static final int FISSURE_VALUE = 11;
     /**
      * <code>ENCHANTTOTEM = 12;</code>
+     *
+     * <pre>
+     * 强化图腾
+     * </pre>
      */
     public static final int ENCHANTTOTEM_VALUE = 12;
     /**
      * <code>AFTERSHOCK = 13;</code>
+     *
+     * <pre>
+     * 余震
+     * </pre>
      */
     public static final int AFTERSHOCK_VALUE = 13;
     /**
      * <code>ECHOSLAM = 14;</code>
+     *
+     * <pre>
+     * 回音击
+     * </pre>
      */
     public static final int ECHOSLAM_VALUE = 14;
+    /**
+     * <code>STORMBOLT = 21;</code>
+     *
+     * <pre>
+     * 风暴之锤
+     * </pre>
+     */
+    public static final int STORMBOLT_VALUE = 21;
+    /**
+     * <code>GREATCLEAVE = 22;</code>
+     *
+     * <pre>
+     * 巨力挥舞
+     * </pre>
+     */
+    public static final int GREATCLEAVE_VALUE = 22;
+    /**
+     * <code>WARCRY = 23;</code>
+     *
+     * <pre>
+     * 战吼
+     * </pre>
+     */
+    public static final int WARCRY_VALUE = 23;
+    /**
+     * <code>GODSSTRENGTH = 24;</code>
+     *
+     * <pre>
+     * 神之力量
+     * </pre>
+     */
+    public static final int GODSSTRENGTH_VALUE = 24;
 
 
     public final int getNumber() { return value; }
@@ -352,6 +456,10 @@ public final class Enums {
         case 12: return ENCHANTTOTEM;
         case 13: return AFTERSHOCK;
         case 14: return ECHOSLAM;
+        case 21: return STORMBOLT;
+        case 22: return GREATCLEAVE;
+        case 23: return WARCRY;
+        case 24: return GODSSTRENGTH;
         default: return null;
       }
     }
@@ -506,6 +614,18 @@ public final class Enums {
      * <code>AFTERSHOCKBUFF = 2;</code>
      */
     AFTERSHOCKBUFF(1, 2),
+    /**
+     * <code>GREATCLEAVEBUFF = 3;</code>
+     */
+    GREATCLEAVEBUFF(2, 3),
+    /**
+     * <code>WARCRYBUFF = 4;</code>
+     */
+    WARCRYBUFF(3, 4),
+    /**
+     * <code>GODSSTRENGTHBUFF = 5;</code>
+     */
+    GODSSTRENGTHBUFF(4, 5),
     ;
 
     /**
@@ -516,6 +636,18 @@ public final class Enums {
      * <code>AFTERSHOCKBUFF = 2;</code>
      */
     public static final int AFTERSHOCKBUFF_VALUE = 2;
+    /**
+     * <code>GREATCLEAVEBUFF = 3;</code>
+     */
+    public static final int GREATCLEAVEBUFF_VALUE = 3;
+    /**
+     * <code>WARCRYBUFF = 4;</code>
+     */
+    public static final int WARCRYBUFF_VALUE = 4;
+    /**
+     * <code>GODSSTRENGTHBUFF = 5;</code>
+     */
+    public static final int GODSSTRENGTHBUFF_VALUE = 5;
 
 
     public final int getNumber() { return value; }
@@ -524,6 +656,9 @@ public final class Enums {
       switch (value) {
         case 1: return ENCHANTTOTEMBUFF;
         case 2: return AFTERSHOCKBUFF;
+        case 3: return GREATCLEAVEBUFF;
+        case 4: return WARCRYBUFF;
+        case 5: return GODSSTRENGTHBUFF;
         default: return null;
       }
     }
@@ -587,12 +722,15 @@ public final class Enums {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
       "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*T\n\tSkillType\022\n\n\006C" +
-      "OMMON\020\001\022\013\n\007FISSURE\020\013\022\020\n\014ENCHANTTOTEM\020\014\022\016" +
-      "\n\nAFTERSHOCK\020\r\022\014\n\010ECHOSLAM\020\016*)\n\rSkillEmi" +
-      "tType\022\013\n\007PASSIVE\020\000\022\013\n\007ACTIEVE\020\001*4\n\010BuffT" +
-      "ype\022\024\n\020ENCHANTTOTEMBUFF\020\001\022\022\n\016AFTERSHOCKB" +
-      "UFF\020\002B\014\n\ndota.enums"
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\222\001\n\tSkillType\022\n\n\006" +
+      "COMMON\020\001\022\013\n\007FISSURE\020\013\022\020\n\014ENCHANTTOTEM\020\014\022" +
+      "\016\n\nAFTERSHOCK\020\r\022\014\n\010ECHOSLAM\020\016\022\r\n\tSTORMBO" +
+      "LT\020\025\022\017\n\013GREATCLEAVE\020\026\022\n\n\006WARCRY\020\027\022\020\n\014GOD" +
+      "SSTRENGTH\020\030*)\n\rSkillEmitType\022\013\n\007PASSIVE\020" +
+      "\000\022\013\n\007ACTIEVE\020\001*o\n\010BuffType\022\024\n\020ENCHANTTOT" +
+      "EMBUFF\020\001\022\022\n\016AFTERSHOCKBUFF\020\002\022\023\n\017GREATCLE",
+      "AVEBUFF\020\003\022\016\n\nWARCRYBUFF\020\004\022\024\n\020GODSSTRENGT" +
+      "HBUFF\020\005B\014\n\ndota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

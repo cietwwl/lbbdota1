@@ -40,17 +40,17 @@ public class Main {
 		team2.add(huoNv);
 		team2.add(chaoXi);
 		
-		laoNiu.setPosition(1, 1);
-		chuanZhang.setPosition(2, 1);
+		laoNiu.setPosition(100, 100);
+		chuanZhang.setPosition(200, 100);
 		yingMo.setPosition(0, 0);
-		bingNv.setPosition(0, 1);
-		fengXing.setPosition(0, 2);
+		bingNv.setPosition(0, 100);
+		fengXing.setPosition(0, 200);
 		
-		liuLang.setPosition(0, 2);
-		tuFu.setPosition(1, 2);
-		chaoXi.setPosition(2, 2);
-		xiaoHei.setPosition(1, 3);
-		huoNv.setPosition(2, 3);
+		liuLang.setPosition(0, 200);
+		tuFu.setPosition(100, 200);
+		chaoXi.setPosition(200, 200);
+		xiaoHei.setPosition(100, 300);
+		huoNv.setPosition(200, 300);
 		Battle battle = new Battle();
 		battle.init(team1, team2, null);
 		battle.start();

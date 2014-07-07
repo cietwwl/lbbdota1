@@ -53,14 +53,14 @@ public class Battle {
 	private boolean processOneRound() {
 		
 		for (Combater e: attackTeam) {
-			if (doAttack(e, defenseTeam)) {
+			if (doAttack(e, defenseTeam, attackTeam)) {
 				System.out.println("VICTORY");
 				return true;
 			}
 		}
 		
 		for (Combater e: defenseTeam) {
-			if (doAttack(e, attackTeam)) {
+			if (doAttack(e, attackTeam, defenseTeam)) {
 				System.out.println("LOSE");
 				return true;
 			}
@@ -70,9 +70,9 @@ public class Battle {
 		return false;
 	}
 	
-	private boolean doAttack(Combater attacker, CombatTeam defensers) {
+	private boolean doAttack(Combater attacker, CombatTeam defensers, CombatTeam attackerTeam) {
 		if (attacker.canAct()) {
-			attacker.attack(defensers);
+			attacker.attack(defensers, attackerTeam);
 		}
 		
 		if (!defensers.isLive()) {

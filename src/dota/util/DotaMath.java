@@ -26,4 +26,14 @@ public class DotaMath {
 		}
 		return false;
 	}
+	
+	public static int compareFloats(float a, float b, float precision) {
+		if (a - b > precision) {
+			return 1;
+		} else if (a - b < -precision) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
 }

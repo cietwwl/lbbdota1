@@ -9,7 +9,6 @@ import dota.buff.BuffManager;
 import dota.config.generated.BuffCfg;
 import dota.config.generated.GameConfig;
 import dota.config.generated.SkillCfg;
-import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
@@ -60,6 +59,11 @@ public abstract class Combater extends Character{
 	
 	// 是否可以行动
 	public boolean canAct() {
+		
+		if (!isLive()) {
+			return false;
+		}
+		
 		if(combatStateManager.getLeftStunCounts() > 0) {
 			// System.out.println(getName() + " 处于眩晕状态");
 			return false;
@@ -76,7 +80,7 @@ public abstract class Combater extends Character{
 	
 	// 伤害实际扣掉的血
 	private int damageToHp(int damage, int type) {
-		int armor = getRealArmor();
+		float armor = getRealArmor();
 		int realDamage = (int)((1 - 0.06 * armor)/(1 + 0.06 * armor) * damage);
 		return realDamage;
 	}
@@ -86,24 +90,18 @@ public abstract class Combater extends Character{
 	}
 	
 	
-	public void attack(CombatTeam defensers) {
+	public void attack(CombatTeam defensers, CombatTeam attackerTeam) {
 		Skill skill = selectSkill();
 		
 		if (skill == null) {
 			return ;
 		}
 		
-		skill.emit(this, defensers);
-
-		if (skill.getConfig().getSkillType() == Enums.SkillType.COMMON_VALUE) {
-			onCommonAttack();
-		} else {
-			onEmitAnyActiveSkill(defensers);
-		}
+		skill.emit(this, defensers, attackerTeam);
 	}
 	
-	public void onCommonAttack() {
-		buffManager.onCommonAttack();
+	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
+		buffManager.onCommonAttack(attacker, defenser, damage);
 	}
 	
 	public void onEmitAnyActiveSkill(CombatTeam defenseTeam) {
@@ -151,6 +149,7 @@ public abstract class Combater extends Character{
 	public void addBuff(int cfgId) {
 		BuffCfg config = GameConfig.getInstance().getBuffCfg(cfgId);
 		addBuff(config);
+		System.out.println(this.getName() + " 获得了BUFF " + config.getName());
 	}
 	
 	private void addBuff(BuffCfg config) {
@@ -164,8 +163,8 @@ public abstract class Combater extends Character{
 		buffManager.printAll();
 	}
 	
-	public void battleInit(CombatTeam targets) {
-		skillManager.emitPassiveSkill(this, targets);
+	public void battleInit(CombatTeam targets, CombatTeam attackerTeam) {
+		skillManager.emitPassiveSkill(this, targets, attackerTeam);
 	}
 	
 	public int getAttackDistance() {

@@ -26,11 +26,11 @@ public class BuffManager {
 		}
 	}
 	
-	public void onCommonAttack() {
+	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
 		Iterator<Buff> it = buffCollection.iterator();
 		while(it.hasNext()) {
 			Buff buff = it.next();
-			buff.onCommonAttack();
+			buff.onCommonAttack(attacker, defenser, damage);
 		}
 	}
 	

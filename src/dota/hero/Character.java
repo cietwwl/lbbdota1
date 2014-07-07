@@ -6,7 +6,7 @@ public class Character extends GameObject {
 	protected PropertyLikeHp hp = new PropertyLikeHp();			// 血
 	protected PropertyLikeHp energy = new PropertyLikeHp();		// 魔	
 	protected PropertyLikeAttack attack = new PropertyLikeAttack();	// 攻击
-	protected PropertyLikeAttack armor = new PropertyLikeAttack();		// 基础护甲
+	protected PropertyLikeArmor armor = new PropertyLikeArmor();		// 基础护甲
 	protected PropertyLikeCrit crite = new PropertyLikeCrit();		// 暴击
 	protected int magicRes;					// 魔抗
 	protected String name;  				// 名字
@@ -27,12 +27,12 @@ public class Character extends GameObject {
 		return hp.max;
 	}
 	
-	public int getBaseAttack() {
-		return attack.base;
-	}
-	
 	public int getRealAttack() {
 		return attack.getReal();
+	}
+	
+	public float getMinBaseAttack() {
+		return attack.base_min;
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Character extends GameObject {
 		attack.extra -= rmAttack;
 	}
 	
-	public int getRealArmor() {
+	public float getRealArmor() {
 		return armor.getReal();
 	}
 	
@@ -68,6 +68,10 @@ public class Character extends GameObject {
 	
 	public int getCriteValue() {
 		return crite.value;
+	}
+	
+	public PropertyLikeArmor getArmor() {
+		return armor;
 	}
 	
 }

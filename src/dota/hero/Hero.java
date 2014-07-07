@@ -10,9 +10,9 @@ import dota.skill.SkillManager;
 
 public class Hero extends Combater {
 	
-	private PropertyLikeAttack strength = new PropertyLikeAttack();
-	private PropertyLikeAttack agility = new PropertyLikeAttack();
-	private PropertyLikeAttack intelligence = new PropertyLikeAttack();
+	private PropertyLikeArmor strength = new PropertyLikeArmor();
+	private PropertyLikeArmor agility = new PropertyLikeArmor();
+	private PropertyLikeArmor intelligence = new PropertyLikeArmor();
 	private int heroType;
 	
 	public void init(HeroCfg config) {
@@ -48,17 +48,18 @@ public class Hero extends Combater {
 	}
 	
 	private void initAttack(HeroCfg config) {
-		attack.base = config.getInitAttack();
+		attack.base_min = config.getInitMinAttack();
+		attack.base_max = config.getInitMaxAttack();
 		attack.extra = 0;
 		switch(heroType) {
 		case Enums.HeroType.STRENGTH_VALUE:
-			attack.base += strength.base * ParamConfig.StrengthToAttack;
+			attack.addBase(strength.base * ParamConfig.StrengthToAttack);
 			break;
 		case Enums.HeroType.AGILITY_VALUE:
-			attack.base += agility.base * ParamConfig.AgilityToAttack;
+			attack.addBase(agility.base * ParamConfig.AgilityToAttack);
 			break;
 		case Enums.HeroType.INTELLIGENCE_VALUE:
-			attack.base += intelligence.base * ParamConfig.IntelligenceToAttack;
+			attack.addBase(intelligence.base * ParamConfig.IntelligenceToAttack);
 			break;
 		}
 	}
