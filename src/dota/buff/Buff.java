@@ -59,6 +59,11 @@ public abstract class Buff {
 		
 	}
 	
+	// 杀死任意单位
+	public void onKillAnyCombater(Combater soul) {
+		
+	}
+	
 	
 	
 }

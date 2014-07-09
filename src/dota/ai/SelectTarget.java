@@ -36,9 +36,17 @@ public class SelectTarget {
 	 * @return
 	 */
 	public static List<Combater> getAllTargetsOfScope(Combater target, float distance, CombatTeam targetTeam) {
+		return getAllTargetsOfScope(target.positionX, target.positionY, distance, targetTeam);
+	}
+	
+	/**
+	 * 获取指定范围内的目标, 包括目标
+	 * @return
+	 */
+	public static List<Combater> getAllTargetsOfScope(int x, int y, float distance, CombatTeam targetTeam) {
 		List<Combater> result = new ArrayList<>();
 		for (Combater e: targetTeam) {
-			if (e.isLive() && HeroHelper.isInRange(target, e, distance)) {
+			if (e.isLive() && HeroHelper.isInRange(x, y, e, distance)) {
 				result.add(e);
 			}
 		}

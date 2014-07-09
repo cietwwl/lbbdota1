@@ -9,8 +9,10 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.team.CombatTeam;
 import dota.util.HeroHelper;
+import dota.util.OP;
 
 // 流浪的巨力挥舞
+@OP(CODE = Enums.BuffType.GREAT_CLEAVE_BUFF_VALUE, TYPE = OP.BUFF)
 public class GreatCleaveBuff extends Buff {
 
 	public GreatCleaveBuff(BuffCfg config) {
@@ -31,7 +33,7 @@ public class GreatCleaveBuff extends Buff {
 		int cleaveDamage = (int) (damage * config.getEmitValue() / 100f);
 		List<Combater> targets = selectTargets(attacker, defenser);
 		for (Combater e: targets) {
-			e.beAttack(cleaveDamage, Enums.AttackType.PHYSICAL_VALUE);
+			e.beAttack(cleaveDamage, Enums.AttackType.PHYSICAL_VALUE, attacker);
 			System.out.println( attacker.getName() + " 的 " + config.getName() + 
 					" 对 " + e.getName() + " 造成 " + cleaveDamage + "的溅射伤害");
 		}

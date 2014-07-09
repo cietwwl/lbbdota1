@@ -55,6 +55,7 @@ public class Battle {
 		for (Combater e: attackTeam) {
 			if (doAttack(e, defenseTeam, attackTeam)) {
 				System.out.println("VICTORY");
+				printResult();
 				return true;
 			}
 		}
@@ -62,6 +63,7 @@ public class Battle {
 		for (Combater e: defenseTeam) {
 			if (doAttack(e, attackTeam, defenseTeam)) {
 				System.out.println("LOSE");
+				printResult();
 				return true;
 			}
 		}
@@ -85,6 +87,21 @@ public class Battle {
 	private void update() {
 		attackTeam.update();
 		defenseTeam.update();
+	}
+	
+	private void printResult() {
+		for (Combater e: attackTeam) {
+			if (e.isLive()) {
+				System.out.println(e.getName() + " : " + e.getCurrentHp());
+			}
+		}
+		
+		for (Combater e: defenseTeam) {
+			if (e.isLive()) {
+				System.out.println(e.getName() + " : " + e.getCurrentHp());
+			}
+		}
+		
 	}
 	
 }

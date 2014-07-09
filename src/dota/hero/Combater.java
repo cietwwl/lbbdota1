@@ -72,9 +72,14 @@ public abstract class Combater extends Character{
 	}
 	
 	// 受到指定伤害
-	public int beAttack(int damage, int type) {
+	public int beAttack(int damage, int type, Combater attacker) {
+		if (!isLive()) {
+			return 0;
+		}
+		
 		int realDamage = damageToHp(damage, type);
 		hp.current -= realDamage;
+		
 		return realDamage;
 	}
 	
@@ -106,6 +111,10 @@ public abstract class Combater extends Character{
 	
 	public void onEmitAnyActiveSkill(CombatTeam defenseTeam) {
 		buffManager.onEmitAnyActiveSkill(this, defenseTeam);
+	}
+	
+	public void onKillAnyCombater(Combater soul) {
+		buffManager.onKillAnyCombater(soul);
 	}
 	
 	/*
@@ -153,7 +162,7 @@ public abstract class Combater extends Character{
 	}
 	
 	private void addBuff(BuffCfg config) {
-		Buff buff = BuffFactory.creatBuff(config, this);
+		Buff buff = BuffFactory.creatBuff(config);
 		buff.init();
 		buff.start(this);
 		buffManager.add(buff);

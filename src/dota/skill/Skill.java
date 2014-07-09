@@ -67,7 +67,7 @@ public abstract class Skill {
 		
 		if (config.getSkillType() == Enums.SkillType.COMMON_VALUE) {
 			attacker.onCommonAttack(attacker, defenserTeam, damage);
-		} else if (config.getEmitType() == Enums.SkillEmitType.ACTIEVE_VALUE) {
+		} else if (config.getEmitType() != Enums.SkillEmitType.PASSIVE_VALUE) {
 			attacker.onEmitAnyActiveSkill(defenserTeam);
 		}
 	}
@@ -76,7 +76,19 @@ public abstract class Skill {
 		if (attacker == null || target == null) {
 			return 0;
 		}
-		return emit0(attacker, target);
+		
+		if (!target.isLive()) {
+			return 0;
+		}
+		
+		int damage = emit0(attacker, target);
+		
+		if (!target.isLive()) {
+			System.out.println(attacker.getName() + " 杀死了 " + target.getName());
+			attacker.onKillAnyCombater(target);
+		}
+		
+		return damage;
 	}
 	
 	protected abstract int emit0(Combater attacker, Combater target);
@@ -97,20 +109,6 @@ public abstract class Skill {
 	
 	protected abstract void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam);
-	
-	public static boolean canAttack(Combater attacker, Combater defenser, int distance) {
-		int disX = attacker.positionX - defenser.positionX;
-		int disY = attacker.positionY - defenser.positionY;
-		int dis = (int) Math.sqrt(disX * disX + disY * disY);
-		if (dis <= distance) {
-			return true;
-		}
-		return false;
-	}
-	
-	public static boolean isLine(int x1, int y1, int x2, int y2, int x3, int y3) {
-		return (y2 - y1) * (x3 - x1) == (x2 - x1) * (y3 - y1);
-	}
 	
 	protected void emitBuff(Combater target) {
 		String[] buffs = config.getBuffs().split(",");

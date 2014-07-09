@@ -15,7 +15,7 @@ public class SkillManager {
 	}
 	
 	public void add(Skill skill) {
-		if (skill.getConfig().getEmitType() == Enums.SkillEmitType.ACTIEVE_VALUE) {
+		if (skill.getConfig().getEmitType() != Enums.SkillEmitType.PASSIVE_VALUE) {
 			activeSkillList.add(skill);
 		} else {
 			passiveSkillList.add(skill);
@@ -27,7 +27,7 @@ public class SkillManager {
 	}
 	
 	public Skill getSkill(int index, int emitType) {
-		if (emitType == Enums.SkillEmitType.ACTIEVE_VALUE) {
+		if (emitType != Enums.SkillEmitType.PASSIVE_VALUE) {
 			return activeSkillList.get(index);
 		} else {
 			return passiveSkillList.get(index);

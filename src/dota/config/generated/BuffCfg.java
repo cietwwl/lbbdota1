@@ -7,6 +7,7 @@ public class BuffCfg extends BaseConfig {
     private int buffType; // BUFF类型
     private int emitValue; // BUFF作用时对应的值
     private int emitValue0; // BUFF作用时对应的值0
+    private int emitValue1; // BUFF作用时对应的值1
     private int emitTime; // 持续时间 MS
     private int effectScope; // 作用范围
 
@@ -14,6 +15,7 @@ public class BuffCfg extends BaseConfig {
     public final int getBuffType() {return buffType;}
     public final int getEmitValue() {return emitValue;}
     public final int getEmitValue0() {return emitValue0;}
+    public final int getEmitValue1() {return emitValue1;}
     public final int getEmitTime() {return emitTime;}
     public final int getEffectScope() {return effectScope;}
 

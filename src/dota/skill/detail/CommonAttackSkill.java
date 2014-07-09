@@ -10,9 +10,10 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
-import dota.util.OPHandler;
+import dota.util.HeroHelper;
+import dota.util.OP;
 
-@OPHandler(CODE = Enums.SkillType.COMMON_VALUE)
+@OP(CODE = Enums.SkillType.COMMON_VALUE, TYPE = OP.SKILL)
 public class CommonAttackSkill extends Skill {
 
 	public CommonAttackSkill(SkillCfg config) {
@@ -25,7 +26,7 @@ public class CommonAttackSkill extends Skill {
 			return 0 ;
 		}
 		int damage = getAttackDamage(attacker);
-		int realDamage = defenser.beAttack(damage, Enums.AttackType.PHYSICAL_VALUE);
+		int realDamage = defenser.beAttack(damage, Enums.AttackType.PHYSICAL_VALUE, attacker);
 		System.out.println(attacker.getName() + " 对 " + defenser.getName() + "释放 " + this.config.getName() + ", 造成" + realDamage + "的伤害");
 		if (defenser.isLive()) {
 			System.out.println(defenser.getName() + "剩余生命值: " + defenser.getCurrentHp());
@@ -55,7 +56,7 @@ public class CommonAttackSkill extends Skill {
 		List<Combater> candidate = new ArrayList<>(); // 候选目标
 
 		for (Combater e: defenserTeam) {
-			if (e.isLive() && canAttack(attacker, e, attacker.getAttackDistance())) {
+			if (e.isLive() && HeroHelper.isInRange(attacker, e, attacker.getAttackDistance())) {
 				candidate.add(e);
 			}
 		}

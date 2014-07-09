@@ -8,9 +8,9 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.OPHandler;
+import dota.util.OP;
 
-@OPHandler(CODE = Enums.SkillType.STORMBOLT_VALUE)
+@OP(CODE = Enums.SkillType.STORM_BOLT_VALUE, TYPE = OP.SKILL)
 public class StormBolt extends Skill {
 
 	public StormBolt(SkillCfg config) {
@@ -19,7 +19,7 @@ public class StormBolt extends Skill {
 
 	@Override
 	protected int emit0(Combater attacker, Combater target) {
-		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE);
+		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
 		target.beStun(config.getEffectTime());
 		System.out.println(attacker.getName() + " 对 " + target.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");
 	    return damage;

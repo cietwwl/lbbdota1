@@ -8,10 +8,10 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.HeroHelper;
-import dota.util.OPHandler;
+import dota.util.OP;
 
 // 回音击
-@OPHandler(CODE = Enums.SkillType.ECHOSLAM_VALUE)
+@OP(CODE = Enums.SkillType.ECHO_SLAM_VALUE, TYPE = OP.SKILL)
 public class EchoSlam extends Skill {
 	
 	private int damage = 0;
@@ -22,7 +22,7 @@ public class EchoSlam extends Skill {
 
 	@Override
 	protected int emit0(Combater attacker, Combater target) {
-		target.beAttack(damage, Enums.AttackType.MAGICAL_VALUE);
+		target.beAttack(damage, Enums.AttackType.MAGICAL_VALUE, attacker);
 		System.out.println(attacker.getName() + " 的回音击对 " + target.getName() + " 造成 " + damage + " 的伤害");
 		return damage;
 	}

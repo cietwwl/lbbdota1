@@ -7,6 +7,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OPHandler {
+public @interface OP {
+	public static int SKILL = 0;
+	public static int BUFF = 1;
 	int CODE();
+	int TYPE();
 }

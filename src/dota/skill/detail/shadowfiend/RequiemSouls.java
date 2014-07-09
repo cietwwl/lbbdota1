@@ -1,4 +1,4 @@
-package dota.skill.detail.rogueknight;
+package dota.skill.detail.shadowfiend;
 
 import java.util.List;
 
@@ -7,28 +7,27 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.OPHandler;
+import dota.util.OP;
 
-@OPHandler(CODE = Enums.SkillType.GREATCLEAVE_VALUE)
-public class GreatCleave extends Skill{
+@OP(CODE = Enums.SkillType.REQUIEM_OF_SOULS_VALUE, TYPE = OP.SKILL)
+public class RequiemSouls extends Skill {
 
-	public GreatCleave(SkillCfg config) {
+	public RequiemSouls(SkillCfg config) {
 		super(config);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected int emit0(Combater attacker, Combater target) {
-		String[] buffs = config.getBuffs().split(",");
-		for (int i = 0; i< buffs.length; i++) {
-			target.addBuff(Integer.parseInt(buffs[i]));
-		}
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
-		targets.add(attacker);
+		// TODO Auto-generated method stub
+		
 	}
-
+	
 }

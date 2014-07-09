@@ -18,8 +18,10 @@ namespace HXFS.Config
     [ProtoMember(5)]
     public int EmitValue0 { get; set; } // BUFF作用时对应的值0
     [ProtoMember(6)]
-    public int EmitTime { get; set; } // 持续时间 MS
+    public int EmitValue1 { get; set; } // BUFF作用时对应的值1
     [ProtoMember(7)]
+    public int EmitTime { get; set; } // 持续时间 MS
+    [ProtoMember(8)]
     public int EffectScope { get; set; } // 作用范围
   }
 }

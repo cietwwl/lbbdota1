@@ -18,31 +18,50 @@ enum HeroType {
 	INTELLIGENCE = 3;
 }
 
+//*****************************************技能******************************************//
+
 // 技能类型
 enum SkillType {
-	COMMON 			= 1;	// 普通攻击
-	FISSURE 		= 11;	// 沟壑
-	ENCHANTTOTEM 	= 12;	// 强化图腾
-	AFTERSHOCK		= 13;	// 余震
-	ECHOSLAM		= 14;	// 回音击
-	STORMBOLT		= 21;	// 风暴之锤
-	GREATCLEAVE		= 22;	// 巨力挥舞
-	WARCRY			= 23;   // 战吼
-	GODSSTRENGTH	= 24;   // 神之力量
+	COMMON 					 	 	= 1;		// 普通攻击
+	EMIT_BUFF		        	 	= 2;    	// 只释放BUFF类
+	FISSURE 						= 11;		// 沟壑
+	ECHO_SLAM						= 14;		// 回音击
+	STORM_BOLT						= 21;		// 风暴之锤
+	SHADOW_RAZE  					= 31; 		// 影压(学习3个技能)
+	REAL_SHADOW_RAZE				= 32; 		// 真正的影压
+	PRESENSE_OF_THE_DARK_LORD		= 34;		// 魔王降临
+	REQUIEM_OF_SOULS				= 35; 		// 魂之挽歌
 }
 
 // 技能释放类型
 enum SkillEmitType {
-	PASSIVE = 0;
-	ACTIEVE = 1;
+	PASSIVE = 0; 	// 被动技能
+	ONETARGET = 1; 	// 指向型技能
+	NOTARGET = 2;	// 无目标类型
 }
 
-// BUF
+// 技能释放目标类型(当SkillEmitType==1时才有用)
+enum EmitTargetType {
+	ANY = 0;   // 任意类型
+	FRIEND_HERO = 1; // 友方英雄
+	ENIMY_HERO = 2; // 敌方英雄
+}
+
+// 作用目标类型 
+enum EffectTargetType {
+	FRIEND = 1;
+	ENEMY = 2;
+}
+
+//*****************************************BUFF******************************************//
+
+// BUFF
 enum BuffType {
-	ENCHANTTOTEMBUFF = 1;
-	AFTERSHOCKBUFF = 2;
-	GREATCLEAVEBUFF = 3;
-	WARCRYBUFF = 4;
-	GODSSTRENGTHBUFF = 5;
+	ENCHANT_TOTEM_BUFF = 1;
+	AFTER_SHOCK_BUFF = 2;
+	GREAT_CLEAVE_BUFF = 3;
+	WAR_CRY_BUFF = 4;
+	GODS_STRENGTH_BUFF = 5;
+	NECRO_MASTERY_BUFF = 6;
 }
 

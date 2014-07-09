@@ -12,24 +12,30 @@ namespace HXFS.Config
     [ProtoMember(2)]
     public string Name { get; set; } // 名字
     [ProtoMember(3)]
-    public int SkillType { get; set; } // 技能类型 英雄代号+技能代号
+    public int SkillType { get; set; } // 技能类型@SkillType
     [ProtoMember(4)]
     public int Cd { get; set; } // 技能冷却 MS
     [ProtoMember(5)]
-    public int EmitType { get; set; } // 释放类型，0被动，1主动
+    public int EmitType { get; set; } // 释放类型 @SkillEmitType
     [ProtoMember(6)]
-    public int EmitDistance { get; set; } // 施法距离
+    public int EmitTargetType { get; set; } // 释放目标类型，@EmitTargetType
     [ProtoMember(7)]
-    public int EffectScope { get; set; } // 作用范围
+    public int EmitDistance { get; set; } // 施法距离
     [ProtoMember(8)]
-    public int EffectTime { get; set; } // 作用时间 S
+    public int EffectTargetType { get; set; } // 作用目标类型
     [ProtoMember(9)]
-    public int Damage { get; set; } // 伤害
+    public int EffectScope { get; set; } // 作用范围
     [ProtoMember(10)]
-    public int DamagePara1 { get; set; } // 伤害参数1
+    public int EffectTime { get; set; } // 作用时间 S
     [ProtoMember(11)]
-    public int EnergyCost { get; set; } // 魔法消耗
+    public int Damage { get; set; } // 伤害
     [ProtoMember(12)]
+    public int DamagePara1 { get; set; } // 伤害参数1
+    [ProtoMember(13)]
+    public int EnergyCost { get; set; } // 魔法消耗
+    [ProtoMember(14)]
     public string Buffs { get; set; } // 产生的BUFF
+    [ProtoMember(15)]
+    public string Skills { get; set; } // 产生的技能
   }
 }

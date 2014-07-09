@@ -2,11 +2,13 @@ package dota.buff.detail;
 
 import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.team.CombatTeam;
+import dota.util.OP;
 
 // arg0: 增加的攻击力倍数
-
+@OP(CODE = Enums.BuffType.ENCHANT_TOTEM_BUFF_VALUE, TYPE = OP.BUFF)
 public class EnchantTotemBuff extends Buff {
 
 	int addAttack = 0;

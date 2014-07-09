@@ -42,6 +42,14 @@ public class BuffManager {
 		}
 	}
 	
+	public void onKillAnyCombater(Combater soul) {
+		Iterator<Buff> it = buffCollection.iterator();
+		while(it.hasNext()) {
+			Buff buff = it.next();
+			buff.onKillAnyCombater(soul);;
+		}
+	}
+	
 	public void printAll() {
 //		System.out.println("Buff名称        BUFF剩余时间");
 //		Iterator<Buff> it = buffCollection.iterator();

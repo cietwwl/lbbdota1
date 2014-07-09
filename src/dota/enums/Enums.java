@@ -308,69 +308,69 @@ public final class Enums {
      */
     COMMON(0, 1),
     /**
+     * <code>EMIT_BUFF = 2;</code>
+     *
+     * <pre>
+     * 只释放BUFF类
+     * </pre>
+     */
+    EMIT_BUFF(1, 2),
+    /**
      * <code>FISSURE = 11;</code>
      *
      * <pre>
      * 沟壑
      * </pre>
      */
-    FISSURE(1, 11),
+    FISSURE(2, 11),
     /**
-     * <code>ENCHANTTOTEM = 12;</code>
-     *
-     * <pre>
-     * 强化图腾
-     * </pre>
-     */
-    ENCHANTTOTEM(2, 12),
-    /**
-     * <code>AFTERSHOCK = 13;</code>
-     *
-     * <pre>
-     * 余震
-     * </pre>
-     */
-    AFTERSHOCK(3, 13),
-    /**
-     * <code>ECHOSLAM = 14;</code>
+     * <code>ECHO_SLAM = 14;</code>
      *
      * <pre>
      * 回音击
      * </pre>
      */
-    ECHOSLAM(4, 14),
+    ECHO_SLAM(3, 14),
     /**
-     * <code>STORMBOLT = 21;</code>
+     * <code>STORM_BOLT = 21;</code>
      *
      * <pre>
      * 风暴之锤
      * </pre>
      */
-    STORMBOLT(5, 21),
+    STORM_BOLT(4, 21),
     /**
-     * <code>GREATCLEAVE = 22;</code>
+     * <code>SHADOW_RAZE = 31;</code>
      *
      * <pre>
-     * 巨力挥舞
+     * 影压(学习3个技能)
      * </pre>
      */
-    GREATCLEAVE(6, 22),
+    SHADOW_RAZE(5, 31),
     /**
-     * <code>WARCRY = 23;</code>
+     * <code>REAL_SHADOW_RAZE = 32;</code>
      *
      * <pre>
-     * 战吼
+     * 真正的影压
      * </pre>
      */
-    WARCRY(7, 23),
+    REAL_SHADOW_RAZE(6, 32),
     /**
-     * <code>GODSSTRENGTH = 24;</code>
+     * <code>PRESENSE_OF_THE_DARK_LORD = 34;</code>
      *
      * <pre>
-     * 神之力量
+     * 魔王降临
      * </pre>
      */
-    GODSSTRENGTH(8, 24),
+    PRESENSE_OF_THE_DARK_LORD(7, 34),
+    /**
+     * <code>REQUIEM_OF_SOULS = 35;</code>
+     *
+     * <pre>
+     * 魂之挽歌
+     * </pre>
+     */
+    REQUIEM_OF_SOULS(8, 35),
     ;
 
     /**
@@ -382,6 +382,14 @@ public final class Enums {
      */
     public static final int COMMON_VALUE = 1;
     /**
+     * <code>EMIT_BUFF = 2;</code>
+     *
+     * <pre>
+     * 只释放BUFF类
+     * </pre>
+     */
+    public static final int EMIT_BUFF_VALUE = 2;
+    /**
      * <code>FISSURE = 11;</code>
      *
      * <pre>
@@ -390,61 +398,53 @@ public final class Enums {
      */
     public static final int FISSURE_VALUE = 11;
     /**
-     * <code>ENCHANTTOTEM = 12;</code>
-     *
-     * <pre>
-     * 强化图腾
-     * </pre>
-     */
-    public static final int ENCHANTTOTEM_VALUE = 12;
-    /**
-     * <code>AFTERSHOCK = 13;</code>
-     *
-     * <pre>
-     * 余震
-     * </pre>
-     */
-    public static final int AFTERSHOCK_VALUE = 13;
-    /**
-     * <code>ECHOSLAM = 14;</code>
+     * <code>ECHO_SLAM = 14;</code>
      *
      * <pre>
      * 回音击
      * </pre>
      */
-    public static final int ECHOSLAM_VALUE = 14;
+    public static final int ECHO_SLAM_VALUE = 14;
     /**
-     * <code>STORMBOLT = 21;</code>
+     * <code>STORM_BOLT = 21;</code>
      *
      * <pre>
      * 风暴之锤
      * </pre>
      */
-    public static final int STORMBOLT_VALUE = 21;
+    public static final int STORM_BOLT_VALUE = 21;
     /**
-     * <code>GREATCLEAVE = 22;</code>
+     * <code>SHADOW_RAZE = 31;</code>
      *
      * <pre>
-     * 巨力挥舞
+     * 影压(学习3个技能)
      * </pre>
      */
-    public static final int GREATCLEAVE_VALUE = 22;
+    public static final int SHADOW_RAZE_VALUE = 31;
     /**
-     * <code>WARCRY = 23;</code>
+     * <code>REAL_SHADOW_RAZE = 32;</code>
      *
      * <pre>
-     * 战吼
+     * 真正的影压
      * </pre>
      */
-    public static final int WARCRY_VALUE = 23;
+    public static final int REAL_SHADOW_RAZE_VALUE = 32;
     /**
-     * <code>GODSSTRENGTH = 24;</code>
+     * <code>PRESENSE_OF_THE_DARK_LORD = 34;</code>
      *
      * <pre>
-     * 神之力量
+     * 魔王降临
      * </pre>
      */
-    public static final int GODSSTRENGTH_VALUE = 24;
+    public static final int PRESENSE_OF_THE_DARK_LORD_VALUE = 34;
+    /**
+     * <code>REQUIEM_OF_SOULS = 35;</code>
+     *
+     * <pre>
+     * 魂之挽歌
+     * </pre>
+     */
+    public static final int REQUIEM_OF_SOULS_VALUE = 35;
 
 
     public final int getNumber() { return value; }
@@ -452,14 +452,14 @@ public final class Enums {
     public static SkillType valueOf(int value) {
       switch (value) {
         case 1: return COMMON;
+        case 2: return EMIT_BUFF;
         case 11: return FISSURE;
-        case 12: return ENCHANTTOTEM;
-        case 13: return AFTERSHOCK;
-        case 14: return ECHOSLAM;
-        case 21: return STORMBOLT;
-        case 22: return GREATCLEAVE;
-        case 23: return WARCRY;
-        case 24: return GODSSTRENGTH;
+        case 14: return ECHO_SLAM;
+        case 21: return STORM_BOLT;
+        case 31: return SHADOW_RAZE;
+        case 32: return REAL_SHADOW_RAZE;
+        case 34: return PRESENSE_OF_THE_DARK_LORD;
+        case 35: return REQUIEM_OF_SOULS;
         default: return null;
       }
     }
@@ -522,22 +522,54 @@ public final class Enums {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>PASSIVE = 0;</code>
+     *
+     * <pre>
+     * 被动技能
+     * </pre>
      */
     PASSIVE(0, 0),
     /**
-     * <code>ACTIEVE = 1;</code>
+     * <code>ONETARGET = 1;</code>
+     *
+     * <pre>
+     * 指向型技能
+     * </pre>
      */
-    ACTIEVE(1, 1),
+    ONETARGET(1, 1),
+    /**
+     * <code>NOTARGET = 2;</code>
+     *
+     * <pre>
+     * 无目标类型
+     * </pre>
+     */
+    NOTARGET(2, 2),
     ;
 
     /**
      * <code>PASSIVE = 0;</code>
+     *
+     * <pre>
+     * 被动技能
+     * </pre>
      */
     public static final int PASSIVE_VALUE = 0;
     /**
-     * <code>ACTIEVE = 1;</code>
+     * <code>ONETARGET = 1;</code>
+     *
+     * <pre>
+     * 指向型技能
+     * </pre>
      */
-    public static final int ACTIEVE_VALUE = 1;
+    public static final int ONETARGET_VALUE = 1;
+    /**
+     * <code>NOTARGET = 2;</code>
+     *
+     * <pre>
+     * 无目标类型
+     * </pre>
+     */
+    public static final int NOTARGET_VALUE = 2;
 
 
     public final int getNumber() { return value; }
@@ -545,7 +577,8 @@ public final class Enums {
     public static SkillEmitType valueOf(int value) {
       switch (value) {
         case 0: return PASSIVE;
-        case 1: return ACTIEVE;
+        case 1: return ONETARGET;
+        case 2: return NOTARGET;
         default: return null;
       }
     }
@@ -598,67 +631,281 @@ public final class Enums {
   }
 
   /**
+   * Protobuf enum {@code EmitTargetType}
+   *
+   * <pre>
+   * 技能释放目标类型(当SkillEmitType==1时才有用)
+   * </pre>
+   */
+  public enum EmitTargetType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>ANY = 0;</code>
+     *
+     * <pre>
+     * 任意类型
+     * </pre>
+     */
+    ANY(0, 0),
+    /**
+     * <code>FRIEND_HERO = 1;</code>
+     *
+     * <pre>
+     * 友方英雄
+     * </pre>
+     */
+    FRIEND_HERO(1, 1),
+    /**
+     * <code>ENIMY_HERO = 2;</code>
+     *
+     * <pre>
+     * 敌方英雄
+     * </pre>
+     */
+    ENIMY_HERO(2, 2),
+    ;
+
+    /**
+     * <code>ANY = 0;</code>
+     *
+     * <pre>
+     * 任意类型
+     * </pre>
+     */
+    public static final int ANY_VALUE = 0;
+    /**
+     * <code>FRIEND_HERO = 1;</code>
+     *
+     * <pre>
+     * 友方英雄
+     * </pre>
+     */
+    public static final int FRIEND_HERO_VALUE = 1;
+    /**
+     * <code>ENIMY_HERO = 2;</code>
+     *
+     * <pre>
+     * 敌方英雄
+     * </pre>
+     */
+    public static final int ENIMY_HERO_VALUE = 2;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmitTargetType valueOf(int value) {
+      switch (value) {
+        case 0: return ANY;
+        case 1: return FRIEND_HERO;
+        case 2: return ENIMY_HERO;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmitTargetType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmitTargetType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmitTargetType>() {
+            public EmitTargetType findValueByNumber(int number) {
+              return EmitTargetType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(5);
+    }
+
+    private static final EmitTargetType[] VALUES = values();
+
+    public static EmitTargetType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmitTargetType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:EmitTargetType)
+  }
+
+  /**
+   * Protobuf enum {@code EffectTargetType}
+   *
+   * <pre>
+   * 作用目标类型 
+   * </pre>
+   */
+  public enum EffectTargetType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>FRIEND = 1;</code>
+     */
+    FRIEND(0, 1),
+    /**
+     * <code>ENEMY = 2;</code>
+     */
+    ENEMY(1, 2),
+    ;
+
+    /**
+     * <code>FRIEND = 1;</code>
+     */
+    public static final int FRIEND_VALUE = 1;
+    /**
+     * <code>ENEMY = 2;</code>
+     */
+    public static final int ENEMY_VALUE = 2;
+
+
+    public final int getNumber() { return value; }
+
+    public static EffectTargetType valueOf(int value) {
+      switch (value) {
+        case 1: return FRIEND;
+        case 2: return ENEMY;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EffectTargetType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EffectTargetType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EffectTargetType>() {
+            public EffectTargetType findValueByNumber(int number) {
+              return EffectTargetType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(6);
+    }
+
+    private static final EffectTargetType[] VALUES = values();
+
+    public static EffectTargetType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EffectTargetType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:EffectTargetType)
+  }
+
+  /**
    * Protobuf enum {@code BuffType}
    *
    * <pre>
-   * BUF
+   * BUFF
    * </pre>
    */
   public enum BuffType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>ENCHANTTOTEMBUFF = 1;</code>
+     * <code>ENCHANT_TOTEM_BUFF = 1;</code>
      */
-    ENCHANTTOTEMBUFF(0, 1),
+    ENCHANT_TOTEM_BUFF(0, 1),
     /**
-     * <code>AFTERSHOCKBUFF = 2;</code>
+     * <code>AFTER_SHOCK_BUFF = 2;</code>
      */
-    AFTERSHOCKBUFF(1, 2),
+    AFTER_SHOCK_BUFF(1, 2),
     /**
-     * <code>GREATCLEAVEBUFF = 3;</code>
+     * <code>GREAT_CLEAVE_BUFF = 3;</code>
      */
-    GREATCLEAVEBUFF(2, 3),
+    GREAT_CLEAVE_BUFF(2, 3),
     /**
-     * <code>WARCRYBUFF = 4;</code>
+     * <code>WAR_CRY_BUFF = 4;</code>
      */
-    WARCRYBUFF(3, 4),
+    WAR_CRY_BUFF(3, 4),
     /**
-     * <code>GODSSTRENGTHBUFF = 5;</code>
+     * <code>GODS_STRENGTH_BUFF = 5;</code>
      */
-    GODSSTRENGTHBUFF(4, 5),
+    GODS_STRENGTH_BUFF(4, 5),
+    /**
+     * <code>NECRO_MASTERY_BUFF = 6;</code>
+     */
+    NECRO_MASTERY_BUFF(5, 6),
     ;
 
     /**
-     * <code>ENCHANTTOTEMBUFF = 1;</code>
+     * <code>ENCHANT_TOTEM_BUFF = 1;</code>
      */
-    public static final int ENCHANTTOTEMBUFF_VALUE = 1;
+    public static final int ENCHANT_TOTEM_BUFF_VALUE = 1;
     /**
-     * <code>AFTERSHOCKBUFF = 2;</code>
+     * <code>AFTER_SHOCK_BUFF = 2;</code>
      */
-    public static final int AFTERSHOCKBUFF_VALUE = 2;
+    public static final int AFTER_SHOCK_BUFF_VALUE = 2;
     /**
-     * <code>GREATCLEAVEBUFF = 3;</code>
+     * <code>GREAT_CLEAVE_BUFF = 3;</code>
      */
-    public static final int GREATCLEAVEBUFF_VALUE = 3;
+    public static final int GREAT_CLEAVE_BUFF_VALUE = 3;
     /**
-     * <code>WARCRYBUFF = 4;</code>
+     * <code>WAR_CRY_BUFF = 4;</code>
      */
-    public static final int WARCRYBUFF_VALUE = 4;
+    public static final int WAR_CRY_BUFF_VALUE = 4;
     /**
-     * <code>GODSSTRENGTHBUFF = 5;</code>
+     * <code>GODS_STRENGTH_BUFF = 5;</code>
      */
-    public static final int GODSSTRENGTHBUFF_VALUE = 5;
+    public static final int GODS_STRENGTH_BUFF_VALUE = 5;
+    /**
+     * <code>NECRO_MASTERY_BUFF = 6;</code>
+     */
+    public static final int NECRO_MASTERY_BUFF_VALUE = 6;
 
 
     public final int getNumber() { return value; }
 
     public static BuffType valueOf(int value) {
       switch (value) {
-        case 1: return ENCHANTTOTEMBUFF;
-        case 2: return AFTERSHOCKBUFF;
-        case 3: return GREATCLEAVEBUFF;
-        case 4: return WARCRYBUFF;
-        case 5: return GODSSTRENGTHBUFF;
+        case 1: return ENCHANT_TOTEM_BUFF;
+        case 2: return AFTER_SHOCK_BUFF;
+        case 3: return GREAT_CLEAVE_BUFF;
+        case 4: return WAR_CRY_BUFF;
+        case 5: return GODS_STRENGTH_BUFF;
+        case 6: return NECRO_MASTERY_BUFF;
         default: return null;
       }
     }
@@ -685,7 +932,7 @@ public final class Enums {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return dota.enums.Enums.getDescriptor().getEnumTypes().get(5);
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(7);
     }
 
     private static final BuffType[] VALUES = values();
@@ -722,15 +969,20 @@ public final class Enums {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
       "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\222\001\n\tSkillType\022\n\n\006" +
-      "COMMON\020\001\022\013\n\007FISSURE\020\013\022\020\n\014ENCHANTTOTEM\020\014\022" +
-      "\016\n\nAFTERSHOCK\020\r\022\014\n\010ECHOSLAM\020\016\022\r\n\tSTORMBO" +
-      "LT\020\025\022\017\n\013GREATCLEAVE\020\026\022\n\n\006WARCRY\020\027\022\020\n\014GOD" +
-      "SSTRENGTH\020\030*)\n\rSkillEmitType\022\013\n\007PASSIVE\020" +
-      "\000\022\013\n\007ACTIEVE\020\001*o\n\010BuffType\022\024\n\020ENCHANTTOT" +
-      "EMBUFF\020\001\022\022\n\016AFTERSHOCKBUFF\020\002\022\023\n\017GREATCLE",
-      "AVEBUFF\020\003\022\016\n\nWARCRYBUFF\020\004\022\024\n\020GODSSTRENGT" +
-      "HBUFF\020\005B\014\n\ndota.enums"
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\256\001\n\tSkillType\022\n\n\006" +
+      "COMMON\020\001\022\r\n\tEMIT_BUFF\020\002\022\013\n\007FISSURE\020\013\022\r\n\t" +
+      "ECHO_SLAM\020\016\022\016\n\nSTORM_BOLT\020\025\022\017\n\013SHADOW_RA" +
+      "ZE\020\037\022\024\n\020REAL_SHADOW_RAZE\020 \022\035\n\031PRESENSE_O" +
+      "F_THE_DARK_LORD\020\"\022\024\n\020REQUIEM_OF_SOULS\020#*" +
+      "9\n\rSkillEmitType\022\013\n\007PASSIVE\020\000\022\r\n\tONETARG" +
+      "ET\020\001\022\014\n\010NOTARGET\020\002*:\n\016EmitTargetType\022\007\n\003",
+      "ANY\020\000\022\017\n\013FRIEND_HERO\020\001\022\016\n\nENIMY_HERO\020\002*)" +
+      "\n\020EffectTargetType\022\n\n\006FRIEND\020\001\022\t\n\005ENEMY\020" +
+      "\002*\221\001\n\010BuffType\022\026\n\022ENCHANT_TOTEM_BUFF\020\001\022\024" +
+      "\n\020AFTER_SHOCK_BUFF\020\002\022\025\n\021GREAT_CLEAVE_BUF" +
+      "F\020\003\022\020\n\014WAR_CRY_BUFF\020\004\022\026\n\022GODS_STRENGTH_B" +
+      "UFF\020\005\022\026\n\022NECRO_MASTERY_BUFF\020\006B\014\n\ndota.en" +
+      "ums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

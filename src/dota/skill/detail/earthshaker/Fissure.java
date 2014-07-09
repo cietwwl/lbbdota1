@@ -9,12 +9,13 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
-import dota.util.OPHandler;
+import dota.util.HeroHelper;
+import dota.util.OP;
 
 /*
  * 老牛F
  */
-@OPHandler(CODE = Enums.SkillType.FISSURE_VALUE)
+@OP(CODE = Enums.SkillType.FISSURE_VALUE, TYPE = OP.SKILL)
 public class Fissure extends Skill{
 	
 	public Fissure(SkillCfg config) {
@@ -23,7 +24,7 @@ public class Fissure extends Skill{
 
 	@Override
 	protected int emit0(Combater attacker, Combater defenser) {
-		int damage = defenser.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE);
+		int damage = defenser.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
 		defenser.beStun(config.getEffectTime());
 		System.out.println(attacker.getName() + " 对 " + defenser.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");
 		return damage;
@@ -34,7 +35,7 @@ public class Fissure extends Skill{
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		List<Combater> candidate = new ArrayList<>();
 		for (Combater e : defenserTeam) {
-			if (e.isLive() && canAttack(attacker, e, config.getEmitDistance())) {
+			if (e.isLive() && HeroHelper.isInRange(attacker, e, config.getEmitDistance())) {
 				candidate.add(e);
 			}
 		}
@@ -49,9 +50,7 @@ public class Fissure extends Skill{
 		
 		// 选择该条直线上的所有英雄
 		for (Combater e : defenserTeam) {
-			if (e.isLive() && isLine(attacker.positionX, attacker.positionY,
-					target.positionX, target.positionY, 
-					e.positionX, e.positionY)) {
+			if (e.isLive() && HeroHelper.isInSegment(attacker, target, e, config.getEmitDistance())) {
 				targets.add(e);
 			}
 		}

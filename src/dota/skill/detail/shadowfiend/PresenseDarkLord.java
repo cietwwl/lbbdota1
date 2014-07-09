@@ -1,4 +1,4 @@
-package dota.skill.detail.rogueknight;
+package dota.skill.detail.shadowfiend;
 
 import java.util.List;
 
@@ -7,25 +7,27 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.OPHandler;
+import dota.util.OP;
 
-@OPHandler(CODE = Enums.SkillType.GODSSTRENGTH_VALUE)
-public class GodsStrength extends Skill{
+@OP(CODE = Enums.SkillType.PRESENSE_OF_THE_DARK_LORD_VALUE, TYPE = OP.SKILL)
+public class PresenseDarkLord extends Skill {
 
-	public GodsStrength(SkillCfg config) {
+	public PresenseDarkLord(SkillCfg config) {
 		super(config);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected int emit0(Combater attacker, Combater target) {
-		emitBuff(target);
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
-		targets.add(attacker);
+		// TODO Auto-generated method stub
+		
 	}
 
 }

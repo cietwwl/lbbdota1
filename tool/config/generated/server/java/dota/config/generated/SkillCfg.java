@@ -4,27 +4,33 @@ package dota.config.generated;
 public class SkillCfg extends BaseConfig {
 
     private String name; // 名字
-    private int skillType; // 技能类型 英雄代号+技能代号
+    private int skillType; // 技能类型@SkillType
     private int cd; // 技能冷却 MS
-    private int emitType; // 释放类型，0被动，1主动
+    private int emitType; // 释放类型 @SkillEmitType
+    private int emitTargetType; // 释放目标类型，@EmitTargetType
     private int emitDistance; // 施法距离
+    private int effectTargetType; // 作用目标类型
     private int effectScope; // 作用范围
     private int effectTime; // 作用时间 S
     private int damage; // 伤害
     private int damagePara1; // 伤害参数1
     private int energyCost; // 魔法消耗
     private String buffs; // 产生的BUFF
+    private String skills; // 产生的技能
 
     public final String getName() {return name;}
     public final int getSkillType() {return skillType;}
     public final int getCd() {return cd;}
     public final int getEmitType() {return emitType;}
+    public final int getEmitTargetType() {return emitTargetType;}
     public final int getEmitDistance() {return emitDistance;}
+    public final int getEffectTargetType() {return effectTargetType;}
     public final int getEffectScope() {return effectScope;}
     public final int getEffectTime() {return effectTime;}
     public final int getDamage() {return damage;}
     public final int getDamagePara1() {return damagePara1;}
     public final int getEnergyCost() {return energyCost;}
     public final String getBuffs() {return buffs;}
+    public final String getSkills() {return skills;}
 
 }
