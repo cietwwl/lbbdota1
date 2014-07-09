@@ -8,7 +8,9 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
+import dota.util.OPHandler;
 
+@OPHandler(CODE = Enums.SkillType.STORMBOLT_VALUE)
 public class StormBolt extends Skill {
 
 	public StormBolt(SkillCfg config) {

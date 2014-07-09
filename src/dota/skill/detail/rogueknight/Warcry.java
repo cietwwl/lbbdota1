@@ -4,10 +4,13 @@ import java.util.List;
 
 import dota.ai.SelectTarget;
 import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
+import dota.util.OPHandler;
 
+@OPHandler(CODE = Enums.SkillType.WARCRY_VALUE)
 public class Warcry extends Skill {
 
 	public Warcry(SkillCfg config) {

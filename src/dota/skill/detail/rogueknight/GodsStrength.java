@@ -3,10 +3,13 @@ package dota.skill.detail.rogueknight;
 import java.util.List;
 
 import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
+import dota.util.OPHandler;
 
+@OPHandler(CODE = Enums.SkillType.GODSSTRENGTH_VALUE)
 public class GodsStrength extends Skill{
 
 	public GodsStrength(SkillCfg config) {

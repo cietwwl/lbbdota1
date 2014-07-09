@@ -9,10 +9,12 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
+import dota.util.OPHandler;
 
 /*
  * 老牛F
  */
+@OPHandler(CODE = Enums.SkillType.FISSURE_VALUE)
 public class Fissure extends Skill{
 	
 	public Fissure(SkillCfg config) {

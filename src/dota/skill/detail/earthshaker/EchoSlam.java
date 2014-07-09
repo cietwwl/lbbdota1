@@ -8,8 +8,10 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.HeroHelper;
+import dota.util.OPHandler;
 
 // 回音击
+@OPHandler(CODE = Enums.SkillType.ECHOSLAM_VALUE)
 public class EchoSlam extends Skill {
 	
 	private int damage = 0;

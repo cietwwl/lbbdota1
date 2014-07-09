@@ -10,8 +10,10 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
+import dota.util.OPHandler;
 
-public class CommonAttackSkill extends Skill{
+@OPHandler(CODE = Enums.SkillType.COMMON_VALUE)
+public class CommonAttackSkill extends Skill {
 
 	public CommonAttackSkill(SkillCfg config) {
 		super(config);

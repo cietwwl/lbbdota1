@@ -4,12 +4,13 @@ import dota.battle.Battle;
 import dota.hero.Hero;
 import dota.hero.HeroFactory;
 import dota.team.CombatTeam;
+import dota.util.FactoryHelper;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// System.out.println(System.getProperty("java.class.path"));
+
+		FactoryHelper.init();
 		test001();
 	}
 	

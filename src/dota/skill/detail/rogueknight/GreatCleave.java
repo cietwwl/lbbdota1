@@ -3,10 +3,13 @@ package dota.skill.detail.rogueknight;
 import java.util.List;
 
 import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
+import dota.util.OPHandler;
 
+@OPHandler(CODE = Enums.SkillType.GREATCLEAVE_VALUE)
 public class GreatCleave extends Skill{
 
 	public GreatCleave(SkillCfg config) {

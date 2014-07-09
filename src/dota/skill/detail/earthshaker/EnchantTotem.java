@@ -3,12 +3,14 @@ package dota.skill.detail.earthshaker;
 import java.util.List;
 
 import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
+import dota.util.OPHandler;
 
 // 老牛的强化图腾
-
+@OPHandler(CODE = Enums.SkillType.ENCHANTTOTEM_VALUE)
 public class EnchantTotem extends Skill {
 	
 	public EnchantTotem(SkillCfg config) {
