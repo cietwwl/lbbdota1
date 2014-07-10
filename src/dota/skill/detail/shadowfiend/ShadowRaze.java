@@ -18,7 +18,7 @@ public class ShadowRaze extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target) {
+	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		String[] skills = config.getSkills().split(",");
 		for (int i = 0; i < skills.length; i++) {
 			attacker.addSkill(GameConfig.getInstance().getSkillCfg(Integer.parseInt(skills[i])));

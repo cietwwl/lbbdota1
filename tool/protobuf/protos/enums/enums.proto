@@ -57,11 +57,14 @@ enum EffectTargetType {
 
 // BUFF
 enum BuffType {
-	ENCHANT_TOTEM_BUFF = 1;
-	AFTER_SHOCK_BUFF = 2;
-	GREAT_CLEAVE_BUFF = 3;
-	WAR_CRY_BUFF = 4;
-	GODS_STRENGTH_BUFF = 5;
-	NECRO_MASTERY_BUFF = 6;
+	ENCHANT_TOTEM_BUFF = 1;					// 类似于强化图腾的BUFF（增加攻击力，受时间和攻击次数限制）
+	AFTER_SHOCK_BUFF = 2;					// 类似于余震的BUFF
+	GREAT_CLEAVE_BUFF = 3;					// 溅射
+	WAR_CRY_BUFF = 4;						// 战吼
+	NECRO_MASTERY_BUFF = 6;					// 死灵支配
+	AURA = 7;								// 光环
+	PRESENSE_DARK_LORD_BUFF = 8;			// 类似于SF的魔王降临BUFF（降低护甲类）
+	SLOW = 9;								// 减移动速度
+	ATTACK_REDUCTION = 10;					// 减攻击力
 }
 

@@ -26,6 +26,7 @@ public class Hero extends Combater {
 	}
 	
 	private void initBase(HeroCfg config) {
+		setId(config.getId());
 		heroType = config.getHeroType();
 		crite.key = 0;
 		crite.value = 0;

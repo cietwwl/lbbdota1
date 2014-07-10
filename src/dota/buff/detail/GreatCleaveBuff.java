@@ -30,7 +30,7 @@ public class GreatCleaveBuff extends Buff {
 	
 	@Override
 	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
-		int cleaveDamage = (int) (damage * config.getEmitValue() / 100f);
+		int cleaveDamage = (int) (damage * config.getEffectValue() / 100f);
 		List<Combater> targets = selectTargets(attacker, defenser);
 		for (Combater e: targets) {
 			e.beAttack(cleaveDamage, Enums.AttackType.PHYSICAL_VALUE, attacker);

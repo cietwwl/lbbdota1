@@ -1,8 +1,12 @@
 [
-  { "Id": 1, "Name": "强化图腾", "BuffType": 1, "EmitValue": 150, "EmitValue0": 0, "EmitValue1": 0, "EmitTime": 1500, "EffectScope": 0},
-  { "Id": 2, "Name": "余震", "BuffType": 2, "EmitValue": 50, "EmitValue0": 1000, "EmitValue1": 0, "EmitTime": 99999999, "EffectScope": 300},
-  { "Id": 3, "Name": "溅射", "BuffType": 3, "EmitValue": 20, "EmitValue0": 0, "EmitValue1": 0, "EmitTime": 99999999, "EffectScope": 300},
-  { "Id": 4, "Name": "战吼", "BuffType": 4, "EmitValue": 4, "EmitValue0": 12, "EmitValue1": 0, "EmitTime": 7000, "EffectScope": 0},
-  { "Id": 5, "Name": "神之力量", "BuffType": 5, "EmitValue": 100, "EmitValue0": 0, "EmitValue1": 0, "EmitTime": 25000, "EffectScope": 0},
-  { "Id": 6, "Name": "支配死灵", "BuffType": 6, "EmitValue": 1, "EmitValue0": 12, "EmitValue1": 24, "EmitTime": 99999999, "EffectScope": 0}
+  { "Id": 1, "Name": "强化图腾", "BuffType": 1, "EffectValue": 150, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 1500, "EffectCounts": 1, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 2, "Name": "余震", "BuffType": 2, "EffectValue": 50, "EffectValue0": 1000, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 300, "Buffs": "0"},
+  { "Id": 3, "Name": "溅射", "BuffType": 3, "EffectValue": 20, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 300, "Buffs": "0"},
+  { "Id": 4, "Name": "战吼", "BuffType": 4, "EffectValue": 4, "EffectValue0": 12, "EffectValue1": 0, "EffectTime": 7000, "EffectCounts": 0, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 5, "Name": "神之力量", "BuffType": 1, "EffectValue": 100, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 25000, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 6, "Name": "支配死灵", "BuffType": 6, "EffectValue": 1, "EffectValue0": 12, "EffectValue1": 24, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 7, "Name": "魔王降临光环", "BuffType": 7, "EffectValue": 0, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 900, "Buffs": "8"},
+  { "Id": 8, "Name": "魔王降临（作用在目标上）", "BuffType": 8, "EffectValue": 3, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 9, "Name": "魂之挽歌(减移速)", "BuffType": 9, "EffectValue": -20, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 5, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 10, "Name": "魂之挽歌(减伤害)", "BuffType": 1, "EffectValue": -60, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 5, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"}
 ]

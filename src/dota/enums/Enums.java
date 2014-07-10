@@ -846,54 +846,150 @@ public final class Enums {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>ENCHANT_TOTEM_BUFF = 1;</code>
+     *
+     * <pre>
+     * 类似于强化图腾的BUFF（增加攻击力，受时间和攻击次数限制）
+     * </pre>
      */
     ENCHANT_TOTEM_BUFF(0, 1),
     /**
      * <code>AFTER_SHOCK_BUFF = 2;</code>
+     *
+     * <pre>
+     * 类似于余震的BUFF
+     * </pre>
      */
     AFTER_SHOCK_BUFF(1, 2),
     /**
      * <code>GREAT_CLEAVE_BUFF = 3;</code>
+     *
+     * <pre>
+     * 溅射
+     * </pre>
      */
     GREAT_CLEAVE_BUFF(2, 3),
     /**
      * <code>WAR_CRY_BUFF = 4;</code>
+     *
+     * <pre>
+     * 战吼
+     * </pre>
      */
     WAR_CRY_BUFF(3, 4),
     /**
-     * <code>GODS_STRENGTH_BUFF = 5;</code>
-     */
-    GODS_STRENGTH_BUFF(4, 5),
-    /**
      * <code>NECRO_MASTERY_BUFF = 6;</code>
+     *
+     * <pre>
+     * 死灵支配
+     * </pre>
      */
-    NECRO_MASTERY_BUFF(5, 6),
+    NECRO_MASTERY_BUFF(4, 6),
+    /**
+     * <code>AURA = 7;</code>
+     *
+     * <pre>
+     * 光环
+     * </pre>
+     */
+    AURA(5, 7),
+    /**
+     * <code>PRESENSE_DARK_LORD_BUFF = 8;</code>
+     *
+     * <pre>
+     * 类似于SF的魔王降临BUFF（降低护甲类）
+     * </pre>
+     */
+    PRESENSE_DARK_LORD_BUFF(6, 8),
+    /**
+     * <code>SLOW = 9;</code>
+     *
+     * <pre>
+     * 减移动速度
+     * </pre>
+     */
+    SLOW(7, 9),
+    /**
+     * <code>ATTACK_REDUCTION = 10;</code>
+     *
+     * <pre>
+     * 减攻击力
+     * </pre>
+     */
+    ATTACK_REDUCTION(8, 10),
     ;
 
     /**
      * <code>ENCHANT_TOTEM_BUFF = 1;</code>
+     *
+     * <pre>
+     * 类似于强化图腾的BUFF（增加攻击力，受时间和攻击次数限制）
+     * </pre>
      */
     public static final int ENCHANT_TOTEM_BUFF_VALUE = 1;
     /**
      * <code>AFTER_SHOCK_BUFF = 2;</code>
+     *
+     * <pre>
+     * 类似于余震的BUFF
+     * </pre>
      */
     public static final int AFTER_SHOCK_BUFF_VALUE = 2;
     /**
      * <code>GREAT_CLEAVE_BUFF = 3;</code>
+     *
+     * <pre>
+     * 溅射
+     * </pre>
      */
     public static final int GREAT_CLEAVE_BUFF_VALUE = 3;
     /**
      * <code>WAR_CRY_BUFF = 4;</code>
+     *
+     * <pre>
+     * 战吼
+     * </pre>
      */
     public static final int WAR_CRY_BUFF_VALUE = 4;
     /**
-     * <code>GODS_STRENGTH_BUFF = 5;</code>
-     */
-    public static final int GODS_STRENGTH_BUFF_VALUE = 5;
-    /**
      * <code>NECRO_MASTERY_BUFF = 6;</code>
+     *
+     * <pre>
+     * 死灵支配
+     * </pre>
      */
     public static final int NECRO_MASTERY_BUFF_VALUE = 6;
+    /**
+     * <code>AURA = 7;</code>
+     *
+     * <pre>
+     * 光环
+     * </pre>
+     */
+    public static final int AURA_VALUE = 7;
+    /**
+     * <code>PRESENSE_DARK_LORD_BUFF = 8;</code>
+     *
+     * <pre>
+     * 类似于SF的魔王降临BUFF（降低护甲类）
+     * </pre>
+     */
+    public static final int PRESENSE_DARK_LORD_BUFF_VALUE = 8;
+    /**
+     * <code>SLOW = 9;</code>
+     *
+     * <pre>
+     * 减移动速度
+     * </pre>
+     */
+    public static final int SLOW_VALUE = 9;
+    /**
+     * <code>ATTACK_REDUCTION = 10;</code>
+     *
+     * <pre>
+     * 减攻击力
+     * </pre>
+     */
+    public static final int ATTACK_REDUCTION_VALUE = 10;
 
 
     public final int getNumber() { return value; }
@@ -904,8 +1000,11 @@ public final class Enums {
         case 2: return AFTER_SHOCK_BUFF;
         case 3: return GREAT_CLEAVE_BUFF;
         case 4: return WAR_CRY_BUFF;
-        case 5: return GODS_STRENGTH_BUFF;
         case 6: return NECRO_MASTERY_BUFF;
+        case 7: return AURA;
+        case 8: return PRESENSE_DARK_LORD_BUFF;
+        case 9: return SLOW;
+        case 10: return ATTACK_REDUCTION;
         default: return null;
       }
     }
@@ -978,11 +1077,12 @@ public final class Enums {
       "ET\020\001\022\014\n\010NOTARGET\020\002*:\n\016EmitTargetType\022\007\n\003",
       "ANY\020\000\022\017\n\013FRIEND_HERO\020\001\022\016\n\nENIMY_HERO\020\002*)" +
       "\n\020EffectTargetType\022\n\n\006FRIEND\020\001\022\t\n\005ENEMY\020" +
-      "\002*\221\001\n\010BuffType\022\026\n\022ENCHANT_TOTEM_BUFF\020\001\022\024" +
+      "\002*\300\001\n\010BuffType\022\026\n\022ENCHANT_TOTEM_BUFF\020\001\022\024" +
       "\n\020AFTER_SHOCK_BUFF\020\002\022\025\n\021GREAT_CLEAVE_BUF" +
-      "F\020\003\022\020\n\014WAR_CRY_BUFF\020\004\022\026\n\022GODS_STRENGTH_B" +
-      "UFF\020\005\022\026\n\022NECRO_MASTERY_BUFF\020\006B\014\n\ndota.en" +
-      "ums"
+      "F\020\003\022\020\n\014WAR_CRY_BUFF\020\004\022\026\n\022NECRO_MASTERY_B" +
+      "UFF\020\006\022\010\n\004AURA\020\007\022\033\n\027PRESENSE_DARK_LORD_BU" +
+      "FF\020\010\022\010\n\004SLOW\020\t\022\024\n\020ATTACK_REDUCTION\020\nB\014\n\n" +
+      "dota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

@@ -20,8 +20,8 @@ public class EmitBuff extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target) {
-		emitBuff(target);
+	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
+		emitBuff(target, attackTeam, defenseTeam);
 		return 0;
 	}
 

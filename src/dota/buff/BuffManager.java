@@ -13,7 +13,7 @@ public class BuffManager {
 		buffCollection.add(buff);
 	}
 	
-	public void update() {
+	public void update(Combater owner) {
 		Iterator<Buff> it = buffCollection.iterator();
 		while(it.hasNext()) {
 			Buff buff = it.next();
@@ -21,6 +21,7 @@ public class BuffManager {
 			if( buff.isOver() ) {
 				buff.stop();
 				it.remove();
+				System.out.println(owner.getName() + " 的BUFF " + buff.getConfig().getName() + " 消失");
 				buff = null;
 			}
 		}
@@ -48,6 +49,15 @@ public class BuffManager {
 			Buff buff = it.next();
 			buff.onKillAnyCombater(soul);;
 		}
+	}
+	
+	public Buff getBuff(int buffId) {
+		for (Buff e: buffCollection) {
+			if (e.getConfig().getId() == buffId) {
+				return e;
+			}
+		}
+		return null;
 	}
 	
 	public void printAll() {

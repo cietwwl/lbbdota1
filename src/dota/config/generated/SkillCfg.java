@@ -11,6 +11,7 @@ public class SkillCfg extends BaseConfig {
     private int emitDistance; // 施法距离
     private int effectTargetType; // 作用目标类型
     private int effectScope; // 作用范围
+    private int effectScope0; // 作用范围0
     private int effectTime; // 作用时间 S
     private int damage; // 伤害
     private int damagePara1; // 伤害参数1
@@ -26,6 +27,7 @@ public class SkillCfg extends BaseConfig {
     public final int getEmitDistance() {return emitDistance;}
     public final int getEffectTargetType() {return effectTargetType;}
     public final int getEffectScope() {return effectScope;}
+    public final int getEffectScope0() {return effectScope0;}
     public final int getEffectTime() {return effectTime;}
     public final int getDamage() {return damage;}
     public final int getDamagePara1() {return damagePara1;}

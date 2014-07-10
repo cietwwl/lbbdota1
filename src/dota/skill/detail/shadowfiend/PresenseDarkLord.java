@@ -18,7 +18,7 @@ public class PresenseDarkLord extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target) {
+	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

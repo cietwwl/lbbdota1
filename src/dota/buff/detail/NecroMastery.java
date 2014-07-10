@@ -29,19 +29,23 @@ public class NecroMastery extends Buff {
 	@Override
 	public void onKillAnyCombater(Combater soul) {
 		
-		if (addAttack >= config.getEmitValue1()) {
+		if (addAttack >= config.getEffectValue1()) {
 			return;
 		}
 		
 		if (soul instanceof Hero) {
-			addAttack += config.getEmitValue0();
-			owner.addAttack(config.getEmitValue0());
-			System.out.println(owner.getName() + " 增加攻击力  " + config.getEmitValue0());
+			addAttack += config.getEffectValue0();
+			owner.addAttack(config.getEffectValue0());
+			System.out.println(owner.getName() + " 增加攻击力  " + config.getEffectValue0());
 		} else {
-			addAttack += config.getEmitValue();
-			owner.addAttack(config.getEmitValue());
-			System.out.println(owner.getName() + " 增加攻击力 " + config.getEmitValue());
+			addAttack += config.getEffectValue();
+			owner.addAttack(config.getEffectValue());
+			System.out.println(owner.getName() + " 增加攻击力 " + config.getEffectValue());
 		}
+	}
+	
+	public int getSouls() {
+		return this.addAttack;
 	}
 	
 }

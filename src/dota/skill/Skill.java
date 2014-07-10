@@ -62,7 +62,7 @@ public abstract class Skill {
 		
 		int damage = 0;
 		for (Combater e: targets) {
-			damage = emit1(attacker, e);
+			damage = emit1(attacker, e, attackerTeam, defenserTeam);
 		}
 		
 		if (config.getSkillType() == Enums.SkillType.COMMON_VALUE) {
@@ -72,7 +72,7 @@ public abstract class Skill {
 		}
 	}
 	
-	private int emit1(Combater attacker,Combater target) {
+	private int emit1(Combater attacker,Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		if (attacker == null || target == null) {
 			return 0;
 		}
@@ -81,7 +81,7 @@ public abstract class Skill {
 			return 0;
 		}
 		
-		int damage = emit0(attacker, target);
+		int damage = emit0(attacker, target, attackTeam, defenseTeam);
 		
 		if (!target.isLive()) {
 			System.out.println(attacker.getName() + " 杀死了 " + target.getName());
@@ -91,7 +91,8 @@ public abstract class Skill {
 		return damage;
 	}
 	
-	protected abstract int emit0(Combater attacker, Combater target);
+	protected abstract int emit0(Combater attacker, Combater target, 
+			CombatTeam attackTeam, CombatTeam defenseTeam);
 
 	public boolean canEmit() {
 		if (CD > 0) {
@@ -110,11 +111,10 @@ public abstract class Skill {
 	protected abstract void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam);
 	
-	protected void emitBuff(Combater target) {
+	protected void emitBuff(Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		String[] buffs = config.getBuffs().split(",");
 		for (int i = 0; i< buffs.length; i++) {
-			target.addBuff(Integer.parseInt(buffs[i]));
-			
+			target.addBuff(Integer.parseInt(buffs[i]), attackTeam, defenseTeam);	
 		}
 	}
 }

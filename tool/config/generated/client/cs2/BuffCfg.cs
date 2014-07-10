@@ -14,14 +14,18 @@ namespace HXFS.Config
     [ProtoMember(3)]
     public int BuffType { get; set; } // BUFF类型
     [ProtoMember(4)]
-    public int EmitValue { get; set; } // BUFF作用时对应的值
+    public int EffectValue { get; set; } // BUFF作用时对应的值
     [ProtoMember(5)]
-    public int EmitValue0 { get; set; } // BUFF作用时对应的值0
+    public int EffectValue0 { get; set; } // BUFF作用时对应的值0
     [ProtoMember(6)]
-    public int EmitValue1 { get; set; } // BUFF作用时对应的值1
+    public int EffectValue1 { get; set; } // BUFF作用时对应的值1
     [ProtoMember(7)]
-    public int EmitTime { get; set; } // 持续时间 MS
+    public int EffectTime { get; set; } // 持续时间 MS
     [ProtoMember(8)]
+    public int EffectCounts { get; set; } // 有效作用次数，受类型影响，比如强化图腾，只维持一次攻击
+    [ProtoMember(9)]
     public int EffectScope { get; set; } // 作用范围
+    [ProtoMember(10)]
+    public string Buffs { get; set; } // 产生的BUFFS
   }
 }

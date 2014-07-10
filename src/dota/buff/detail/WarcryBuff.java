@@ -14,12 +14,12 @@ public class WarcryBuff extends Buff{
 
 	@Override
 	protected void start() {
-		owner.getArmor().add(config.getEmitValue());
+		owner.getArmor().add(config.getEffectValue());
 	}
 
 	@Override
 	public void stop() {
-		owner.getArmor().remove(config.getEmitValue());
+		owner.getArmor().remove(config.getEffectValue());
 	}
 
 }

@@ -26,16 +26,18 @@ namespace HXFS.Config
     [ProtoMember(9)]
     public int EffectScope { get; set; } // 作用范围
     [ProtoMember(10)]
-    public int EffectTime { get; set; } // 作用时间 S
+    public int EffectScope0 { get; set; } // 作用范围0
     [ProtoMember(11)]
-    public int Damage { get; set; } // 伤害
+    public int EffectTime { get; set; } // 作用时间 S
     [ProtoMember(12)]
-    public int DamagePara1 { get; set; } // 伤害参数1
+    public int Damage { get; set; } // 伤害
     [ProtoMember(13)]
-    public int EnergyCost { get; set; } // 魔法消耗
+    public int DamagePara1 { get; set; } // 伤害参数1
     [ProtoMember(14)]
-    public string Buffs { get; set; } // 产生的BUFF
+    public int EnergyCost { get; set; } // 魔法消耗
     [ProtoMember(15)]
+    public string Buffs { get; set; } // 产生的BUFF
+    [ProtoMember(16)]
     public string Skills { get; set; } // 产生的技能
   }
 }

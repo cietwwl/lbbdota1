@@ -23,7 +23,7 @@ public class Fissure extends Skill{
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater defenser) {
+	protected int emit0(Combater attacker, Combater defenser, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		int damage = defenser.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
 		defenser.beStun(config.getEffectTime());
 		System.out.println(attacker.getName() + " 对 " + defenser.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");

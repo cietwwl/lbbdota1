@@ -41,6 +41,7 @@ public class Character extends GameObject {
 	 */
 	public void addAttack(int addAttack) {
 		attack.extra += addAttack;
+		System.out.println(this.getName() + "攻击力: " + attack.base_min + " ~ " + attack.base_max + " + " + attack.extra);
 	}
 	
 	/**
@@ -72,6 +73,24 @@ public class Character extends GameObject {
 	
 	public PropertyLikeArmor getArmor() {
 		return armor;
+	}
+	
+	public void removeArmor(int rm) {
+		armor.remove(rm);;
+		if ( armor.extra >= 0 ) {
+			System.out.println(this.getName() + "护甲: " + armor.base + " + " + armor.extra);
+		} else {
+			System.out.println(this.getName() + "护甲: " + armor.base + " " + armor.extra);
+		}
+	}
+	
+	public void addArmor(int add) {
+		armor.add(add);
+		if ( armor.extra >= 0 ) {
+			System.out.println(this.getName() + "护甲: " + armor.base + " + " + armor.extra);
+		} else {
+			System.out.println(this.getName() + "护甲: " + armor.base + " " + armor.extra);
+		}
 	}
 	
 }

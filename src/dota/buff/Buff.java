@@ -9,6 +9,8 @@ public abstract class Buff {
 	protected int time;
 	protected BuffCfg config;
 	protected Combater owner;
+	protected CombatTeam attackTeam;
+	protected CombatTeam defenseTeam;
 	
 	public Buff(BuffCfg config) {
 		this.config = config;
@@ -19,11 +21,13 @@ public abstract class Buff {
 	}
 	
 	public void init() {
-		time = config.getEmitTime();
+		time = config.getEffectTime();
 	}
 	
-	public void start(Combater owner) {
+	public void start(Combater owner, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		this.owner = owner;
+		this.attackTeam = attackTeam;
+		this.defenseTeam = defenseTeam;
 		start();
 	}
 	
@@ -40,6 +44,7 @@ public abstract class Buff {
 	
 	public void update() {
 		decreaseTime();
+		update0();
 	}
 	
 	public boolean isOver() {
@@ -64,6 +69,18 @@ public abstract class Buff {
 		
 	}
 	
+	// 
+	protected void update0() {
+		
+	}
 	
+	// 直接清除该BUFF
+	public void clearBuff() {
+		time = 0;
+	}
+	
+	public BuffCfg getConfig() {
+		return this.config;
+	}
 	
 }

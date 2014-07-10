@@ -5,18 +5,22 @@ public class BuffCfg extends BaseConfig {
 
     private String name; // 名字
     private int buffType; // BUFF类型
-    private int emitValue; // BUFF作用时对应的值
-    private int emitValue0; // BUFF作用时对应的值0
-    private int emitValue1; // BUFF作用时对应的值1
-    private int emitTime; // 持续时间 MS
+    private int effectValue; // BUFF作用时对应的值
+    private int effectValue0; // BUFF作用时对应的值0
+    private int effectValue1; // BUFF作用时对应的值1
+    private int effectTime; // 持续时间 MS
+    private int effectCounts; // 有效作用次数，受类型影响，比如强化图腾，只维持一次攻击
     private int effectScope; // 作用范围
+    private String buffs; // 产生的BUFFS
 
     public final String getName() {return name;}
     public final int getBuffType() {return buffType;}
-    public final int getEmitValue() {return emitValue;}
-    public final int getEmitValue0() {return emitValue0;}
-    public final int getEmitValue1() {return emitValue1;}
-    public final int getEmitTime() {return emitTime;}
+    public final int getEffectValue() {return effectValue;}
+    public final int getEffectValue0() {return effectValue0;}
+    public final int getEffectValue1() {return effectValue1;}
+    public final int getEffectTime() {return effectTime;}
+    public final int getEffectCounts() {return effectCounts;}
     public final int getEffectScope() {return effectScope;}
+    public final String getBuffs() {return buffs;}
 
 }

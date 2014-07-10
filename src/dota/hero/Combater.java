@@ -9,6 +9,7 @@ import dota.buff.BuffManager;
 import dota.config.generated.BuffCfg;
 import dota.config.generated.GameConfig;
 import dota.config.generated.SkillCfg;
+import dota.enums.Enums;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
@@ -16,6 +17,7 @@ import dota.team.CombatTeam;
 import dota.util.DotaMath;
 
 public abstract class Combater extends Character{
+	private int id;
 	
 	public int positionX = 0;						// 位置
 	public int positionY = 0;
@@ -37,6 +39,10 @@ public abstract class Combater extends Character{
 		this.controlType = type;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	// 被击晕
 	public void beStun(int count) {
 		combatStateManager.beStun(count);
@@ -54,7 +60,7 @@ public abstract class Combater extends Character{
 	public void update() {
 		decreaseStun();
 		skillManager.update();
-		buffManager.update();
+		buffManager.update(this);
 	}
 	
 	// 是否可以行动
@@ -155,17 +161,17 @@ public abstract class Combater extends Character{
 		skillManager.add(skill);
 	}
 	
-	public void addBuff(int cfgId) {
+	public void addBuff(int cfgId, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		BuffCfg config = GameConfig.getInstance().getBuffCfg(cfgId);
-		addBuff(config);
 		System.out.println(this.getName() + " 获得了BUFF " + config.getName());
+		addBuff(config, attackTeam, defenseTeam);
 	}
 	
-	private void addBuff(BuffCfg config) {
+	private void addBuff(BuffCfg config, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		Buff buff = BuffFactory.creatBuff(config);
 		buff.init();
-		buff.start(this);
 		buffManager.add(buff);
+		buff.start(this, attackTeam, defenseTeam);
 	}
 	
 	public void printBuff() {
@@ -187,6 +193,10 @@ public abstract class Combater extends Character{
 	
 	public int getAttackSpeed() {
 		return (int) (base_attack_speed/ias); // MS/攻击次数
+	}
+	
+	public BuffManager getBuffManager() {
+		return this.buffManager;
 	}
 	
 	

@@ -33,9 +33,9 @@ public class AftershockBuff extends Buff{
 	public void onEmitAnyActiveSkill(Combater emiter, CombatTeam defenser) {
 		List<Combater> targets = selectTargets(emiter, defenser);
 		for (Combater e: targets) {
-			int damage = e.beAttack(config.getEmitValue(), Enums.AttackType.MAGICAL_VALUE, emiter);
-			e.beStun(config.getEmitValue0());
-			System.out.println("触发余震，对 " + e.getName() + " 造成 " + damage + " 的伤害和 " + config.getEmitValue0() + " 的眩晕");
+			int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE, emiter);
+			e.beStun(config.getEffectValue0());
+			System.out.println("触发余震，对 " + e.getName() + " 造成 " + damage + " 的伤害和 " + config.getEffectValue0() + " 的眩晕");
 		}
 	}
 	

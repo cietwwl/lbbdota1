@@ -18,7 +18,7 @@ public class StormBolt extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target) {
+	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
 		target.beStun(config.getEffectTime());
 		System.out.println(attacker.getName() + " 对 " + target.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");

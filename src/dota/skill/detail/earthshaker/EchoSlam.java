@@ -21,7 +21,7 @@ public class EchoSlam extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target) {
+	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		target.beAttack(damage, Enums.AttackType.MAGICAL_VALUE, attacker);
 		System.out.println(attacker.getName() + " 的回音击对 " + target.getName() + " 造成 " + damage + " 的伤害");
 		return damage;

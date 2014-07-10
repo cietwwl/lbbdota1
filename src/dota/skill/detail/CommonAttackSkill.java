@@ -21,7 +21,7 @@ public class CommonAttackSkill extends Skill {
 	}
 
 	@Override
-	public int emit0(Combater attacker, Combater defenser) {
+	public int emit0(Combater attacker, Combater defenser, CombatTeam attackTeam, CombatTeam defenseTeam) {
 		if (!defenser.isLive()) {
 			return 0 ;
 		}
