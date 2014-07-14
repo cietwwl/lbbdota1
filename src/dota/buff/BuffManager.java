@@ -51,6 +51,14 @@ public class BuffManager {
 		}
 	}
 	
+	public void onDeath() {
+		Iterator<Buff> it = buffCollection.iterator();
+		while(it.hasNext()) {
+			Buff buff = it.next();
+			buff.onOwnerDeath();
+		}
+	}
+	
 	public Buff getBuff(int buffId) {
 		for (Buff e: buffCollection) {
 			if (e.getConfig().getId() == buffId) {
@@ -68,4 +76,5 @@ public class BuffManager {
 //			System.out.println(buff.getName() + "    " + buff.time);
 //		}
 	}
+
 }

@@ -12,7 +12,7 @@ import dota.util.HeroHelper;
 import dota.util.OP;
 
 // 光环类BUFF
-@OP(CODE = Enums.BuffType.AURA_VALUE, TYPE = OP.BUFF)
+@OP(CODE = Enums.BuffType.AURA_BUFF_VALUE, TYPE = OP.BUFF)
 public class AuraBuff extends Buff {
 	
 	private List<Combater> effecters = new ArrayList<>(); // 受光环影响的单位

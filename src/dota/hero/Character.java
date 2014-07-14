@@ -93,6 +93,14 @@ public class Character extends GameObject {
 		}
 	}
 	
+	public void addMagicRes(int add) {
+		magicRes += add;
+	}
+	
+	public void removeMagicRes(int rm) {
+		magicRes -= rm;
+	}
+	
 }
 
 class PropertyLikeCrit {

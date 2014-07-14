@@ -8,4 +8,5 @@ public class ParamConfig {
 	public static final int AgilityToAttack = 1;
 	public static final int IntelligenceToAttack = 1;
 	public static final int IntelligenceToEnergy = 10;
+	public static final float AgilityToArmor = 0.1f;
 }

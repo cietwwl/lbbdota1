@@ -17,17 +17,27 @@ public class Battle {
 	public void init(CombatTeam attackTeam, CombatTeam defenseTeam, CombatMap combatMap) {
 		this.attackTeam = attackTeam;
 		this.defenseTeam = defenseTeam;
-		//this.combatMap = combatMap;
+		attackTeam.init(this);
+		defenseTeam.init(this);
 	}
 	
 	public void start() {		
-		init();
+		// for test
+		for (Combater e: attackTeam) {
+			e.learnSkills();
+		}
+		for (Combater e: defenseTeam) {
+			e.learnSkills();
+		}
 		run();
 	}
 	
-	private void init() {
-		attackTeam.battleInit(defenseTeam);
-		defenseTeam.battleInit(attackTeam);
+	public CombatTeam getAttackTeam() {
+		return this.attackTeam;
+	}
+	
+	public CombatTeam getDefenseTeam() {
+		return this.defenseTeam;
 	}
 	
 	private void run() {
@@ -51,6 +61,13 @@ public class Battle {
 	}
 	
 	private boolean processOneRound() {
+		for (Combater e: defenseTeam) {
+			if (doAttack(e, attackTeam, defenseTeam)) {
+				System.out.println("LOSE");
+				printResult();
+				return true;
+			}
+		}
 		
 		for (Combater e: attackTeam) {
 			if (doAttack(e, defenseTeam, attackTeam)) {
@@ -60,13 +77,6 @@ public class Battle {
 			}
 		}
 		
-		for (Combater e: defenseTeam) {
-			if (doAttack(e, attackTeam, defenseTeam)) {
-				System.out.println("LOSE");
-				printResult();
-				return true;
-			}
-		}
 		
 		update();
 		return false;

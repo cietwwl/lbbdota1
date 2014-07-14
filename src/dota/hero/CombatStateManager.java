@@ -72,3 +72,13 @@ public class CombatStateManager {
 		combatStates.add(combatState);
 	}
 }
+
+class CombatState {
+	public int type;
+	public int value;
+	
+	public CombatState(int type, int value) {
+		this.type = type;
+		this.value = value;
+	}
+}

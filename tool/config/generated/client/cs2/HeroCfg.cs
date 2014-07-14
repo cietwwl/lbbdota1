@@ -33,5 +33,7 @@ namespace HXFS.Config
     public string InitSkills { get; set; } // 初始技能，逗号分隔
     [ProtoMember(13)]
     public int InitAttackSpeed { get; set; } // 基础攻击间隔 MS
+    [ProtoMember(14)]
+    public int InitArmor { get; set; } // 初始护甲
   }
 }

@@ -8,5 +8,8 @@
   { "Id": 7, "Name": "魔王降临光环", "BuffType": 7, "EffectValue": 0, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 900, "Buffs": "8"},
   { "Id": 8, "Name": "魔王降临（作用在目标上）", "BuffType": 8, "EffectValue": 3, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 0, "EffectScope": 0, "Buffs": "0"},
   { "Id": 9, "Name": "魂之挽歌(减移速)", "BuffType": 9, "EffectValue": -20, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 5, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"},
-  { "Id": 10, "Name": "魂之挽歌(减伤害)", "BuffType": 1, "EffectValue": -60, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 5, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"}
+  { "Id": 10, "Name": "魂之挽歌(减伤害)", "BuffType": 1, "EffectValue": -60, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 5, "EffectCounts": 99999999, "EffectScope": 0, "Buffs": "0"},
+  { "Id": 11, "Name": "魂之挽歌（死亡释放）", "BuffType": 11, "EffectValue": 80, "EffectValue0": 0, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 99999999, "EffectScope": 1375, "Buffs": "0"},
+  { "Id": 12, "Name": "腐烂", "BuffType": 12, "EffectValue": 35, "EffectValue0": 20, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 99999999, "EffectScope": 250, "Buffs": "0"},
+  { "Id": 13, "Name": "堆积腐肉", "BuffType": 13, "EffectValue": 1, "EffectValue0": 6, "EffectValue1": 0, "EffectTime": 99999999, "EffectCounts": 99999999, "EffectScope": 450, "Buffs": "0"}
 ]

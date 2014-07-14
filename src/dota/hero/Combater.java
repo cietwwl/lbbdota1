@@ -1,8 +1,7 @@
 package dota.hero;
 
-import java.util.List;
-import java.util.Scanner;
-
+import dota.ai.SelectSkill;
+import dota.battle.Battle;
 import dota.buff.Buff;
 import dota.buff.BuffFactory;
 import dota.buff.BuffManager;
@@ -14,10 +13,12 @@ import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
 import dota.team.CombatTeam;
-import dota.util.DotaMath;
 
 public abstract class Combater extends Character{
+	
 	private int id;
+	
+	private CombatTeam team = null;
 	
 	public int positionX = 0;						// 位置
 	public int positionY = 0;
@@ -41,6 +42,10 @@ public abstract class Combater extends Character{
 	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void setTeam(CombatTeam team) {
+		this.team = team;
 	}
 	
 	// 被击晕
@@ -91,8 +96,15 @@ public abstract class Combater extends Character{
 	
 	// 伤害实际扣掉的血
 	private int damageToHp(int damage, int type) {
-		float armor = getRealArmor();
-		int realDamage = (int)((1 - 0.06 * armor)/(1 + 0.06 * armor) * damage);
+		int realDamage = 0;
+		switch (type) {
+		case Enums.AttackType.PHYSICAL_VALUE:
+			float armor = getRealArmor();
+			realDamage = (int)((1 - 0.06 * armor)/(1 + 0.06 * armor) * damage);
+		case Enums.AttackType.MAGICAL_VALUE:
+			realDamage = damage - damage * magicRes/100; 
+		}
+
 		return realDamage;
 	}
 	
@@ -102,7 +114,7 @@ public abstract class Combater extends Character{
 	
 	
 	public void attack(CombatTeam defensers, CombatTeam attackerTeam) {
-		Skill skill = selectSkill();
+		Skill skill = SelectSkill.selectSkill(skillManager);
 		
 		if (skill == null) {
 			return ;
@@ -123,42 +135,26 @@ public abstract class Combater extends Character{
 		buffManager.onKillAnyCombater(soul);
 	}
 	
-	/*
-	 * 0,默认技能
-	 * 1,玩家选择技能
-	 * 2,AI
-	 */
-	private Skill selectSkill() {
-		if(controlType == 1) {
-			@SuppressWarnings("resource")
-			Scanner sin = new Scanner(System.in);
-			skillManager.printAll();
-			System.out.print("选择技能:");
-			int n = sin.nextInt();
-			while(!skillManager.canEmit(n)) {
-				System.out.print("重新选择技能:");
-				n = sin.nextInt();
-			}
-			
-			return skillManager.getSkill(n, 0);
-		}
-		else {
-			return randomSkill();
-		}
+	public void onDeath() {
+		buffManager.onDeath();
 	}
 	
-	//
-	private Skill randomSkill() {
-		List<Skill> candidate = skillManager.getCanEmitSkills();
-		if (candidate.size() == 0) {
-			return null;
-		}
-		return candidate.get(DotaMath.RandomInRange(0, candidate.size() - 1));
-	}
-	
-	public void addSkill(SkillCfg config) {
+	public void learnSkill(SkillCfg config) {
 		Skill skill = SkillFactory.createSkill(config);
 		skillManager.add(skill);
+		System.out.println(this.getName() + " 学习了技能 " + config.getName());
+		if (config.getEmitType() == Enums.SkillEmitType.PASSIVE_VALUE) {
+			skill.emit(this, getOppentTeam(), team);
+		}
+	}
+	
+	private CombatTeam getOppentTeam() {
+		Battle battle = team.getBattle();
+		CombatTeam team1 = battle.getAttackTeam();
+		if (team1.getColor() != team.getColor()) {
+			return team1;
+		}
+		return battle.getDefenseTeam();
 	}
 	
 	public void addBuff(int cfgId, CombatTeam attackTeam, CombatTeam defenseTeam) {
@@ -178,10 +174,6 @@ public abstract class Combater extends Character{
 		buffManager.printAll();
 	}
 	
-	public void battleInit(CombatTeam targets, CombatTeam attackerTeam) {
-		skillManager.emitPassiveSkill(this, targets, attackerTeam);
-	}
-	
 	public int getAttackDistance() {
 		return attackDistance;
 	}
@@ -199,17 +191,10 @@ public abstract class Combater extends Character{
 		return this.buffManager;
 	}
 	
-	
-}
-
-class CombatState {
-	public int type;
-	public int value;
-	
-	public CombatState(int type, int value) {
-		this.type = type;
-		this.value = value;
+	public void learnSkills() {
+		
 	}
 }
+
 
 

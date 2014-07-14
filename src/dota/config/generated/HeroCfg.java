@@ -15,6 +15,7 @@ public class HeroCfg extends BaseConfig {
     private int initEnergy; // 初始魔法值
     private String initSkills; // 初始技能，逗号分隔
     private int initAttackSpeed; // 基础攻击间隔 MS
+    private int initArmor; // 初始护甲
 
     public final String getName() {return name;}
     public final int getHeroType() {return heroType;}
@@ -28,5 +29,6 @@ public class HeroCfg extends BaseConfig {
     public final int getInitEnergy() {return initEnergy;}
     public final String getInitSkills() {return initSkills;}
     public final int getInitAttackSpeed() {return initAttackSpeed;}
+    public final int getInitArmor() {return initArmor;}
 
 }

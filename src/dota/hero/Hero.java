@@ -1,11 +1,14 @@
 package dota.hero;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dota.buff.BuffManager;
 import dota.config.ParamConfig;
+import dota.config.generated.GameConfig;
 import dota.config.generated.HeroCfg;
+import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
-import dota.skill.Skill;
-import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
 
 public class Hero extends Combater {
@@ -14,15 +17,17 @@ public class Hero extends Combater {
 	private PropertyLikeArmor agility = new PropertyLikeArmor();
 	private PropertyLikeArmor intelligence = new PropertyLikeArmor();
 	private int heroType;
+	private List<Integer> canLearnSkills;
 	
 	public void init(HeroCfg config) {
 		initBase(config);
 		initHp(config);
 		initEnergy(config);
 		initAttack(config);
-		initSkill(config);
+		initSkills(config);
 		initBuff(config);
 		initIas(config);
+		initArmor(config);
 	}
 	
 	private void initBase(HeroCfg config) {
@@ -65,12 +70,25 @@ public class Hero extends Combater {
 		}
 	}
 	
-	private void initSkill(HeroCfg config) {
+	private void initArmor(HeroCfg config) {
+		armor.base = config.getInitArmor();
+		armor.base += agility.base * ParamConfig.AgilityToArmor;
+	}
+	
+	private void initSkills(HeroCfg config) {
+		canLearnSkills = new ArrayList<Integer>();
 		String[] skills = config.getInitSkills().split(",");
-		skillManager = new SkillManager();
 		for (int i = 0; i < skills.length; i++) {
-			Skill skill = SkillFactory.createSkill(Integer.parseInt(skills[i]));
-			skillManager.add(skill);
+			canLearnSkills.add(Integer.parseInt(skills[i]));
+		}
+	}
+	
+	@Override
+	public void learnSkills() {
+		skillManager = new SkillManager();
+		for (int i: canLearnSkills) {
+			SkillCfg skillCfg = GameConfig.getInstance().getSkillCfg(i);
+			this.learnSkill(skillCfg);
 		}
 		
 	}
@@ -82,5 +100,11 @@ public class Hero extends Combater {
 	private void initIas(HeroCfg config) {
 		ias += agility.getReal()/100f; // 每一点敏捷增加1%的攻速
 		base_attack_speed = config.getInitAttackSpeed();
+	}
+	
+	public void addStrength(float add) {
+		strength.base += add;
+		// 更新攻击力 TODO
+		System.out.println(getName() + "力量: " + strength.base + " + "+ strength.extra);
 	}
 }

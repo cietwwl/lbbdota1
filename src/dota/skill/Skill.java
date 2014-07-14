@@ -3,10 +3,12 @@ package dota.skill;
 import java.util.ArrayList;
 import java.util.List;
 
+import dota.buff.detail.RotBuff;
 import dota.config.ParamConfig;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.skill.detail.butcher.Rot;
 import dota.team.CombatTeam;
 
 public abstract class Skill {
@@ -86,6 +88,7 @@ public abstract class Skill {
 		if (!target.isLive()) {
 			System.out.println(attacker.getName() + " 杀死了 " + target.getName());
 			attacker.onKillAnyCombater(target);
+			target.onDeath();
 		}
 		
 		return damage;
@@ -99,6 +102,7 @@ public abstract class Skill {
 			// System.out.println("技能正处于CD中");
 			return false;
 		}
+		
 		return true;
 	}
 	

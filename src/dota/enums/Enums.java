@@ -371,6 +371,22 @@ public final class Enums {
      * </pre>
      */
     REQUIEM_OF_SOULS(8, 35),
+    /**
+     * <code>MEAT_HOOK = 41;</code>
+     *
+     * <pre>
+     * 肉钩
+     * </pre>
+     */
+    MEAT_HOOK(9, 41),
+    /**
+     * <code>ROT = 42;</code>
+     *
+     * <pre>
+     * 腐烂
+     * </pre>
+     */
+    ROT(10, 42),
     ;
 
     /**
@@ -445,6 +461,22 @@ public final class Enums {
      * </pre>
      */
     public static final int REQUIEM_OF_SOULS_VALUE = 35;
+    /**
+     * <code>MEAT_HOOK = 41;</code>
+     *
+     * <pre>
+     * 肉钩
+     * </pre>
+     */
+    public static final int MEAT_HOOK_VALUE = 41;
+    /**
+     * <code>ROT = 42;</code>
+     *
+     * <pre>
+     * 腐烂
+     * </pre>
+     */
+    public static final int ROT_VALUE = 42;
 
 
     public final int getNumber() { return value; }
@@ -460,6 +492,8 @@ public final class Enums {
         case 32: return REAL_SHADOW_RAZE;
         case 34: return PRESENSE_OF_THE_DARK_LORD;
         case 35: return REQUIEM_OF_SOULS;
+        case 41: return MEAT_HOOK;
+        case 42: return ROT;
         default: return null;
       }
     }
@@ -885,13 +919,13 @@ public final class Enums {
      */
     NECRO_MASTERY_BUFF(4, 6),
     /**
-     * <code>AURA = 7;</code>
+     * <code>AURA_BUFF = 7;</code>
      *
      * <pre>
      * 光环
      * </pre>
      */
-    AURA(5, 7),
+    AURA_BUFF(5, 7),
     /**
      * <code>PRESENSE_DARK_LORD_BUFF = 8;</code>
      *
@@ -901,21 +935,45 @@ public final class Enums {
      */
     PRESENSE_DARK_LORD_BUFF(6, 8),
     /**
-     * <code>SLOW = 9;</code>
+     * <code>SLOW_BUFF = 9;</code>
      *
      * <pre>
      * 减移动速度
      * </pre>
      */
-    SLOW(7, 9),
+    SLOW_BUFF(7, 9),
     /**
-     * <code>ATTACK_REDUCTION = 10;</code>
+     * <code>ATTACK_REDUCTION_BUFF = 10;</code>
      *
      * <pre>
      * 减攻击力
      * </pre>
      */
-    ATTACK_REDUCTION(8, 10),
+    ATTACK_REDUCTION_BUFF(8, 10),
+    /**
+     * <code>REQUIEM_OF_SOULS_BUFF = 11;</code>
+     *
+     * <pre>
+     * 魂之挽歌，死亡
+     * </pre>
+     */
+    REQUIEM_OF_SOULS_BUFF(9, 11),
+    /**
+     * <code>ROT_BUFF = 12;</code>
+     *
+     * <pre>
+     * 腐烂
+     * </pre>
+     */
+    ROT_BUFF(10, 12),
+    /**
+     * <code>FLESH_HEAP = 13;</code>
+     *
+     * <pre>
+     * 堆积腐肉
+     * </pre>
+     */
+    FLESH_HEAP(11, 13),
     ;
 
     /**
@@ -959,13 +1017,13 @@ public final class Enums {
      */
     public static final int NECRO_MASTERY_BUFF_VALUE = 6;
     /**
-     * <code>AURA = 7;</code>
+     * <code>AURA_BUFF = 7;</code>
      *
      * <pre>
      * 光环
      * </pre>
      */
-    public static final int AURA_VALUE = 7;
+    public static final int AURA_BUFF_VALUE = 7;
     /**
      * <code>PRESENSE_DARK_LORD_BUFF = 8;</code>
      *
@@ -975,21 +1033,45 @@ public final class Enums {
      */
     public static final int PRESENSE_DARK_LORD_BUFF_VALUE = 8;
     /**
-     * <code>SLOW = 9;</code>
+     * <code>SLOW_BUFF = 9;</code>
      *
      * <pre>
      * 减移动速度
      * </pre>
      */
-    public static final int SLOW_VALUE = 9;
+    public static final int SLOW_BUFF_VALUE = 9;
     /**
-     * <code>ATTACK_REDUCTION = 10;</code>
+     * <code>ATTACK_REDUCTION_BUFF = 10;</code>
      *
      * <pre>
      * 减攻击力
      * </pre>
      */
-    public static final int ATTACK_REDUCTION_VALUE = 10;
+    public static final int ATTACK_REDUCTION_BUFF_VALUE = 10;
+    /**
+     * <code>REQUIEM_OF_SOULS_BUFF = 11;</code>
+     *
+     * <pre>
+     * 魂之挽歌，死亡
+     * </pre>
+     */
+    public static final int REQUIEM_OF_SOULS_BUFF_VALUE = 11;
+    /**
+     * <code>ROT_BUFF = 12;</code>
+     *
+     * <pre>
+     * 腐烂
+     * </pre>
+     */
+    public static final int ROT_BUFF_VALUE = 12;
+    /**
+     * <code>FLESH_HEAP = 13;</code>
+     *
+     * <pre>
+     * 堆积腐肉
+     * </pre>
+     */
+    public static final int FLESH_HEAP_VALUE = 13;
 
 
     public final int getNumber() { return value; }
@@ -1001,10 +1083,13 @@ public final class Enums {
         case 3: return GREAT_CLEAVE_BUFF;
         case 4: return WAR_CRY_BUFF;
         case 6: return NECRO_MASTERY_BUFF;
-        case 7: return AURA;
+        case 7: return AURA_BUFF;
         case 8: return PRESENSE_DARK_LORD_BUFF;
-        case 9: return SLOW;
-        case 10: return ATTACK_REDUCTION;
+        case 9: return SLOW_BUFF;
+        case 10: return ATTACK_REDUCTION_BUFF;
+        case 11: return REQUIEM_OF_SOULS_BUFF;
+        case 12: return ROT_BUFF;
+        case 13: return FLESH_HEAP;
         default: return null;
       }
     }
@@ -1068,21 +1153,23 @@ public final class Enums {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
       "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
       "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\256\001\n\tSkillType\022\n\n\006" +
+      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\306\001\n\tSkillType\022\n\n\006" +
       "COMMON\020\001\022\r\n\tEMIT_BUFF\020\002\022\013\n\007FISSURE\020\013\022\r\n\t" +
       "ECHO_SLAM\020\016\022\016\n\nSTORM_BOLT\020\025\022\017\n\013SHADOW_RA" +
       "ZE\020\037\022\024\n\020REAL_SHADOW_RAZE\020 \022\035\n\031PRESENSE_O" +
-      "F_THE_DARK_LORD\020\"\022\024\n\020REQUIEM_OF_SOULS\020#*" +
-      "9\n\rSkillEmitType\022\013\n\007PASSIVE\020\000\022\r\n\tONETARG" +
-      "ET\020\001\022\014\n\010NOTARGET\020\002*:\n\016EmitTargetType\022\007\n\003",
-      "ANY\020\000\022\017\n\013FRIEND_HERO\020\001\022\016\n\nENIMY_HERO\020\002*)" +
-      "\n\020EffectTargetType\022\n\n\006FRIEND\020\001\022\t\n\005ENEMY\020" +
-      "\002*\300\001\n\010BuffType\022\026\n\022ENCHANT_TOTEM_BUFF\020\001\022\024" +
-      "\n\020AFTER_SHOCK_BUFF\020\002\022\025\n\021GREAT_CLEAVE_BUF" +
-      "F\020\003\022\020\n\014WAR_CRY_BUFF\020\004\022\026\n\022NECRO_MASTERY_B" +
-      "UFF\020\006\022\010\n\004AURA\020\007\022\033\n\027PRESENSE_DARK_LORD_BU" +
-      "FF\020\010\022\010\n\004SLOW\020\t\022\024\n\020ATTACK_REDUCTION\020\nB\014\n\n" +
-      "dota.enums"
+      "F_THE_DARK_LORD\020\"\022\024\n\020REQUIEM_OF_SOULS\020#\022" +
+      "\r\n\tMEAT_HOOK\020)\022\007\n\003ROT\020**9\n\rSkillEmitType" +
+      "\022\013\n\007PASSIVE\020\000\022\r\n\tONETARGET\020\001\022\014\n\010NOTARGET",
+      "\020\002*:\n\016EmitTargetType\022\007\n\003ANY\020\000\022\017\n\013FRIEND_" +
+      "HERO\020\001\022\016\n\nENIMY_HERO\020\002*)\n\020EffectTargetTy" +
+      "pe\022\n\n\006FRIEND\020\001\022\t\n\005ENEMY\020\002*\210\002\n\010BuffType\022\026" +
+      "\n\022ENCHANT_TOTEM_BUFF\020\001\022\024\n\020AFTER_SHOCK_BU" +
+      "FF\020\002\022\025\n\021GREAT_CLEAVE_BUFF\020\003\022\020\n\014WAR_CRY_B" +
+      "UFF\020\004\022\026\n\022NECRO_MASTERY_BUFF\020\006\022\r\n\tAURA_BU" +
+      "FF\020\007\022\033\n\027PRESENSE_DARK_LORD_BUFF\020\010\022\r\n\tSLO" +
+      "W_BUFF\020\t\022\031\n\025ATTACK_REDUCTION_BUFF\020\n\022\031\n\025R" +
+      "EQUIEM_OF_SOULS_BUFF\020\013\022\014\n\010ROT_BUFF\020\014\022\016\n\n" +
+      "FLESH_HEAP\020\rB\014\n\ndota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

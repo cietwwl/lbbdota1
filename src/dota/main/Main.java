@@ -17,6 +17,8 @@ public class Main {
 	private static void test001() {
 		CombatTeam team1 = new CombatTeam();
 		CombatTeam team2 = new CombatTeam();
+		team1.setColor(1);
+		team2.setColor(2);
 		
 		Hero laoNiu = HeroFactory.create(1);
 		Hero liuLang = HeroFactory.create(2);

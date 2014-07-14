@@ -4,21 +4,36 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import dota.battle.Battle;
 import dota.hero.Combater;
 
 public class CombatTeam implements Iterable<Combater>{
+	private Battle battle = null;
 	private List<Combater> team = new ArrayList<>();
+	private int color = 0;
 	
-	// TODO 改成坐标体系后，这个也要改
-	public void battleInit(CombatTeam defenserTeam) {
+	public void setColor(int color) {
+		this.color = color;
+	}
+	
+	public int getColor() {
+		return color;
+	}
+	
+	public void init(Battle battle) {
+		this.battle = battle;
 		for (Combater e: team) {
-			e.battleInit(defenserTeam, this);
+			e.setTeam(this);
 		}
 	}
 
 	@Override
 	public Iterator<Combater> iterator() {
 		return team.iterator();
+	}
+	
+	public Battle getBattle() {
+		return this.battle;
 	}
 	
 	public boolean isLive() {

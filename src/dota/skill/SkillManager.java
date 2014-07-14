@@ -19,7 +19,7 @@ public class SkillManager {
 			activeSkillList.add(skill);
 		} else {
 			passiveSkillList.add(skill);
-		}
+		}	
 	}
 	
 	public Skill getDefaultSkill() {
@@ -66,12 +66,6 @@ public class SkillManager {
 		}
 		
 		return true;
-	}
-	
-	public void emitPassiveSkill(Combater attacker, CombatTeam targets, CombatTeam attackerTeam) {
-		for(Skill skill:passiveSkillList) {
-			skill.emit(attacker, targets, attackerTeam);
-		}
 	}
 	
 	public List<Skill> getCanEmitSkills() {

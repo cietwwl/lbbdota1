@@ -69,6 +69,16 @@ public abstract class Buff {
 		
 	}
 	
+	// BUFF持有者死掉
+	public void onOwnerDeath() {
+		
+	}
+	
+	//
+	public void onAnyOppentDeath(Combater killser, Combater death) {
+		
+	}
+	
 	// 
 	protected void update0() {
 		

@@ -5,7 +5,7 @@ import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.util.OP;
 
-@OP(CODE = Enums.BuffType.SLOW_VALUE, TYPE = OP.BUFF)
+@OP(CODE = Enums.BuffType.SLOW_BUFF_VALUE, TYPE = OP.BUFF)
 public class Slow extends Buff {
 
 	public Slow(BuffCfg config) {
