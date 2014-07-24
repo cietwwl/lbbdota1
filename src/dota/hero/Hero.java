@@ -107,4 +107,8 @@ public class Hero extends Combater {
 		// 更新攻击力 TODO
 		System.out.println(getName() + "力量: " + strength.base + " + "+ strength.extra);
 	}
+	
+	public int getStrength() {
+		return (int) strength.getReal();
+	}
 }

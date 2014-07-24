@@ -5,7 +5,7 @@ import dota.config.ParamConfig;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 @OP(CODE = Enums.BuffType.ROT_BUFF_VALUE, TYPE = OP.BUFF)
@@ -35,8 +35,8 @@ public class RotBuff extends Buff {
 		timeUnit += ParamConfig.BattleInterval;
 		timeSum += ParamConfig.BattleInterval;
 		if (timeUnit >= 1000) {
-			for (Combater e: defenseTeam) {
-				if (e.isLive() && HeroHelper.isInRange(owner, e, config.getEffectScope())) {
+			for (Combater e: oppentTeam) {
+				if (e.isLive() && CombaterHelper.isInRange(owner, e, config.getEffectScope())) {
 					int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE, owner);
 					// TODO 减速
 					System.out.println(owner.getName() + " 的 " + config.getName() + 

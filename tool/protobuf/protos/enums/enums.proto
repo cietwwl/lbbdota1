@@ -9,6 +9,8 @@ enum AttackType {
 // 战斗状态
 enum CombatState {
 	STUN = 1; // 眩晕
+	EMITTINT = 2; // 持续施法中
+	BE_EMITTING = 3; // 被持续施法的技能限制
 }
 
 // 英雄类型
@@ -33,6 +35,9 @@ enum SkillType {
 	REQUIEM_OF_SOULS				= 35; 		// 魂之挽歌
 	MEAT_HOOK						= 41;		// 肉钩
 	ROT								= 42;		// 腐烂
+	DRAGON_SLAVE					= 51;       // 龙破斩
+	LIGHT_STRIKE_ARRAY				= 52;       // 光击阵
+	SKILL_LIKE_LAGUNA_BLADE			= 53;       // 只对对单体照成伤害的技能	(神灭斩)
 }
 
 // 技能释放类型
@@ -69,7 +74,9 @@ enum BuffType {
 	SLOW_BUFF = 9;								// 减移动速度
 	ATTACK_REDUCTION_BUFF = 10;					// 减攻击力
 	REQUIEM_OF_SOULS_BUFF = 11;					// 魂之挽歌，死亡
-	ROT_BUFF = 12;					// 腐烂
+	ROT_BUFF = 12;							// 腐烂
 	FLESH_HEAP = 13;						// 堆积腐肉
+	DISMEMBER_BUFF = 14;					// 肢解
+	FIREY_SOUL	= 15;						// 炽热之魂
 }
 

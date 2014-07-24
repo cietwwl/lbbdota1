@@ -8,7 +8,7 @@ import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 // 光环类BUFF
@@ -25,7 +25,7 @@ public class AuraBuff extends Buff {
 	@Override
 	protected void start() {
 		initBuffs();
-		List<Combater> targets = selectTargets(owner, defenseTeam);
+		List<Combater> targets = selectTargets(owner, oppentTeam);
 		effecters.addAll(targets);
 		for (Combater e: targets) {
 			emitBuff(e);
@@ -45,7 +45,7 @@ public class AuraBuff extends Buff {
 	private List<Combater> selectTargets(Combater emiter, CombatTeam targetTeam) {
 		List<Combater> targets = new ArrayList<>();
 		for (Combater e: targetTeam) {
-			if (e.isLive() && HeroHelper.getDistanceBetweenCombaters(emiter, e) <= config.getEffectScope()) {
+			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(emiter, e) <= config.getEffectScope()) {
 				targets.add(e);
 			}
 		}
@@ -54,14 +54,14 @@ public class AuraBuff extends Buff {
 	
 	private void emitBuff(Combater target) {	
 		for (int i = 0; i < buffs.size(); i++) {
-			target.addBuff(buffs.get(i), attackTeam, defenseTeam);
+			target.addBuff(buffs.get(i), ownerTeam, oppentTeam);
 		}
 	}
 	
 	// 频繁的内存释放和开辟 TODO
 	@Override
 	protected void update0() {
-		List<Combater> nowTargets = selectTargets(owner, defenseTeam);
+		List<Combater> nowTargets = selectTargets(owner, oppentTeam);
 		for (Combater e: nowTargets) {
 			if (!effecters.contains(e)) {
 				effecters.add(e);

@@ -7,7 +7,7 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 // 回音击
@@ -31,7 +31,7 @@ public class EchoSlam extends Skill {
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		for (Combater e: defenserTeam) {
-			if (e.isLive() && HeroHelper.getDistanceBetweenCombaters(attacker, e) <= config.getEffectScope()) {
+			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(attacker, e) <= config.getEffectScope()) {
 				targets.add(e);
 			}
 		}

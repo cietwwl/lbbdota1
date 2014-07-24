@@ -8,7 +8,7 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 import dota.util.Point;
 
@@ -31,7 +31,7 @@ public class RealShadowRaze extends Skill {
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		// SF影压，暂时用这个函数来选择方向 TODO
 		Combater target = SelectTarget.getOneOppentByRandom(attacker, defenserTeam, 100000);
-		Point p = HeroHelper.getPointInSegment(attacker, target, config.getEmitDistance());
+		Point p = CombaterHelper.getPointInSegment(attacker, target, config.getEmitDistance());
 		targets.addAll(SelectTarget.getAllTargetsOfScope(p.x, p.y, config.getEffectScope(), defenserTeam));
 	}
 

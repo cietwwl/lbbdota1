@@ -6,7 +6,8 @@ import java.util.List;
 import dota.hero.Combater;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
+import dota.util.Point;
 
 public class SelectTarget {
 	
@@ -17,7 +18,7 @@ public class SelectTarget {
 	public static Combater getOneOppentByRandom(Combater attacker, CombatTeam defenserTeam, float distance) {
 		List<Combater> candidate = new ArrayList<>();
 		for (Combater e : defenserTeam) {
-			if (e.isLive() && HeroHelper.isInRange(attacker, e, distance)) {
+			if (e.isLive() && CombaterHelper.isInRange(attacker, e, distance)) {
 				candidate.add(e);
 			}
 		}
@@ -46,7 +47,17 @@ public class SelectTarget {
 	public static List<Combater> getAllTargetsOfScope(int x, int y, float distance, CombatTeam targetTeam) {
 		List<Combater> result = new ArrayList<>();
 		for (Combater e: targetTeam) {
-			if (e.isLive() && HeroHelper.isInRange(x, y, e, distance)) {
+			if (e.isLive() && CombaterHelper.isInRange(x, y, e, distance)) {
+				result.add(e);
+			}
+		}
+		return result;
+	}
+	
+	public static List<Combater> getAllTargetOfPolygon(List<Point> polygon, CombatTeam targetTeam) {
+		List<Combater> result = new ArrayList<>();
+		for (Combater e: targetTeam) {
+			if (e.isLive() && CombaterHelper.isCombaterInPolygon(e, polygon)) {
 				result.add(e);
 			}
 		}

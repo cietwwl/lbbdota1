@@ -127,6 +127,22 @@ public final class Enums {
      * </pre>
      */
     STUN(0, 1),
+    /**
+     * <code>EMITTINT = 2;</code>
+     *
+     * <pre>
+     * 持续施法中
+     * </pre>
+     */
+    EMITTINT(1, 2),
+    /**
+     * <code>BE_EMITTING = 3;</code>
+     *
+     * <pre>
+     * 被持续施法的技能限制
+     * </pre>
+     */
+    BE_EMITTING(2, 3),
     ;
 
     /**
@@ -137,6 +153,22 @@ public final class Enums {
      * </pre>
      */
     public static final int STUN_VALUE = 1;
+    /**
+     * <code>EMITTINT = 2;</code>
+     *
+     * <pre>
+     * 持续施法中
+     * </pre>
+     */
+    public static final int EMITTINT_VALUE = 2;
+    /**
+     * <code>BE_EMITTING = 3;</code>
+     *
+     * <pre>
+     * 被持续施法的技能限制
+     * </pre>
+     */
+    public static final int BE_EMITTING_VALUE = 3;
 
 
     public final int getNumber() { return value; }
@@ -144,6 +176,8 @@ public final class Enums {
     public static CombatState valueOf(int value) {
       switch (value) {
         case 1: return STUN;
+        case 2: return EMITTINT;
+        case 3: return BE_EMITTING;
         default: return null;
       }
     }
@@ -387,6 +421,30 @@ public final class Enums {
      * </pre>
      */
     ROT(10, 42),
+    /**
+     * <code>DRAGON_SLAVE = 51;</code>
+     *
+     * <pre>
+     * 龙破斩
+     * </pre>
+     */
+    DRAGON_SLAVE(11, 51),
+    /**
+     * <code>LIGHT_STRIKE_ARRAY = 52;</code>
+     *
+     * <pre>
+     * 光击阵
+     * </pre>
+     */
+    LIGHT_STRIKE_ARRAY(12, 52),
+    /**
+     * <code>SKILL_LIKE_LAGUNA_BLADE = 53;</code>
+     *
+     * <pre>
+     * 只对对单体照成伤害的技能	(神灭斩)
+     * </pre>
+     */
+    SKILL_LIKE_LAGUNA_BLADE(13, 53),
     ;
 
     /**
@@ -477,6 +535,30 @@ public final class Enums {
      * </pre>
      */
     public static final int ROT_VALUE = 42;
+    /**
+     * <code>DRAGON_SLAVE = 51;</code>
+     *
+     * <pre>
+     * 龙破斩
+     * </pre>
+     */
+    public static final int DRAGON_SLAVE_VALUE = 51;
+    /**
+     * <code>LIGHT_STRIKE_ARRAY = 52;</code>
+     *
+     * <pre>
+     * 光击阵
+     * </pre>
+     */
+    public static final int LIGHT_STRIKE_ARRAY_VALUE = 52;
+    /**
+     * <code>SKILL_LIKE_LAGUNA_BLADE = 53;</code>
+     *
+     * <pre>
+     * 只对对单体照成伤害的技能	(神灭斩)
+     * </pre>
+     */
+    public static final int SKILL_LIKE_LAGUNA_BLADE_VALUE = 53;
 
 
     public final int getNumber() { return value; }
@@ -494,6 +576,9 @@ public final class Enums {
         case 35: return REQUIEM_OF_SOULS;
         case 41: return MEAT_HOOK;
         case 42: return ROT;
+        case 51: return DRAGON_SLAVE;
+        case 52: return LIGHT_STRIKE_ARRAY;
+        case 53: return SKILL_LIKE_LAGUNA_BLADE;
         default: return null;
       }
     }
@@ -974,6 +1059,22 @@ public final class Enums {
      * </pre>
      */
     FLESH_HEAP(11, 13),
+    /**
+     * <code>DISMEMBER_BUFF = 14;</code>
+     *
+     * <pre>
+     * 肢解
+     * </pre>
+     */
+    DISMEMBER_BUFF(12, 14),
+    /**
+     * <code>FIREY_SOUL = 15;</code>
+     *
+     * <pre>
+     * 炽热之魂
+     * </pre>
+     */
+    FIREY_SOUL(13, 15),
     ;
 
     /**
@@ -1072,6 +1173,22 @@ public final class Enums {
      * </pre>
      */
     public static final int FLESH_HEAP_VALUE = 13;
+    /**
+     * <code>DISMEMBER_BUFF = 14;</code>
+     *
+     * <pre>
+     * 肢解
+     * </pre>
+     */
+    public static final int DISMEMBER_BUFF_VALUE = 14;
+    /**
+     * <code>FIREY_SOUL = 15;</code>
+     *
+     * <pre>
+     * 炽热之魂
+     * </pre>
+     */
+    public static final int FIREY_SOUL_VALUE = 15;
 
 
     public final int getNumber() { return value; }
@@ -1090,6 +1207,8 @@ public final class Enums {
         case 11: return REQUIEM_OF_SOULS_BUFF;
         case 12: return ROT_BUFF;
         case 13: return FLESH_HEAP;
+        case 14: return DISMEMBER_BUFF;
+        case 15: return FIREY_SOUL;
         default: return null;
       }
     }
@@ -1151,25 +1270,29 @@ public final class Enums {
   static {
     java.lang.String[] descriptorData = {
       "\n\021enums/enums.proto*\'\n\nAttackType\022\014\n\010PHY" +
-      "SICAL\020\001\022\013\n\007MAGICAL\020\002*\027\n\013CombatState\022\010\n\004S" +
-      "TUN\020\001*7\n\010HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILI" +
-      "TY\020\002\022\020\n\014INTELLIGENCE\020\003*\306\001\n\tSkillType\022\n\n\006" +
-      "COMMON\020\001\022\r\n\tEMIT_BUFF\020\002\022\013\n\007FISSURE\020\013\022\r\n\t" +
-      "ECHO_SLAM\020\016\022\016\n\nSTORM_BOLT\020\025\022\017\n\013SHADOW_RA" +
-      "ZE\020\037\022\024\n\020REAL_SHADOW_RAZE\020 \022\035\n\031PRESENSE_O" +
-      "F_THE_DARK_LORD\020\"\022\024\n\020REQUIEM_OF_SOULS\020#\022" +
-      "\r\n\tMEAT_HOOK\020)\022\007\n\003ROT\020**9\n\rSkillEmitType" +
-      "\022\013\n\007PASSIVE\020\000\022\r\n\tONETARGET\020\001\022\014\n\010NOTARGET",
-      "\020\002*:\n\016EmitTargetType\022\007\n\003ANY\020\000\022\017\n\013FRIEND_" +
-      "HERO\020\001\022\016\n\nENIMY_HERO\020\002*)\n\020EffectTargetTy" +
-      "pe\022\n\n\006FRIEND\020\001\022\t\n\005ENEMY\020\002*\210\002\n\010BuffType\022\026" +
-      "\n\022ENCHANT_TOTEM_BUFF\020\001\022\024\n\020AFTER_SHOCK_BU" +
-      "FF\020\002\022\025\n\021GREAT_CLEAVE_BUFF\020\003\022\020\n\014WAR_CRY_B" +
-      "UFF\020\004\022\026\n\022NECRO_MASTERY_BUFF\020\006\022\r\n\tAURA_BU" +
-      "FF\020\007\022\033\n\027PRESENSE_DARK_LORD_BUFF\020\010\022\r\n\tSLO" +
-      "W_BUFF\020\t\022\031\n\025ATTACK_REDUCTION_BUFF\020\n\022\031\n\025R" +
-      "EQUIEM_OF_SOULS_BUFF\020\013\022\014\n\010ROT_BUFF\020\014\022\016\n\n" +
-      "FLESH_HEAP\020\rB\014\n\ndota.enums"
+      "SICAL\020\001\022\013\n\007MAGICAL\020\002*6\n\013CombatState\022\010\n\004S" +
+      "TUN\020\001\022\014\n\010EMITTINT\020\002\022\017\n\013BE_EMITTING\020\003*7\n\010" +
+      "HeroType\022\014\n\010STRENGTH\020\001\022\013\n\007AGILITY\020\002\022\020\n\014I" +
+      "NTELLIGENCE\020\003*\215\002\n\tSkillType\022\n\n\006COMMON\020\001\022" +
+      "\r\n\tEMIT_BUFF\020\002\022\013\n\007FISSURE\020\013\022\r\n\tECHO_SLAM" +
+      "\020\016\022\016\n\nSTORM_BOLT\020\025\022\017\n\013SHADOW_RAZE\020\037\022\024\n\020R" +
+      "EAL_SHADOW_RAZE\020 \022\035\n\031PRESENSE_OF_THE_DAR" +
+      "K_LORD\020\"\022\024\n\020REQUIEM_OF_SOULS\020#\022\r\n\tMEAT_H" +
+      "OOK\020)\022\007\n\003ROT\020*\022\020\n\014DRAGON_SLAVE\0203\022\026\n\022LIGH",
+      "T_STRIKE_ARRAY\0204\022\033\n\027SKILL_LIKE_LAGUNA_BL" +
+      "ADE\0205*9\n\rSkillEmitType\022\013\n\007PASSIVE\020\000\022\r\n\tO" +
+      "NETARGET\020\001\022\014\n\010NOTARGET\020\002*:\n\016EmitTargetTy" +
+      "pe\022\007\n\003ANY\020\000\022\017\n\013FRIEND_HERO\020\001\022\016\n\nENIMY_HE" +
+      "RO\020\002*)\n\020EffectTargetType\022\n\n\006FRIEND\020\001\022\t\n\005" +
+      "ENEMY\020\002*\254\002\n\010BuffType\022\026\n\022ENCHANT_TOTEM_BU" +
+      "FF\020\001\022\024\n\020AFTER_SHOCK_BUFF\020\002\022\025\n\021GREAT_CLEA" +
+      "VE_BUFF\020\003\022\020\n\014WAR_CRY_BUFF\020\004\022\026\n\022NECRO_MAS" +
+      "TERY_BUFF\020\006\022\r\n\tAURA_BUFF\020\007\022\033\n\027PRESENSE_D" +
+      "ARK_LORD_BUFF\020\010\022\r\n\tSLOW_BUFF\020\t\022\031\n\025ATTACK",
+      "_REDUCTION_BUFF\020\n\022\031\n\025REQUIEM_OF_SOULS_BU" +
+      "FF\020\013\022\014\n\010ROT_BUFF\020\014\022\016\n\nFLESH_HEAP\020\r\022\022\n\016DI" +
+      "SMEMBER_BUFF\020\016\022\016\n\nFIREY_SOUL\020\017B\014\n\ndota.e" +
+      "nums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

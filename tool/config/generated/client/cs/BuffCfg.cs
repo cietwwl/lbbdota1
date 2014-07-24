@@ -22,10 +22,12 @@ namespace HXFS.Config
     [ProtoMember(7)]
     public int EffectTime { get; set; } // 持续时间 MS
     [ProtoMember(8)]
-    public int EffectCounts { get; set; } // 有效作用次数，受类型影响，比如强化图腾，只维持一次攻击
+    public int EffectTime1 { get; set; } // 持续时间 MS
     [ProtoMember(9)]
-    public int EffectScope { get; set; } // 作用范围
+    public int EffectCounts { get; set; } // 有效作用次数，受类型影响，比如强化图腾，只维持一次攻击
     [ProtoMember(10)]
+    public int EffectScope { get; set; } // 作用范围
+    [ProtoMember(11)]
     public string Buffs { get; set; } // 产生的BUFFS
   }
 }

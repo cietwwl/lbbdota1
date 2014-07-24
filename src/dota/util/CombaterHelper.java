@@ -1,9 +1,11 @@
 package dota.util;
 
+import java.util.List;
+
 import dota.hero.Combater;
 import static java.lang.Math.*;
 
-public class HeroHelper {
+public class CombaterHelper {
 	
 	// 向上取整
 	public static int getDistanceBetweenCombaters(Combater attacker, Combater defenser) {
@@ -62,5 +64,10 @@ public class HeroHelper {
 		p.x = (int) (distance * cos + p1.x);
 		p.y = (int) (distance * sin + p1.y);
 		return p;
+	}
+	
+	public static boolean isCombaterInPolygon(Combater A, List<Point> polygon) {
+		Point point = new Point(A.positionX, A.positionY);
+		return DotaMath.isPointInPolygon(point, polygon);
 	}
 }

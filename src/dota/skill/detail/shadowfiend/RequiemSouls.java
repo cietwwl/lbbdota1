@@ -9,7 +9,7 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 @OP(CODE = Enums.SkillType.REQUIEM_OF_SOULS_VALUE, TYPE = OP.SKILL)
@@ -22,7 +22,7 @@ public class RequiemSouls extends Skill {
 
 	@Override
 	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
-		float x = HeroHelper.getDistanceBetweenCombaters(attacker, target);
+		float x = CombaterHelper.getDistanceBetweenCombaters(attacker, target);
 		float y = (1 - souls/2) * x / config.getEffectScope() + souls/2;
 		int damage = target.beAttack((int)y, Enums.AttackType.MAGICAL_VALUE, attacker);
 		System.out.println(attacker.getName() + " 的 " + config.getName() + 
@@ -40,7 +40,7 @@ public class RequiemSouls extends Skill {
 		souls = ((NecroMastery)soulBuff).getSouls();
 		
 		for (Combater e: defenserTeam) {
-			if (e.isLive() && HeroHelper.getDistanceBetweenCombaters(attacker, e) <= config.getEffectScope()) {
+			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(attacker, e) <= config.getEffectScope()) {
 				targets.add(e);
 			}
 		}

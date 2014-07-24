@@ -8,7 +8,7 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 @OP(CODE = Enums.SkillType.MEAT_HOOK_VALUE, TYPE = OP.SKILL)
@@ -32,10 +32,10 @@ public class MeatHook extends Skill {
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {	
 		Combater target = SelectTarget.getOneOppentByRandom(attacker, defenserTeam, config.getEmitDistance());
-		int distance = HeroHelper.getDistanceBetweenCombaters(attacker, target);
+		int distance = CombaterHelper.getDistanceBetweenCombaters(attacker, target);
 		// 选择该条直线上的所有英雄
 		for (Combater e : defenserTeam) {
-			if (e.isLive() && HeroHelper.isInSegment(attacker, target, e, distance)) {
+			if (e.isLive() && CombaterHelper.isInSegment(attacker, target, e, distance)) {
 				targets.add(e);
 				return;
 			}

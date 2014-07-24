@@ -29,11 +29,11 @@ public abstract class Combater extends Character{
 	
 	protected BuffManager buffManager = null;		// BUFF
 	
-	protected CombatStateManager combatStateManager = new CombatStateManager(); // state
+	protected CombatState combatState = new CombatState(); // state
 	
 	private int controlType = 0;	// 控制类型，0AI,1手动
 	
-	protected float ias = 1f; // 攻击速度提升
+	protected float ias = 1f; // 攻击速度提升, 百分比小数
 	protected int base_attack_speed = 10;
 	
 	public void setControlType(int type) {
@@ -48,24 +48,23 @@ public abstract class Combater extends Character{
 		this.team = team;
 	}
 	
-	// 被击晕
-	public void beStun(int count) {
-		combatStateManager.beStun(count);
+	public void addIas(float add) {
+		ias += add;
 	}
 	
-	public void decreaseStun() {
-		combatStateManager.decreaseStun();
-	}
-	
-	public void clearStun() {
-		combatStateManager.clearStun();
+	public void removeIas(float rm) {
+		ias -= rm;
 	}
 	
 	// 每回合更新
 	public void update() {
-		decreaseStun();
+		combatState.update();
 		skillManager.update();
 		buffManager.update(this);
+	}
+	
+	public CombatState getCombatState() {
+		return combatState;
 	}
 	
 	// 是否可以行动
@@ -75,10 +74,19 @@ public abstract class Combater extends Character{
 			return false;
 		}
 		
-		if(combatStateManager.getLeftStunCounts() > 0) {
+		if (combatState.getStun() > 0) {
 			// System.out.println(getName() + " 处于眩晕状态");
 			return false;
 		}
+		
+		if (combatState.getEmitting()) {
+			return false;
+		}
+		
+		if (combatState.getBeEmittingCounts() > 0) {
+			return false;
+		}
+		
 		return true;
 	}
 	
@@ -184,7 +192,7 @@ public abstract class Combater extends Character{
 	}
 	
 	public int getAttackSpeed() {
-		return (int) (base_attack_speed/ias); // MS/攻击次数
+		return (int) (base_attack_speed/(1 + ias)); // MS/攻击次数
 	}
 	
 	public BuffManager getBuffManager() {

@@ -8,7 +8,7 @@ import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.team.CombatTeam;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 // 流浪的巨力挥舞
@@ -42,7 +42,7 @@ public class GreatCleaveBuff extends Buff {
 	private List<Combater> selectTargets(Combater emiter, CombatTeam defenser) {
 		List<Combater> targets = new ArrayList<>();
 		for (Combater e: defenser) {
-			if (e.isLive() && HeroHelper.isInRange(emiter, e, config.getEffectScope())) {
+			if (e.isLive() && CombaterHelper.isInRange(emiter, e, config.getEffectScope())) {
 				targets.add(e);
 			}
 		}

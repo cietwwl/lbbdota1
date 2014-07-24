@@ -10,7 +10,7 @@ import dota.hero.Combater;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.DotaMath;
-import dota.util.HeroHelper;
+import dota.util.CombaterHelper;
 import dota.util.OP;
 
 @OP(CODE = Enums.SkillType.COMMON_VALUE, TYPE = OP.SKILL)
@@ -56,7 +56,7 @@ public class CommonAttackSkill extends Skill {
 		List<Combater> candidate = new ArrayList<>(); // 候选目标
 
 		for (Combater e: defenserTeam) {
-			if (e.isLive() && HeroHelper.isInRange(attacker, e, attacker.getAttackDistance())) {
+			if (e.isLive() && CombaterHelper.isInRange(attacker, e, attacker.getAttackDistance())) {
 				candidate.add(e);
 			}
 		}

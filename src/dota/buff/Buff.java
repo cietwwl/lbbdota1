@@ -9,8 +9,8 @@ public abstract class Buff {
 	protected int time;
 	protected BuffCfg config;
 	protected Combater owner;
-	protected CombatTeam attackTeam;
-	protected CombatTeam defenseTeam;
+	protected CombatTeam ownerTeam;
+	protected CombatTeam oppentTeam;
 	
 	public Buff(BuffCfg config) {
 		this.config = config;
@@ -24,10 +24,10 @@ public abstract class Buff {
 		time = config.getEffectTime();
 	}
 	
-	public void start(Combater owner, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	public void start(Combater owner, CombatTeam redTeam, CombatTeam blueTeam) {
 		this.owner = owner;
-		this.attackTeam = attackTeam;
-		this.defenseTeam = defenseTeam;
+		this.ownerTeam = blueTeam;
+		this.oppentTeam = redTeam;
 		start();
 	}
 	
@@ -36,7 +36,7 @@ public abstract class Buff {
 	public abstract void stop();
 	
 	private void decreaseTime() {
-		if(time == 0) {
+		if(time <= 0) {
 			return;
 		}
 		time -= ParamConfig.BattleInterval;
@@ -74,8 +74,13 @@ public abstract class Buff {
 		
 	}
 	
-	//
+	// 有敌方单位死掉
 	public void onAnyOppentDeath(Combater killser, Combater death) {
+		
+	}
+	
+	// 被晕
+	public void onOwnerBeStun() {
 		
 	}
 	

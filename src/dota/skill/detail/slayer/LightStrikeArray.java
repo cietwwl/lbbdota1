@@ -1,4 +1,4 @@
-package dota.skill.detail.rogueknight;
+package dota.skill.detail.slayer;
 
 import java.util.List;
 
@@ -6,30 +6,32 @@ import dota.ai.SelectTarget;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.print.PrintHelper;
 import dota.skill.Skill;
 import dota.team.CombatTeam;
 import dota.util.OP;
 
-@OP(CODE = Enums.SkillType.STORM_BOLT_VALUE, TYPE = OP.SKILL)
-public class StormBolt extends Skill {
+@OP(CODE = Enums.SkillType.LIGHT_STRIKE_ARRAY_VALUE, TYPE = OP.SKILL)
+public class LightStrikeArray extends Skill {
 
-	public StormBolt(SkillCfg config) {
+	public LightStrikeArray(SkillCfg config) {
 		super(config);
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	protected int emit0(Combater attacker, Combater target,
+			CombatTeam attackTeam, CombatTeam defenseTeam) {
 		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
 		target.getCombatState().beStun(config.getEffectTime());
-		System.out.println(attacker.getName() + " 对 " + target.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");
-	    return damage;
+		PrintHelper.SkillPrint(attacker, target, config.getName(), damage);
+		return damage;
 	}
 
 	@Override
 	protected void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam) {
 		Combater target = SelectTarget.getOneOppentByRandom(attacker, defenserTeam, config.getEmitDistance());
-		targets.addAll(SelectTarget.getAllTargetsOfScope(target, config.getEffectScope(), defenserTeam));
+		targets.addAll(SelectTarget.getAllTargetsOfScope(target, config.getEmitDistance(), defenserTeam));
 	}
 
 }

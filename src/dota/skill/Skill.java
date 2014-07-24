@@ -115,10 +115,10 @@ public abstract class Skill {
 	protected abstract void selectTargets0(List<Combater> targets, Combater attacker,
 			CombatTeam defenserTeam, CombatTeam attackerTeam);
 	
-	protected void emitBuff(Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	protected void emitBuff(Combater target, CombatTeam targetTeam, CombatTeam oppentTeam) {
 		String[] buffs = config.getBuffs().split(",");
 		for (int i = 0; i< buffs.length; i++) {
-			target.addBuff(Integer.parseInt(buffs[i]), attackTeam, defenseTeam);	
+			target.addBuff(Integer.parseInt(buffs[i]), targetTeam, oppentTeam);	
 		}
 	}
 }
