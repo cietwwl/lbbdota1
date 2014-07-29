@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.rogueknight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.print.PrintHelper;
 import dota.team.CombatTeam;
 import dota.util.CombaterHelper;
 import dota.util.OP;
@@ -29,19 +30,18 @@ public class GreatCleaveBuff extends Buff {
 	}
 	
 	@Override
-	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
+	public void onCommonAttack(int damage) {
 		int cleaveDamage = (int) (damage * config.getEffectValue() / 100f);
-		List<Combater> targets = selectTargets(attacker, defenser);
+		List<Combater> targets = selectTargets(owner);
 		for (Combater e: targets) {
-			e.beAttack(cleaveDamage, Enums.AttackType.PHYSICAL_VALUE, attacker);
-			System.out.println( attacker.getName() + " 的 " + config.getName() + 
-					" 对 " + e.getName() + " 造成 " + cleaveDamage + "的溅射伤害");
+			e.beAttack(cleaveDamage, Enums.AttackType.PHYSICAL_VALUE);
+			PrintHelper.BuffPrint(owner, e, config.getName(), cleaveDamage);
 		}
 	}
 	
-	private List<Combater> selectTargets(Combater emiter, CombatTeam defenser) {
+	private List<Combater> selectTargets(Combater emiter) {
 		List<Combater> targets = new ArrayList<>();
-		for (Combater e: defenser) {
+		for (Combater e: emiter.getTeam().getOppentTeam()) {
 			if (e.isLive() && CombaterHelper.isInRange(emiter, e, config.getEffectScope())) {
 				targets.add(e);
 			}

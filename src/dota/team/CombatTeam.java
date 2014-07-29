@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import dota.battle.Battle;
+import dota.battle.Combat;
 import dota.hero.Combater;
 
 public class CombatTeam implements Iterable<Combater>{
-	private Battle battle = null;
+	private Combat combat = null;
 	private List<Combater> team = new ArrayList<>();
 	private int color = 0;
 	
@@ -20,8 +20,8 @@ public class CombatTeam implements Iterable<Combater>{
 		return color;
 	}
 	
-	public void init(Battle battle) {
-		this.battle = battle;
+	public void init(Combat battle) {
+		this.combat = battle;
 		for (Combater e: team) {
 			e.setTeam(this);
 		}
@@ -32,8 +32,8 @@ public class CombatTeam implements Iterable<Combater>{
 		return team.iterator();
 	}
 	
-	public Battle getBattle() {
-		return this.battle;
+	public Combat getBattle() {
+		return this.combat;
 	}
 	
 	public boolean isLive() {
@@ -56,5 +56,13 @@ public class CombatTeam implements Iterable<Combater>{
 			team.add(combater);
 		}
 		// TODO
+	}
+	
+	public CombatTeam getOppentTeam() {
+		CombatTeam team1 = combat.getSentinelHeros();
+		if (team1.getColor() != color) {
+			return team1;
+		}
+		return combat.getSourgeHeros();
 	}
 }

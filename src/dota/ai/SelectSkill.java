@@ -1,5 +1,5 @@
-package dota.ai;
 
+package dota.ai;
 import java.util.List;
 import dota.skill.Skill;
 import dota.skill.SkillManager;

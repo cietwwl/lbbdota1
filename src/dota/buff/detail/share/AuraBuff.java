@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.share;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
-import dota.team.CombatTeam;
 import dota.util.CombaterHelper;
 import dota.util.OP;
 
@@ -25,43 +24,40 @@ public class AuraBuff extends Buff {
 	@Override
 	protected void start() {
 		initBuffs();
-		List<Combater> targets = selectTargets(owner, oppentTeam);
+		List<Combater> targets = selectTargets(owner);
 		effecters.addAll(targets);
 		for (Combater e: targets) {
 			emitBuff(e);
 		}
 	}
-
+	
+	private void initBuffs() {
+		String[] buffStr = config.getBuffs().split(",");
+		for (int i = 0; i < buffStr.length; i++) {
+			buffs.add(Integer.parseInt(buffStr[i]));
+		}
+	}
+	
+	private void emitBuff(Combater target) {	
+		for (int i = 0; i < buffs.size(); i++) {
+			target.addBuff(buffs.get(i));
+		}
+	}
+	
 	@Override
 	public void stop() {
 		for (Combater e: effecters) {
 			for (int buffId: buffs) {
 				Buff buff = e.getBuffManager().getBuff(buffId);
-				buff.clearBuff();
+				buff.clear();
 			}
-		}
-	}
-	
-	private List<Combater> selectTargets(Combater emiter, CombatTeam targetTeam) {
-		List<Combater> targets = new ArrayList<>();
-		for (Combater e: targetTeam) {
-			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(emiter, e) <= config.getEffectScope()) {
-				targets.add(e);
-			}
-		}
-		return targets;
-	}
-	
-	private void emitBuff(Combater target) {	
-		for (int i = 0; i < buffs.size(); i++) {
-			target.addBuff(buffs.get(i), ownerTeam, oppentTeam);
 		}
 	}
 	
 	// 频繁的内存释放和开辟 TODO
 	@Override
 	protected void update0() {
-		List<Combater> nowTargets = selectTargets(owner, oppentTeam);
+		List<Combater> nowTargets = selectTargets(owner);
 		for (Combater e: nowTargets) {
 			if (!effecters.contains(e)) {
 				effecters.add(e);
@@ -80,7 +76,7 @@ public class AuraBuff extends Buff {
 				rmTargets.add(e);
 				for (int buffId: buffs) {
 					Buff buff = e.getBuffManager().getBuff(buffId);
-					buff.clearBuff();
+					buff.clear();
 				}
 			}
 		}
@@ -88,11 +84,14 @@ public class AuraBuff extends Buff {
 		effecters.removeAll(rmTargets);
 	}
 	
-	private void initBuffs() {
-		String[] buffStr = config.getBuffs().split(",");
-		for (int i = 0; i < buffStr.length; i++) {
-			buffs.add(Integer.parseInt(buffStr[i]));
+	private List<Combater> selectTargets(Combater emiter) {
+		List<Combater> targets = new ArrayList<>();
+		for (Combater e: emiter.getTeam().getOppentTeam()) {
+			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(emiter, e) <= config.getEffectScope()) {
+				targets.add(e);
+			}
 		}
+		return targets;
 	}
 
 }

@@ -1,6 +1,7 @@
 package dota.hero;
 
 import dota.map.GameObject;
+import dota.print.PrintHelper;
 
 public class Character extends GameObject {
 	protected PropertyLikeHp hp = new PropertyLikeHp();			// 血
@@ -35,13 +36,17 @@ public class Character extends GameObject {
 		return attack.base_min;
 	}
 	
+	public PropertyLikeAttack getAttack() {
+		return attack;
+	}
+	
 	/**
 	 * 通过该函数只能加附加值
 	 * @param addAttack
 	 */
 	public void addAttack(int addAttack) {
 		attack.extra += addAttack;
-		System.out.println(this.getName() + "攻击力: " + attack.base_min + " ~ " + attack.base_max + " + " + attack.extra);
+		PrintHelper.printAttack(this);
 	}
 	
 	/**
@@ -50,6 +55,7 @@ public class Character extends GameObject {
 	 */
 	public void removeAttack(int rmAttack) {
 		attack.extra -= rmAttack;
+		PrintHelper.printAttack(this);
 	}
 	
 	public float getRealArmor() {
@@ -77,20 +83,12 @@ public class Character extends GameObject {
 	
 	public void removeArmor(int rm) {
 		armor.remove(rm);;
-		if ( armor.extra >= 0 ) {
-			System.out.println(this.getName() + "护甲: " + armor.base + " + " + armor.extra);
-		} else {
-			System.out.println(this.getName() + "护甲: " + armor.base + " " + armor.extra);
-		}
+		PrintHelper.printArmor(this);
 	}
 	
 	public void addArmor(int add) {
 		armor.add(add);
-		if ( armor.extra >= 0 ) {
-			System.out.println(this.getName() + "护甲: " + armor.base + " + " + armor.extra);
-		} else {
-			System.out.println(this.getName() + "护甲: " + armor.base + " " + armor.extra);
-		}
+		PrintHelper.printArmor(this);
 	}
 	
 	public void addMagicRes(int add) {

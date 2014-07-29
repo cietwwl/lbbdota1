@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.butcher;
 
 import dota.ai.SelectTarget;
 import dota.buff.Buff;
@@ -8,7 +8,6 @@ import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.hero.Hero;
 import dota.print.PrintHelper;
-import dota.team.CombatTeam;
 import dota.util.OP;
 
 @OP(CODE = Enums.BuffType.DISMEMBER_BUFF_VALUE, TYPE = OP.BUFF)
@@ -30,14 +29,6 @@ public class Dismember extends Buff {
 		owner.getCombatState().setEmitting(true);
 		target.getCombatState().increaseBeEmittingCounts();
 	}
-	
-	@Override
-	public void start(Combater owner, CombatTeam redTeam, CombatTeam blueTeam) {
-		this.owner = owner;
-		ownerTeam = redTeam;
-		oppentTeam = blueTeam;
-		start();
-	}
 
 	@Override
 	public void stop() {
@@ -56,7 +47,7 @@ public class Dismember extends Buff {
 	}
 	
 	private void selectTarget() {
-		target = SelectTarget.getOneOppentByRandom(owner, oppentTeam, config.getEffectScope());
+		target = SelectTarget.getOneOppentByRandom(owner, config.getEffectScope());
 	}
 	
 	@Override
@@ -64,8 +55,8 @@ public class Dismember extends Buff {
 		timeUnit += ParamConfig.BattleInterval;
 		if (timeUnit >= 1000) {
 			timeUnit -= 1000;
-			int damage = target.beAttack(config.getEffectValue() + ((Hero)owner).getStrength(), Enums.AttackType.MAGICAL_VALUE, owner);
-			PrintHelper.BuffPrint(owner, target, config.getName(), damage);
+			int damage = target.beAttack(config.getEffectValue() + ((Hero)owner).getStrength(), Enums.AttackType.MAGICAL_VALUE);
+			PrintHelper.BuffPrintWithTime(owner, target, config.getName(), damage);
 		}
 	}
 	

@@ -1,15 +1,21 @@
 package dota.main;
 
-import dota.battle.Battle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import dota.battle.Combat;
 import dota.hero.Hero;
 import dota.hero.HeroFactory;
+import dota.print.PrintHelper;
 import dota.team.CombatTeam;
 import dota.util.FactoryHelper;
 
 public class Main {
+	
+	private static final int SENTINEL = 1;
+	private static final int SCOURGE = 2;
 
 	public static void main(String[] args) {
-
 		FactoryHelper.init();
 		test001();
 	}
@@ -17,8 +23,8 @@ public class Main {
 	private static void test001() {
 		CombatTeam team1 = new CombatTeam();
 		CombatTeam team2 = new CombatTeam();
-		team1.setColor(1);
-		team2.setColor(2);
+		team1.setColor(SENTINEL);
+		team2.setColor(SCOURGE);
 		
 		Hero laoNiu = HeroFactory.create(1);
 		Hero liuLang = HeroFactory.create(2);
@@ -43,18 +49,18 @@ public class Main {
 		team2.add(huoNv);
 		team2.add(chaoXi);
 		
-		laoNiu.setPosition(100, 100);
-		chuanZhang.setPosition(200, 100);
+		laoNiu.setPosition(100, 0);
+		chuanZhang.setPosition(100, 100);
 		yingMo.setPosition(0, 0);
 		bingNv.setPosition(0, 100);
 		fengXing.setPosition(0, 200);
 		
-		liuLang.setPosition(0, 200);
-		tuFu.setPosition(100, 200);
-		chaoXi.setPosition(200, 200);
-		xiaoHei.setPosition(100, 300);
-		huoNv.setPosition(200, 300);
-		Battle battle = new Battle();
+		liuLang.setPosition(200, 100);
+		tuFu.setPosition(200, 200);
+		chaoXi.setPosition(200, 0);
+		xiaoHei.setPosition(300, 0);
+		huoNv.setPosition(300, 100);
+		Combat battle = new Combat();
 		battle.init(team1, team2, null);
 		battle.start();
 	}

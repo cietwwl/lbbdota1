@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.slayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +7,13 @@ import dota.buff.Buff;
 import dota.config.ParamConfig;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
-import dota.hero.Combater;
 import dota.print.PrintHelper;
-import dota.team.CombatTeam;
-import dota.util.CombaterHelper;
 import dota.util.OP;
 
 @OP(CODE = Enums.BuffType.FIREY_SOUL_VALUE, TYPE = OP.BUFF)
 public class FierySoul extends Buff {
 	
-	int maxSize = 3;
+	private static int MAX_SOUL_SIZE = 3;
 	List<Soul> souls = new ArrayList<>();
 
 	public FierySoul(BuffCfg config) {
@@ -37,8 +34,8 @@ public class FierySoul extends Buff {
 	}
 	
 	@Override
-	public void onEmitAnyActiveSkill(Combater emiter, CombatTeam defenser) {
-		if (souls.size() == 3) {
+	public void onEmitAnyActiveSkill() {
+		if (souls.size() == MAX_SOUL_SIZE) {
 			return;
 		}
 		Soul soul = new Soul();

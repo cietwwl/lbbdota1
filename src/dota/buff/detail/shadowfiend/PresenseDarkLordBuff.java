@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.shadowfiend;
 
 import dota.buff.Buff;
 import dota.config.generated.BuffCfg;

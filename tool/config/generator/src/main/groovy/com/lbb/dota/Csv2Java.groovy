@@ -112,7 +112,7 @@ public class ConfigLoader {
      */
     public static <T extends BaseConfig> Map<Integer, T> loadConfig(Class<T> cfgClass) throws ConfigException {
         // 根据类名推出文件名：XxxCfg|XxxConfig -> /Xxx.json
-        String jsonFileName = "/" + cfgClass.getSimpleName().replaceAll("Cfg", "") + ".json";
+        String jsonFileName = "/config/" + cfgClass.getSimpleName().replaceAll("Cfg", "") + ".json";
         logger.info("Loading JSON: " + jsonFileName);
         
         // 加载JSON数据，并进行后处理

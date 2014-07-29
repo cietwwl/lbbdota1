@@ -1,10 +1,11 @@
-package dota.buff.detail;
+package dota.buff.detail.butcher;
 
 import dota.buff.Buff;
 import dota.config.ParamConfig;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.print.PrintHelper;
 import dota.util.CombaterHelper;
 import dota.util.OP;
 
@@ -35,15 +36,15 @@ public class RotBuff extends Buff {
 		timeUnit += ParamConfig.BattleInterval;
 		timeSum += ParamConfig.BattleInterval;
 		if (timeUnit >= 1000) {
-			for (Combater e: oppentTeam) {
+			for (Combater e: owner.getTeam().getOppentTeam()) {
 				if (e.isLive() && CombaterHelper.isInRange(owner, e, config.getEffectScope())) {
-					int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE, owner);
+					int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE);
 					// TODO 减速
-					System.out.println(owner.getName() + " 的 " + config.getName() + 
-							" 对 " + e.getName() + " 造成了  " + damage + " 的伤害 ");
+					PrintHelper.BuffPrintWithTime(owner, e, config.getName(), damage);
 				}
 			}
-			owner.beAttack(config.getEffectValue(),  Enums.AttackType.MAGICAL_VALUE, owner);
+			int damage0 = owner.beAttack(config.getEffectValue(),  Enums.AttackType.MAGICAL_VALUE);
+			PrintHelper.BuffPrintWithTime(owner, owner, config.getName(), damage0);
 			timeUnit -= 1000;
 		}
 	}

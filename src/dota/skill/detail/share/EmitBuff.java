@@ -7,7 +7,6 @@ import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
-import dota.team.CombatTeam;
 import dota.util.OP;
 
 // 只是释放BUFF的技能
@@ -20,14 +19,13 @@ public class EmitBuff extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
-		emitBuff(target, attackTeam, defenseTeam);
+	protected int emit0(Combater attacker, Combater target) {
+		emitBuff(target, config.getBuffs());
 		return 0;
 	}
 
 	@Override
-	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam, CombatTeam attackerTeam) {
+	protected void selectTargets0(List<Combater> targets, Combater attacker) {
 		// 无目标释放
 		if (config.getEmitType() == Enums.SkillEmitType.NOTARGET_VALUE) {
 			// 作用范围是0，只是给自己释放的技能
@@ -37,10 +35,10 @@ public class EmitBuff extends Skill {
 			// AOE, 判断作用目标类型
 				if (config.getEffectTargetType() == Enums.EffectTargetType.ENEMY_VALUE) {
 					// 敌方
-					targets.addAll(SelectTarget.getAllTargetsOfScope(attacker, config.getEffectScope(), defenserTeam));
-				} else if (config.getEffectTargetType() == Enums.EffectTargetType.ENEMY_VALUE) {
+					targets.addAll(SelectTarget.getAllTargetsOfScope(attacker, config.getEffectScope(), attacker.getTeam().getOppentTeam()));
+				} else if (config.getEffectTargetType() == Enums.EffectTargetType.FRIEND_VALUE) {
 					// 友方
-					targets.addAll(SelectTarget.getAllTargetsOfScope(attacker, config.getEffectScope(), attackerTeam));
+					targets.addAll(SelectTarget.getAllTargetsOfScope(attacker, config.getEffectScope(), attacker.getTeam()));
 				}
 			}
 		} else if (config.getEmitType() == Enums.SkillEmitType.ONETARGET_VALUE) {

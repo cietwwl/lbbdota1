@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.rogueknight;
 
 import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
@@ -14,12 +14,12 @@ public class WarcryBuff extends Buff{
 
 	@Override
 	protected void start() {
-		owner.getArmor().add(config.getEffectValue());
+		owner.addArmor(config.getEffectValue());
 	}
 
 	@Override
 	public void stop() {
-		owner.getArmor().remove(config.getEffectValue());
+		owner.removeArmor(config.getEffectValue());
 	}
 
 }

@@ -7,7 +7,6 @@ import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.skill.Skill;
-import dota.team.CombatTeam;
 import dota.util.OP;
 
 @OP(CODE = Enums.SkillType.SHADOW_RAZE_VALUE, TYPE = OP.SKILL)
@@ -18,7 +17,7 @@ public class ShadowRaze extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	protected int emit0(Combater attacker, Combater target) {
 		String[] skills = config.getSkills().split(",");
 		for (int i = 0; i < skills.length; i++) {
 			attacker.learnSkill(GameConfig.getInstance().getSkillCfg(Integer.parseInt(skills[i])));
@@ -27,8 +26,7 @@ public class ShadowRaze extends Skill {
 	}
 
 	@Override
-	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam, CombatTeam attackerTeam) {	
+	protected void selectTargets0(List<Combater> targets, Combater attacker) {	
 		targets.add(attacker);
 	}
 

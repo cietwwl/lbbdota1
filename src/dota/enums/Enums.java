@@ -1260,6 +1260,124 @@ public final class Enums {
     // @@protoc_insertion_point(enum_scope:BuffType)
   }
 
+  /**
+   * Protobuf enum {@code BuffEvent}
+   */
+  public enum BuffEvent
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>COMMON_ATTACK = 1;</code>
+     */
+    COMMON_ATTACK(0, 1),
+    /**
+     * <code>EMIT_ANY_ACTIVE_SKILL = 2;</code>
+     */
+    EMIT_ANY_ACTIVE_SKILL(1, 2),
+    /**
+     * <code>KILL_ANY_COMBATER = 3;</code>
+     */
+    KILL_ANY_COMBATER(2, 3),
+    /**
+     * <code>OWNER_DEATH = 4;</code>
+     */
+    OWNER_DEATH(3, 4),
+    /**
+     * <code>ANY_OPPENT_DEATH = 5;</code>
+     */
+    ANY_OPPENT_DEATH(4, 5),
+    /**
+     * <code>OWNER_BE_STUN = 6;</code>
+     */
+    OWNER_BE_STUN(5, 6),
+    ;
+
+    /**
+     * <code>COMMON_ATTACK = 1;</code>
+     */
+    public static final int COMMON_ATTACK_VALUE = 1;
+    /**
+     * <code>EMIT_ANY_ACTIVE_SKILL = 2;</code>
+     */
+    public static final int EMIT_ANY_ACTIVE_SKILL_VALUE = 2;
+    /**
+     * <code>KILL_ANY_COMBATER = 3;</code>
+     */
+    public static final int KILL_ANY_COMBATER_VALUE = 3;
+    /**
+     * <code>OWNER_DEATH = 4;</code>
+     */
+    public static final int OWNER_DEATH_VALUE = 4;
+    /**
+     * <code>ANY_OPPENT_DEATH = 5;</code>
+     */
+    public static final int ANY_OPPENT_DEATH_VALUE = 5;
+    /**
+     * <code>OWNER_BE_STUN = 6;</code>
+     */
+    public static final int OWNER_BE_STUN_VALUE = 6;
+
+
+    public final int getNumber() { return value; }
+
+    public static BuffEvent valueOf(int value) {
+      switch (value) {
+        case 1: return COMMON_ATTACK;
+        case 2: return EMIT_ANY_ACTIVE_SKILL;
+        case 3: return KILL_ANY_COMBATER;
+        case 4: return OWNER_DEATH;
+        case 5: return ANY_OPPENT_DEATH;
+        case 6: return OWNER_BE_STUN;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<BuffEvent>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<BuffEvent>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<BuffEvent>() {
+            public BuffEvent findValueByNumber(int number) {
+              return BuffEvent.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return dota.enums.Enums.getDescriptor().getEnumTypes().get(8);
+    }
+
+    private static final BuffEvent[] VALUES = values();
+
+    public static BuffEvent valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private BuffEvent(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:BuffEvent)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1291,8 +1409,11 @@ public final class Enums {
       "ARK_LORD_BUFF\020\010\022\r\n\tSLOW_BUFF\020\t\022\031\n\025ATTACK",
       "_REDUCTION_BUFF\020\n\022\031\n\025REQUIEM_OF_SOULS_BU" +
       "FF\020\013\022\014\n\010ROT_BUFF\020\014\022\016\n\nFLESH_HEAP\020\r\022\022\n\016DI" +
-      "SMEMBER_BUFF\020\016\022\016\n\nFIREY_SOUL\020\017B\014\n\ndota.e" +
-      "nums"
+      "SMEMBER_BUFF\020\016\022\016\n\nFIREY_SOUL\020\017*\212\001\n\tBuffE" +
+      "vent\022\021\n\rCOMMON_ATTACK\020\001\022\031\n\025EMIT_ANY_ACTI" +
+      "VE_SKILL\020\002\022\025\n\021KILL_ANY_COMBATER\020\003\022\017\n\013OWN" +
+      "ER_DEATH\020\004\022\024\n\020ANY_OPPENT_DEATH\020\005\022\021\n\rOWNE" +
+      "R_BE_STUN\020\006B\014\n\ndota.enums"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

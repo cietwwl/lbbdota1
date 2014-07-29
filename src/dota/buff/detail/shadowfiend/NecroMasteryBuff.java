@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.shadowfiend;
 
 import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
@@ -8,11 +8,11 @@ import dota.hero.Hero;
 import dota.util.OP;
 
 @OP(CODE = Enums.BuffType.NECRO_MASTERY_BUFF_VALUE, TYPE = OP.BUFF)
-public class NecroMastery extends Buff {
+public class NecroMasteryBuff extends Buff {
 	
 	public int addAttack = 0;
 	
-	public NecroMastery(BuffCfg config) {
+	public NecroMasteryBuff(BuffCfg config) {
 		super(config);
 	}
 

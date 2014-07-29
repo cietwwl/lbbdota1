@@ -1,14 +1,13 @@
 package dota.skill.detail.earthshaker;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import dota.ai.SelectTarget;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.print.PrintHelper;
 import dota.skill.Skill;
-import dota.team.CombatTeam;
-import dota.util.DotaMath;
 import dota.util.CombaterHelper;
 import dota.util.OP;
 
@@ -23,33 +22,19 @@ public class Fissure extends Skill{
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater defenser, CombatTeam attackTeam, CombatTeam defenseTeam) {
-		int damage = defenser.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
+	protected int emit0(Combater attacker, Combater defenser) {
+		int damage = defenser.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE);
 		defenser.getCombatState().beStun(config.getEffectTime());
-		System.out.println(attacker.getName() + " 对 " + defenser.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");
+		PrintHelper.SkillPrint(attacker, defenser, config.getName(), damage, config.getEffectTime());
 		return damage;
 	}
 
 	@Override
-	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam, CombatTeam attackerTeam) {
-		List<Combater> candidate = new ArrayList<>();
-		for (Combater e : defenserTeam) {
-			if (e.isLive() && CombaterHelper.isInRange(attacker, e, config.getEmitDistance())) {
-				candidate.add(e);
-			}
-		}
-		
-		if (candidate.size() == 0) {
-			return;
-		}
-		
-		// 随机一个施法目标
-		int random = DotaMath.RandomInRange(0, candidate.size() - 1);
-		Combater target = candidate.get(random);
+	protected void selectTargets0(List<Combater> targets, Combater attacker) {
+		Combater target = SelectTarget.getOneOppentByRandom(attacker, config.getEmitDistance());
 		
 		// 选择该条直线上的所有英雄
-		for (Combater e : defenserTeam) {
+		for (Combater e : attacker.getTeam().getOppentTeam()) {
 			if (e.isLive() && CombaterHelper.isInSegment(attacker, target, e, config.getEmitDistance())) {
 				targets.add(e);
 			}

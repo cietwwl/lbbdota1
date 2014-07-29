@@ -1,7 +1,7 @@
 package dota.hero;
 
 import dota.ai.SelectSkill;
-import dota.battle.Battle;
+import dota.battle.Combat;
 import dota.buff.Buff;
 import dota.buff.BuffFactory;
 import dota.buff.BuffManager;
@@ -9,6 +9,7 @@ import dota.config.generated.BuffCfg;
 import dota.config.generated.GameConfig;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
+import dota.print.PrintHelper;
 import dota.skill.Skill;
 import dota.skill.SkillFactory;
 import dota.skill.SkillManager;
@@ -46,6 +47,10 @@ public abstract class Combater extends Character{
 	
 	public void setTeam(CombatTeam team) {
 		this.team = team;
+	}
+	
+	public CombatTeam getTeam() {
+		return team;
 	}
 	
 	public void addIas(float add) {
@@ -91,7 +96,7 @@ public abstract class Combater extends Character{
 	}
 	
 	// 受到指定伤害
-	public int beAttack(int damage, int type, Combater attacker) {
+	public int beAttack(int damage, int type) {
 		if (!isLive()) {
 			return 0;
 		}
@@ -128,58 +133,51 @@ public abstract class Combater extends Character{
 			return ;
 		}
 		
-		skill.emit(this, defensers, attackerTeam);
+		skill.emit(this);
 	}
 	
-	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
-		buffManager.onCommonAttack(attacker, defenser, damage);
+	public void onCommonAttack(int damage) {
+		buffManager.triggerBuffEvent(Enums.BuffEvent.COMMON_ATTACK_VALUE, damage, null, null);;
 	}
 	
-	public void onEmitAnyActiveSkill(CombatTeam defenseTeam) {
-		buffManager.onEmitAnyActiveSkill(this, defenseTeam);
+	public void onEmitAnyActiveSkill() {
+		buffManager.triggerBuffEvent(Enums.BuffEvent.EMIT_ANY_ACTIVE_SKILL_VALUE, 0, null, null);
 	}
 	
 	public void onKillAnyCombater(Combater soul) {
-		buffManager.onKillAnyCombater(soul);
+		buffManager.triggerBuffEvent(Enums.BuffEvent.KILL_ANY_COMBATER_VALUE, 0, soul, null);
 	}
 	
 	public void onDeath() {
-		buffManager.onDeath();
+		buffManager.triggerBuffEvent(Enums.BuffEvent.OWNER_DEATH_VALUE, 0, null, null);
 	}
 	
 	public void learnSkill(SkillCfg config) {
 		Skill skill = SkillFactory.createSkill(config);
 		skillManager.add(skill);
-		System.out.println(this.getName() + " 学习了技能 " + config.getName());
+		if (config.getSkillType() != Enums.SkillType.COMMON_VALUE) {
+			PrintHelper.SkillLearnPrint(this, config.getName());
+		}
 		if (config.getEmitType() == Enums.SkillEmitType.PASSIVE_VALUE) {
-			skill.emit(this, getOppentTeam(), team);
+			skill.emit(this);
 		}
 	}
 	
-	private CombatTeam getOppentTeam() {
-		Battle battle = team.getBattle();
-		CombatTeam team1 = battle.getAttackTeam();
-		if (team1.getColor() != team.getColor()) {
-			return team1;
-		}
-		return battle.getDefenseTeam();
-	}
-	
-	public void addBuff(int cfgId, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	public void addBuff(int cfgId) {
 		BuffCfg config = GameConfig.getInstance().getBuffCfg(cfgId);
-		System.out.println(this.getName() + " 获得了BUFF " + config.getName());
-		addBuff(config, attackTeam, defenseTeam);
+		PrintHelper.BuffGetPrint(this, config.getName());
+		addBuff(config);
 	}
 	
-	private void addBuff(BuffCfg config, CombatTeam attackTeam, CombatTeam defenseTeam) {
+	private void addBuff(BuffCfg config) {
 		Buff buff = BuffFactory.creatBuff(config);
 		buff.init();
 		buffManager.add(buff);
-		buff.start(this, attackTeam, defenseTeam);
+		buff.start(this);
 	}
 	
 	public void printBuff() {
-		buffManager.printAll();
+		// buffManager.printAll();
 	}
 	
 	public int getAttackDistance() {
@@ -192,7 +190,7 @@ public abstract class Combater extends Character{
 	}
 	
 	public int getAttackSpeed() {
-		return (int) (base_attack_speed/(1 + ias)); // MS/攻击次数
+		return (int) (base_attack_speed/ias); // MS/攻击次数
 	}
 	
 	public BuffManager getBuffManager() {

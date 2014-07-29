@@ -80,3 +80,12 @@ enum BuffType {
 	FIREY_SOUL	= 15;						// 炽热之魂
 }
 
+enum BuffEvent {
+	COMMON_ATTACK = 1;
+	EMIT_ANY_ACTIVE_SKILL = 2;
+	KILL_ANY_COMBATER = 3;
+	OWNER_DEATH = 4;
+	ANY_OPPENT_DEATH = 5;
+	OWNER_BE_STUN = 6;
+}
+

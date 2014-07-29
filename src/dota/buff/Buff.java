@@ -3,31 +3,37 @@ package dota.buff;
 import dota.config.ParamConfig;
 import dota.config.generated.BuffCfg;
 import dota.hero.Combater;
-import dota.team.CombatTeam;
 
 public abstract class Buff {
-	protected int time;
+	
+	private static final int BUFF_FOREVER = -9999;
+	
+	protected int time;			// BUFF持续时间，如果是-9999, 说明是永久性BUFF
 	protected BuffCfg config;
 	protected Combater owner;
-	protected CombatTeam ownerTeam;
-	protected CombatTeam oppentTeam;
 	
 	public Buff(BuffCfg config) {
 		this.config = config;
-	}
-	
-	public int getTime() {
-		return time;
 	}
 	
 	public void init() {
 		time = config.getEffectTime();
 	}
 	
-	public void start(Combater owner, CombatTeam redTeam, CombatTeam blueTeam) {
+	public int getTime() {
+		return time;
+	}
+	
+	public BuffCfg getConfig() {
+		return this.config;
+	}
+	
+	public Combater getOwner() {
+		return owner;
+	}
+	
+	public void start(Combater owner) {
 		this.owner = owner;
-		this.ownerTeam = blueTeam;
-		this.oppentTeam = redTeam;
 		start();
 	}
 	
@@ -35,32 +41,51 @@ public abstract class Buff {
 	
 	public abstract void stop();
 	
-	private void decreaseTime() {
-		if(time <= 0) {
-			return;
-		}
-		time -= ParamConfig.BattleInterval;
-	}
-	
 	public void update() {
 		decreaseTime();
 		update0();
 	}
 	
-	public boolean isOver() {
-		if(time == 0) {
+	protected void update0() {
+		
+	}
+	
+	private void decreaseTime() {
+		if (time <= 0) {
+			if (time != ParamConfig.BUFF_OVER_LEFTCOUNT && time != ParamConfig.BUFF_OVER_CLEAR) {
+				time = ParamConfig.BUFF_OVER_TIMEOUT;
+			}
+			return;
+		}
+		time -= ParamConfig.BattleInterval;
+	}
+	
+	public boolean isTimeOut() {
+		if (isOver() && time != ParamConfig.BUFF_OVER_LEFTCOUNT && time != ParamConfig.BUFF_OVER_CLEAR) {
 			return true;
 		}
 		return false;
 	}
 	
+	public boolean isOver() {
+		if (time <= 0 && time != BUFF_FOREVER) {
+			return true;
+		}
+		return false;
+	}
+	
+	// 直接清除该BUFF
+	public void clear() {
+		time = ParamConfig.BUFF_OVER_CLEAR;
+	}
+	
 	// 普通攻击
-	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
+	public void onCommonAttack(int damage) {
 		
 	}
 	
 	// 释放任意主动技能
-	public void onEmitAnyActiveSkill(Combater emiter, CombatTeam defenser) {
+	public void onEmitAnyActiveSkill() {
 		
 	}
 	
@@ -75,27 +100,13 @@ public abstract class Buff {
 	}
 	
 	// 有敌方单位死掉
-	public void onAnyOppentDeath(Combater killser, Combater death) {
+	public void onAnyOppentDeath(Combater killer, Combater death) {
 		
 	}
 	
 	// 被晕
 	public void onOwnerBeStun() {
 		
-	}
-	
-	// 
-	protected void update0() {
-		
-	}
-	
-	// 直接清除该BUFF
-	public void clearBuff() {
-		time = 0;
-	}
-	
-	public BuffCfg getConfig() {
-		return this.config;
 	}
 	
 }

@@ -1,10 +1,10 @@
-package dota.buff.detail;
+package dota.buff.detail.earthshaker;
 
 import dota.buff.Buff;
+import dota.config.ParamConfig;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
-import dota.hero.Combater;
-import dota.team.CombatTeam;
+import dota.print.PrintHelper;
 import dota.util.OP;
 
 // arg0: 增加的攻击力倍数
@@ -31,10 +31,11 @@ public class EnchantTotemBuff extends Buff {
 	}
 	
 	@Override
-	public void onCommonAttack(Combater attacker, CombatTeam defenser, int damage) {
+	public void onCommonAttack(int damage) {
 		leftCounts --;
 		if (leftCounts == 0) {
-			time = 0;
+			time = ParamConfig.BUFF_OVER_LEFTCOUNT;
+			PrintHelper.BuffOver(owner, config.getName());
 		}
 	}
 

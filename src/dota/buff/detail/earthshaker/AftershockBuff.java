@@ -1,4 +1,4 @@
-package dota.buff.detail;
+package dota.buff.detail.earthshaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import dota.buff.Buff;
 import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
-import dota.team.CombatTeam;
+import dota.print.PrintHelper;
 import dota.util.CombaterHelper;
 import dota.util.OP;
 
@@ -30,19 +30,19 @@ public class AftershockBuff extends Buff{
 	}
 	
 	@Override
-	public void onEmitAnyActiveSkill(Combater emiter, CombatTeam defenser) {
-		List<Combater> targets = selectTargets(emiter, defenser);
+	public void onEmitAnyActiveSkill() {
+		List<Combater> targets = selectTargets();
 		for (Combater e: targets) {
-			int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE, emiter);
+			int damage = e.beAttack(config.getEffectValue(), Enums.AttackType.MAGICAL_VALUE);
 			e.getCombatState().beStun(config.getEffectValue0());
-			System.out.println("触发余震，对 " + e.getName() + " 造成 " + damage + " 的伤害和 " + config.getEffectValue0() + " 的眩晕");
+			PrintHelper.BuffPrint(owner, e, config.getName(), damage, config.getEffectValue0());
 		}
 	}
 	
-	private List<Combater> selectTargets(Combater emiter, CombatTeam defenser) {
+	private List<Combater> selectTargets() {
 		List<Combater> targets = new ArrayList<>();
-		for (Combater e: defenser) {
-			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(emiter, e) <= config.getEffectScope()) {
+		for (Combater e: owner.getTeam().getOppentTeam()) {
+			if (e.isLive() && CombaterHelper.getDistanceBetweenCombaters(owner, e) <= config.getEffectScope()) {
 				targets.add(e);
 			}
 		}

@@ -15,9 +15,9 @@ public class SelectTarget {
 	 * 随机一个合法的命中目标(敌方)
 	 * @return
 	 */
-	public static Combater getOneOppentByRandom(Combater attacker, CombatTeam defenserTeam, float distance) {
+	public static Combater getOneOppentByRandom(Combater attacker, float distance) {
 		List<Combater> candidate = new ArrayList<>();
-		for (Combater e : defenserTeam) {
+		for (Combater e : attacker.getTeam().getOppentTeam()) {
 			if (e.isLive() && CombaterHelper.isInRange(attacker, e, distance)) {
 				candidate.add(e);
 			}

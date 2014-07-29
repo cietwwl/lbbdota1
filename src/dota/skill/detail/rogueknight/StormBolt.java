@@ -6,10 +6,11 @@ import dota.ai.SelectTarget;
 import dota.config.generated.SkillCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
+import dota.print.PrintHelper;
 import dota.skill.Skill;
-import dota.team.CombatTeam;
 import dota.util.OP;
 
+// 风暴之锤
 @OP(CODE = Enums.SkillType.STORM_BOLT_VALUE, TYPE = OP.SKILL)
 public class StormBolt extends Skill {
 
@@ -18,18 +19,17 @@ public class StormBolt extends Skill {
 	}
 
 	@Override
-	protected int emit0(Combater attacker, Combater target, CombatTeam attackTeam, CombatTeam defenseTeam) {
-		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE, attacker);
+	protected int emit0(Combater attacker, Combater target) {
+		int damage = target.beAttack(config.getDamage(), Enums.AttackType.MAGICAL_VALUE);
 		target.getCombatState().beStun(config.getEffectTime());
-		System.out.println(attacker.getName() + " 对 " + target.getName() + "释放 " + this.getConfig().getName() + ", 造成" + damage + "的伤害和" + config.getEffectTime() + "的眩晕");
+		PrintHelper.SkillPrint(attacker, target, config.getName(), damage, config.getEffectTime());
 	    return damage;
 	}
 
 	@Override
-	protected void selectTargets0(List<Combater> targets, Combater attacker,
-			CombatTeam defenserTeam, CombatTeam attackerTeam) {
-		Combater target = SelectTarget.getOneOppentByRandom(attacker, defenserTeam, config.getEmitDistance());
-		targets.addAll(SelectTarget.getAllTargetsOfScope(target, config.getEffectScope(), defenserTeam));
+	protected void selectTargets0(List<Combater> targets, Combater attacker) {
+		Combater target = SelectTarget.getOneOppentByRandom(attacker, config.getEmitDistance());
+		targets.addAll(SelectTarget.getAllTargetsOfScope(target, config.getEffectScope(), attacker.getTeam().getOppentTeam()));
 	}
 
 }
