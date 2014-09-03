@@ -38,6 +38,7 @@ enum SkillType {
 	DRAGON_SLAVE					= 51;       // 龙破斩
 	LIGHT_STRIKE_ARRAY				= 52;       // 光击阵
 	SKILL_LIKE_LAGUNA_BLADE			= 53;       // 只对对单体照成伤害的技能	(神灭斩)
+	CRYSTAL_NOVA 					= 61; 		// 冰霜新星
 }
 
 // 技能释放类型
@@ -78,6 +79,7 @@ enum BuffType {
 	FLESH_HEAP = 13;						// 堆积腐肉
 	DISMEMBER_BUFF = 14;					// 肢解
 	FIREY_SOUL	= 15;						// 炽热之魂
+	
 }
 
 enum BuffEvent {
