@@ -1,12 +1,8 @@
 package dota.main;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import dota.battle.Combat;
 import dota.hero.Hero;
 import dota.hero.HeroFactory;
-import dota.print.PrintHelper;
 import dota.team.CombatTeam;
 import dota.util.FactoryHelper;
 

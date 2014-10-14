@@ -8,7 +8,6 @@ import dota.config.generated.BuffCfg;
 import dota.enums.Enums;
 import dota.hero.Combater;
 import dota.print.PrintHelper;
-import dota.team.CombatTeam;
 import dota.util.CombaterHelper;
 import dota.util.OP;
 

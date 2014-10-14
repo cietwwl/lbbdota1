@@ -1,7 +1,6 @@
 package dota.hero;
 
 import dota.ai.SelectSkill;
-import dota.battle.Combat;
 import dota.buff.Buff;
 import dota.buff.BuffFactory;
 import dota.buff.BuffManager;

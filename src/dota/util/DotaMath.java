@@ -3,8 +3,6 @@ package dota.util;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import dota.hero.Combater;
-
 public class DotaMath {
 	public static int RandomInRange(int start, int end) {
 		if (start > end) {
